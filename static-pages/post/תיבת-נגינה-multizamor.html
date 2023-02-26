@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>תיבת נגינה - Multizamor</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">תיבת נגינה - Multizamor</h1>
+          <div class="author-date">יניב אור - 11 ביולי 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה מקלדת פסנתר, למשתמש היו מספר פרמטרים אותם היה יכול לשנות בלייב תוך כדי שהמנגינה נוצרת באופן רנדומלי בשילוב עם הפרמטרים הללו.</p>
+        <p>הפרמטרים היו:</p>
+        <ul>
+          <li>סולם</li>
+          <li>מפתח</li>
+          <li>טמפו</li>
+          <li>היה slider מתחת למקלדת ואיתו היה אפשר לקבוע את הטווח הפעיל של המקלדת</li>
+          <li>לכל קליד היה ניתן לקבוע אם הוא פעיל או לא בנפרד</li>
+          <li>דבר אחרון ואולי החשוב ביותר, ניתן היה לקבוע מה הסיכוי של צליל להתנגן ברגע מסויים. כך המוסיקה נשמעה הרבה יותר טבעית.</li>
+        </ul>
+        <br />
+        <p>אני אבנה שוב תיבת נגינה כזאת, ללא GUI. המטרה שלי תהיה להתחבר למקלדת הזאת עם מיקרו-קונטרולרים, כפתורים, פוטנציומטרים, לדים וכולי. וכל זה יקרה על ה-RPi בשפת פייתון.</p>
+        <p>את הפיתוח עצמו אעשה על ה-RPi, משום שבסופו של דבר הוא זה שישמש כ-sound server ואני לא רוצה לפתח על הלפטופ ולגלות אחר כך ששום דבר לא זז על ה-RPi.
+        אחפש קוד מוכן שמייצר צלילים באוקטבות שונות ואת שאר הפונקציונליות אכתוב בעצמי. נחסוך זמן. כאמור, יש לי מיליון פרויקטים.</p>
+        <p>ביום יום, אני כותב בעיקר ב-Javascript. פייתון, פעם בכמה זמן, סקריפטים פשוטים. פחות מרגיש בבית. הזדמנות לכתוב משהו טיפה גדול יותר.</p>
+        <p>צפיתי בהרצאה הזאת של דרור איילון. יש שם דברים מאוד מעניינים:</p>
+        <iframe width="740" height="416" src="https://www.youtube.com/embed/ROlkhVs15AM" title="NeuroSky MindWave Mobile 2 - Polargraph" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <br /><br />
+        <p>אנסה את FoxDot. זאת סביבת פיתוח אינטראקטיבית שעובדת מול שרת הסאונד העוצמתי SuperCollider שרץ ברקע. אם זה ישרת את המטרה המקורית שלי, יופי. אם לא, אפתח פרויקט נפרד ל-FoxDot + SuperCollider ובפוסט הזה אמשיך בכיוון של ספריית פייתון פשוטה יותר של פסנתר ואכתוב את כל הלוגיקה עם הפרמטרים שציינתי למעלה.</p>
+        <p>התחברתי ל-pi (Raspbian Stretch Lite, אגב) דרך ssh והתקנתי את FoxDot ולאחר מכן את SuperCollider (כרגע ללא sc3-plugins) לפי ההוראות כאן:
+          <br />
+          <a href="https://supercollider.github.io/development/building-raspberrypi" target="_blank">https://supercollider.github.io/development/building-raspberrypi</a>
+        </p>
+        <p>* הותקנו בנוסף המון תוכנות וספריות שקשורות לסאונד. jackd וכו&#39;.</p>
+        <p>* הקימפול של ה-SC לקח כמה שעות, בניתי את הגירסה ללא GUI.</p>
+        <p>כדי להריץ את jackd ב-boot יצרתי קובץ חדש בשם:</p>
+        <div class="pre-code">
+          <pre class="code-content">/home/pi/.jackdrc</pre>
+        </div>
+        <br />
+        <p>התוכן שלו:</p>
+        <div class="pre-code">
+          <pre class="code-content">/usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3</pre>
+        </div>
+        <br />
+        <p>* לפני כן, הרצתי את הפקודה בטרמינל ווידאתי שהכל תקין.</p>
+        <p>* עשיתי ריסטרט וזה לא הופעל ה-boot. הפעלתי בינתיים ידנית.</p>
+        <p>לפני שאעבור ישירות ל-FoxDot, אני רוצה להכיר קצת את ה-SC.</p>
+        <p>הרצתי את scsynth בפורט UDP שבחרתי, 8080:</p>
+        <div class="pre-code">
+          <pre class="code-content">scsynth -u 8080</pre>
+        </div>
+        <br />
+        <p>* עשיתי כמה ניסיונות להריץ sclang וכולי, לא הצליח. אני ממשיך הלאה בינתיים, התעכבתי מספיק על זה. אני מסיר את ההתקנות האחרונות פרט ל-Jackd. כאמור, הוא לא מאותחל ב-boot. אבדוק בהמשך.</p>
+        <p><u>עדכון, בהמשך היום:</u></p>
+        <p>הצלחתי להתקין את ה-SC על ה-PC והתחלתי לעבוד איתו. אפשר לראות <a href="supercollider" rel="noopener noreferrer noopener" target="_top">בפוסט הזה</a>.</p>
+        <p>אני צריך לקרוא בסבלנות איך עובדים איתו דרך ה-cli בלבד אז בעצם החלטתי להתקין מחדש. זה עבד טוב לדעתי, פשוט לא הצלחתי לחבר בין ה-sclang ל-scsynth שהרצתי בנפרד.</p>
+        <p>נעזרתי במדריך הזה:
+          <br />
+          <a href="https://swiki.hfbk-hamburg.de/MusicTechnology/635" target="_blank">https://swiki.hfbk-hamburg.de/MusicTechnology/635</a>
+        </p>
+        <p>אין צורך להריץ בנפרד את scsynth, הכל נעשה דרך המערכת האינטראקטיבית: sclang.</p>
+        <p>מבחינת הקבצים שהותקנו:</p>
+        <p>* ב-/usr/local/bin/ נמצאים קבצי הריצה</p>
+        <p>* ב-/usr/local/share/SuperCollider/ נמצאים קבצי סאונד, הרחבות וכולי.</p>
+        <p>***</p>
+        <p><a href="supercollider" rel="noopener noreferrer noopener" target="_top">אני לומד את ה-SuperCollider</a>. הגעתי לתוצאה שנשמעת טוב מקוד קצר ולא מסובך. תוכנה מעולה ומהר מאוד אפשר ליצור מנגינות ויצירות שלמות. כרגע בדוגמא 3 (סולם מינור הרמוני).</p>
+        <p>אמשיך ללמוד ולהעמיק במנוע אודיו המטורף הזה ו<a href="supercollider" rel="noopener noreferrer noopener" target="_top">אעדכן בפוסט</a>.</p>
+        <p>* במקביל (למיליון פרויקטים אחרים) - אמשיך את הפוסט הזה בהתממשקות ל-SuperCollider באמצעות כפתורים, קונטרולר וכו&#39;.</p>
+        <p>* אני מזכיר שהפיתוח נעשה כרגע על הלפטופ שלי (לינוקס מנטה) אבל בסופו של דבר ה-RPi יהיה שרת האודיו, אז עוד משימה תהיה לחזור ל-RPi ולהריץ עליו את ה-SC.</p>
+        <p><u>עדכון 16-7-19</u></p>
+        <p>* אני מצליח להריץ קובץ של SuperCollider מה-cli.</p>
+        <p>* הצלחתי בנוסף להריץ את ה-CS מה-RPi והוא מנגן מקובץ - דרך ה-cli.</p>
+        <p><u>עדכון 20-7-19</u></p>
+        <p>* הצלחתי לשלוט על Pbind דרך OSC - ראה <a href="supercollider" rel="noopener noreferrer noopener" target="_top">SuperCollider</a> (שליטה על Pbind דרך OSC).</p>
+        <p>* הסברים מעמיקים יותר על כל התהליך ועל הקוד, בהמשך.</p>
+        <p><u>עדכון 18-12-19</u></p>
+        <p>לנסות את ה-image:
+          <br />
+          <a href="https://hub.docker.com/r/orbsmiv/supercollider-rpi" rel="noopener noreferrer noopener" target="_blank">https://hub.docker.com/r/orbsmiv/supercollider-rpi</a>
+        </p>
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      <!-- mindwave-mobile-2-supercollider -->
+      <a class="card" href="mindwave-mobile-2-supercollider">
+        <img class="thumbnail" src="../images/thumbnails/mindwave-mobile-2-supercollider.png" />
+        <div class="content">
+          <div class="date">20 ביולי 2019</div>
+          <div class="title">נגינה בעזרת גלי המוח</div>
+          <div class="short">מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד...</div>
+        </div>
+      </a>
+      <!-- neurosky-brainwave-session-1 -->
+      <a class="card" href="neurosky-brainwave-session-1">
+        <img class="thumbnail" src="../images/thumbnails/neurosky-brainwave-session-1.jpeg" />
+        <div class="content">
+          <div class="date">11 ביולי 2019</div>
+          <div class="title">MindWave Mobile 2</div>
+          <div class="short">קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו. הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו...</div>
+        </div>
+      </a>
+      <!-- polargraph-neurosky-mindwave-mobile-2 -->
+      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
+        <div class="content">
+          <div class="date">14 ביולי 2019</div>
+          <div class="title">MindWave Mobile 2 + Polargraph</div>
+          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
+        </div>
+      </a>
+      <!-- polargraph-v-null -->
+      <a class="card" href="polargraph-v-null">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-v-null.jpg" />
+        <div class="content">
+          <div class="date">17 ביוני 2019</div>
+          <div class="title">Polargraph - vClamp</div>
+          <div class="short">כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב...</div>
+        </div>
+      </a>
+      <!-- polargraph -->
+      <a class="card" href="polargraph">
+        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
+        <div class="content">
+          <div class="date">8 ביוני 2019</div>
+          <div class="title">Polargraph - vSappe</div>
+          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
+        </div>
+      </a>
+      <!-- supercollider -->
+      <a class="card" href="supercollider">
+        <img class="thumbnail" src="../images/thumbnails/supercollider.png" />
+        <div class="content">
+          <div class="date">12 ביולי 2019</div>
+          <div class="title">SuperCollider</div>
+          <div class="short">פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית...</div>
+        </div>
+      </a>
+      <!-- מופע-אור-קולי-עם-ה-mindwave -->
+      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
+        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
+        <div class="content">
+          <div class="date">7 באוג׳ 2019</div>
+          <div class="title">מופע אורקולי עם ה-MindWave</div>
+          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
+        </div>
+      </a>
+      <!-- רעיונות-נוספים-עם-ה-MindWave -->
+      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
+        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
+        <div class="content">
+          <div class="date">27 ביולי 2019</div>
+          <div class="title">רעיונות נוספים עם ה-MindWave</div>
+          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

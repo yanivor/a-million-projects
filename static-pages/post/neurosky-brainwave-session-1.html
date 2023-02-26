@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>NeuroSky MindWave Mobile 2</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">NeuroSky MindWave Mobile 2</h1>
+          <div class="author-date">יניב אור - 11 ביולי 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו.</p>
+        <p><img alt="" src="../images/neurosky-brainwave-session-1/1.jpeg" /></p>
+        <p>הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו.</p>
+        <p>
+        בגדול, הוא קולט את המידע באמצעות אלקטרודה בודדת ומחזיר את המידע הבא:
+        <br />
+        8 גלי מוח - Delta, Theta, Low Alpha, High Alpha, Low Beta, High Beta, Low Gamma and Mid Gamma
+        <br />        
+        2 ערכים נוספים - ריכוז ומדיטציה, אני מניח שהם ניתוח כלשהו של ה-raw data שמגיע מ-8 הגלים שהוזכרו.
+        <br />
+        ערכים נוספים - עוצמת מצמוץ העיניים, אות חלש וערך נוסף.
+        <br />
+        <p>ניסיתי אותו בינתיים על הסמארטפון שלי (OnePlus X). מתחבר דרך bluetooth.
+        <br />
+        יש את האפליקציה הזאת: <a target="_blank" href="https://play.google.com/store/apps/details?id=com.neurosky.unitythinkgear">https://play.google.com/store/apps/details?id=com.neurosky.unitythinkgear</a>
+        <br />
+        גרפיקה מדהימה בה מוצגים הערכים בצורת גרפים שונים וצבעוניים.</p>
+        <p>אהבתי והתקנתי גם את: <a target="_blank" href="https://play.google.com/store/apps/details?id=com.pwittchen.eeganalyzer">https://play.google.com/store/apps/details?id=com.pwittchen.eeganalyzer</a></p>
+        <p>אין תוכנה מותאמת ללינוקס שמגיעה עם המכשיר (המחשב האישי שלי הוא לינוקס מנטה 19) - לכן        
+        אחפש ואתקין תוכנות שנכתבו לסביבה כזאת.
+        בכל מקרה, אחת המטרות שלי היא להתממשק למכשיר באמצעות ה-PC, ה-RPi ו-Arduino.
+        ל-RPi חסר לי כרגע דונגל בלוטות&#39; ול-Arduino חסר כרטיס בלוטות&#39; מסוג HC-05 (אולי יש משהו אחר).</p>
+        <br /><br />
+        <h3>ניסיון על הלינוקס מינט</h3>
+        <p>ה-Headset על הראש שלי, דלוק ובמצב pairing (קוד 0000).</p>
+        <p><img alt="" src="../images/neurosky-brainwave-session-1/2.png" /></p>
+        <p>ניסיתי להתחבר למכשיר באמצעות תוכנת ה-Bluetooth הדיפולטיבית של מינט (Blueberry) ללא הצלחה, נתקלתי באותו עניין כשניסיתי בעבר להתחבר לאוזניות JBL.</p>
+        <p>התקנתי את Blueman ונכנסתי לתוכנה. נפתח חלון GUI ולצד מכשירים אחרים, הופיע בו גם ה-MindWave Mobile. לחצתי על setup ובחרתי להתחבר ל-Serial Port. התחברתי והמכשיר כעת זמין ב-<span dir="ltr">/dev/rfcomm2</span></p>
+        <br /><br />
+        <iframe width="740" height="416" src="https://www.youtube.com/embed/9trLIYo4_nI" title="MindWave Mobile 2 - Linux Mint 19" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <br /><br /><br /><br />
+        <p>בהמשך, עשיתי dump לדאטא שמתקבל ב-rfcomm2, כתבתי:</p>
+        <div class="pre-code">
+          <pre class="code-content">cat /dev/rfcomm2 | hexdump -C</pre>
+        </div>
+        <br /><br />
+        <iframe width="740" height="416" src="https://www.youtube.com/embed/JBxB59L1ewo" title="MindWave Mobile 2 - Linux mint 19 - rfcomm2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <p>נראה טוב !</p>
+        <br /><br />
+        <p>בריצה אחרת שהרצתי, ה-dump הפסיק לאחר כמה זמן.
+        אני לא בטוח אם המידע בסרטון זה המידע שהיה קיים כבר בקובץ rfcomm2, שהספיק להתאסף שם עד שהרצתי את הפקודה. אם הייתי מחכה מספיק, הריצה היתה נעצרת.
+        או שזה לא אמור לקרות משום שמידע מגיע באופן רציף ומה שקרה שה-rfcomm2 קיבל EOF.</p>
+        <p>הערה קטנה: בשלב הבא, ה-dev השתנה ל-rfcomm0. הפקודות זהות, בכל מקרה.</p>
+        <p>בכל מקרה, אם רוצים לראות את המצב הנוכחי בצורה המשכית, גם אם מקבלים EOF - משתמשים ב:</p>
+        <div class="pre-code">
+          <pre class="code-content">tail -f</pre>
+        </div>
+        <br /><br />
+        <p>והשורה המלאה:</p>
+        <div class="pre-code">
+          <pre class="code-content">tail -f /dev/rfcomm0 | hexdump -C</pre>
+        </div>
+        <br /><br />
+        <iframe width="740" height="416" src="https://www.youtube.com/embed/CN6SMbU5j3w" title="MindWave Mobile 2 - tailf rfcomm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <br /><br />
+        <p>הדבר הבא שעשיתי היה לחפש קוד ללינוקס. החברה NeuroSky שחררה באופן רשמי SDK רק לווינדוס, מק ואנדרואיד.
+        <br />
+        מצאתי את: <a target="_blank" href="https://pypi.org/project/NeuroPy/">https://pypi.org/project/NeuroPy/</a></p>
+        <br />
+        <p>התקנה פשוטה:</p>
+        <div class="pre-code">
+          <pre class="code-content">pip install NeuroPy</pre>
+        </div>
+        <p>וקוד בסיסי, לעת עתה:</p>
+        <div class="code"><div class="code-content"><div><span style="color: rgb(197, 134, 192);">from</span><span style="color: rgb(212, 212, 212);"> NeuroPy </span><span style="color: rgb(197, 134, 192);">import</span><span style="color: rgb(212, 212, 212);"> NeuroPy</span></div><br><div><span style="color: rgb(212, 212, 212);">neuroPy</span><span style="color: rgb(212, 212, 212);">=</span><span style="color: rgb(212, 212, 212);">NeuroPy(</span><span style="color: rgb(206, 145, 120);">"/dev/rfcomm0"</span><span style="color: rgb(212, 212, 212);">)</span></div><div><span style="color: rgb(212, 212, 212);">neuroPy.start()</span></div><br><div><span style="color: rgb(197, 134, 192);">while</span><span style="color: rgb(212, 212, 212);"> </span><span style="color: rgb(86, 156, 214);">True</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">  </span><span style="color: rgb(220, 220, 170);">print</span><span style="color: rgb(212, 212, 212);"> </span><span style="color: rgb(206, 145, 120);">"Meditation "</span><span style="color: rgb(212, 212, 212);">, neuroPy.meditation</span></div><div><span style="color: rgb(212, 212, 212);">  </span><span style="color: rgb(220, 220, 170);">print</span><span style="color: rgb(212, 212, 212);"> </span><span style="color: rgb(206, 145, 120);">"Attention  "</span><span style="color: rgb(212, 212, 212);">, neuroPy.attention</span></div></div><br></div>
+        <p>* עוד הזדמנות להיכנס עמוק יותר לפייתון</p>
+        <br /><br />
+        <iframe width="740" height="416" src="https://www.youtube.com/embed/DtllYUhAf7I" title="NeuroPy   test1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <br /><br />
+        <p>אם יש לי את שני הנתונים האלה, בינתיים, באופן רציף. למה שלא אשתמש בהם ל-<a href="polargraph-v-null" rel="noopener noreferrer noopener" target="_top">Polargraph</a> שבניתי לא מזמן. אני פותח לזה <a href="polargraph-neurosky-mindwave-mobile-2" rel="noopener noreferrer noopener" target="_top">פוסט נפרד</a>.</p>
+        <p>* הערה: אני חווה המון ניתוקים של ה-MindWave מה-rfcomm וצריך פעם בחצי דקה, פחות או יותר, להתחבר מחדש (Blueman). החיבור מחדש לא תמיד מצליח ואם כן, אני מקבל rfcomm חדש (rfcomm1, rfcomm2 וכו&#39;). אז קודם כל, בלי קשר, אוסיף לקוד אפשרות לקבל כ-cli arguments את ה-serial dev, את ה-baud rate שלו ואת ה-MindWave dev.</p>
+        <p>דבר שני, כשהתחלתי לעבוד עם הקוד של ה-NeuroPy, ראיתי שיש אפשרות לקבל את המידע (attention, meditation וכו&#39;) בצורה של callback בניגוד ללדגום בלולאה אינסופית עם טיימר וכולי - כמו שעשיתי. ניסיתי בהתחלה את ה-callback ולא ראיתי מידע מופיע על המסך. לכן השתמשתי בדרך השנייה. אנסה שוב.</p>
+        <p><u>עדכון 19/7/19</u></p>
+        <p>- נסיתי callbacks בדיוק כמו בדוגמא ב-NeuroPy, לא עובד.
+        <br />
+        - ניתוקים - אני חייב לפחות למצוא דרך לאתחל את ה-bluetooth. ניסיתי:</p>
+        <div class="pre-code">
+          <pre class="code-content">systemctl restart bluetooth</pre>
+        </div>
+        <br />
+        <p>וכשאני עושה pairing, אין תגובה. לפעמים גם ריסטרט של המחשב לא עוזר. לא יציב כרגע כל העניין.
+        <br />
+        - אני לא בטוח מה הבעיה אבל כשאקנה דונגל בלוטות&#39; ל-RPi, אנסה אותו גם על הלפטופ. נראה.</p>
+        <p><u>עדכון 20/7/19</u></p>
+        <p>- לא נעים להגיד אבל 'בעיית' הניתוקים היתה בעצם סוללת AAA ריקה ב-headset.</p>
+        <p>מספר פרויקטים בהם השתמשתי במכשיר:</p>
+        <p><a href="mindwave-mobile-2-supercollider" rel="noopener noreferrer noopener noreferrer">MindWave Mobile 2 + SuperCollider</a></p>
+        <p><a href="polargraph-neurosky-mindwave-mobile-2" rel="noopener noreferrer noopener noreferrer">MindWave Mobile 2 + Polargraph</a></p>
+        <p>תכנונים להמשך:</p>
+        <p><a href="מופע-אור-קולי-עם-ה-mindwave" rel="noopener noreferrer noopener noreferrer">מופע אורקולי עם ה-MindWave</a></p>
+        <p><a href="רעיונות-נוספים-עם-ה-MindWave" rel="noopener noreferrer noopener noreferrer">רעיונות נוספים עם ה-MindWave</a></p>
+        <p>דרך נוספת להתחבר למכשיר - דרך הטרמינל:</p>
+        <div class="pre-code">
+          <pre class="code-content">
+hcitool scan
+sudo rfcomm connect 0 [bdaddr]
+          </pre>
+        </div>
+        <br /><br /><br /><br />
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      <!-- mindwave-mobile-2-supercollider -->
+      <a class="card" href="mindwave-mobile-2-supercollider">
+        <img class="thumbnail" src="../images/thumbnails/mindwave-mobile-2-supercollider.png" />
+        <div class="content">
+          <div class="date">20 ביולי 2019</div>
+          <div class="title">נגינה בעזרת גלי המוח</div>
+          <div class="short">מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד...</div>
+        </div>
+      </a>
+      <!-- polargraph-neurosky-mindwave-mobile-2 -->
+      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
+        <div class="content">
+          <div class="date">14 ביולי 2019</div>
+          <div class="title">MindWave Mobile 2 + Polargraph</div>
+          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
+        </div>
+      </a>
+      <!-- polargraph-v-null -->
+      <a class="card" href="polargraph-v-null">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-v-null.jpg" />
+        <div class="content">
+          <div class="date">17 ביוני 2019</div>
+          <div class="title">Polargraph - vClamp</div>
+          <div class="short">כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב...</div>
+        </div>
+      </a>
+      <!-- polargraph -->
+      <a class="card" href="polargraph">
+        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
+        <div class="content">
+          <div class="date">8 ביוני 2019</div>
+          <div class="title">Polargraph - vSappe</div>
+          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
+        </div>
+      </a>
+      <!-- supercollider -->
+      <a class="card" href="supercollider">
+        <img class="thumbnail" src="../images/thumbnails/supercollider.png" />
+        <div class="content">
+          <div class="date">12 ביולי 2019</div>
+          <div class="title">SuperCollider</div>
+          <div class="short">פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית...</div>
+        </div>
+      </a>
+      <!-- מופע-אור-קולי-עם-ה-mindwave -->
+      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
+        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
+        <div class="content">
+          <div class="date">7 באוג׳ 2019</div>
+          <div class="title">מופע אורקולי עם ה-MindWave</div>
+          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
+        </div>
+      </a>
+      <!-- רעיונות-נוספים-עם-ה-MindWave -->
+      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
+        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
+        <div class="content">
+          <div class="date">27 ביולי 2019</div>
+          <div class="title">רעיונות נוספים עם ה-MindWave</div>
+          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
+        </div>
+      </a>
+      <!-- תיבת-נגינה-multizamor -->
+      <a class="card" href="תיבת-נגינה-multizamor">
+        <img class="thumbnail" src="../images/thumbnails/תיבת-נגינה-multizamor.jpg" />
+        <div class="content">
+          <div class="date">11 ביולי 2019</div>
+          <div class="title">תיבת נגינה - Multizamor</div>
+          <div class="short">ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה...</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

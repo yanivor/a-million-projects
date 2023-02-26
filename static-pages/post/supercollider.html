@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>SuperCollider</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">SuperCollider</h1>
+          <div class="author-date">יניב אור - 12 ביולי 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>מתוך:
+          <br />
+          <a href="https://supercollider.github.io/" target="_blank">https://supercollider.github.io</a>
+        </p>
+        <p>פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית ו-OpenSource ויש לה גירסאות לווינדוס, מק ולינוקס.</p>
+        <p>ל-SuperCollider שלושה מרכיבים:</p>
+        <p>א. <strong>scsynth</strong> - שרת אודיו זמן-אמת. הבסיס של המערכת. הוא מאפשר עבודה עם יותר מ-400 UGens - יחידות קוד (אפשר לומר פלאגינים) שעובדות מול השרת ומשמשות לניתוח, סינטזה או עיבוד של סאונד. יש אפשרות לכתוב יחידות כאלו ב-CPP. ראה <a href="https://supercollider.github.io/sc3-plugins" rel="noopener noreferrer noopener" target="_blank">sc3-plugins</a>.</p>
+        <p>ב. <strong>sclang</strong> - שפת תכנות שעובדת עם מפרש (interpreted programming language). ממקודת לסאונד אבל לא מוגבלת לתחום אחד בלבד. שולטת על scsynth באמצעות Open Sound Control. יש לה הרחבות שנקראות Quarks.</p>
+        <p>ג. <strong>scide</strong> - עורך טקסט וסביבת פיתוח ל-SC.</p>
+        <p>התקנתי את SC על הלינוקס מנטה 19 שלי באמצעות apt. הותקנו שלושת הרכיבים.</p>
+        <p>פתחתי את ה-IDE והדבר הבא שצריך לעשות הוא לאתחל את שרת האודיו (Ctrl-b).</p>
+        <p>מרגע זה ואילך, האובייקט של השרת נגיש באמצעות האות s. לדוגמא:</p>
+        <div class="pre-code">
+<pre class="code-content">
+s.quit;
+s.boot;
+</pre>
+        </div>
+        <br />
+        <p>והוא נגיש גם ב-Server.default:</p>
+        <div class="pre-code">
+          <pre class="code-content">Server.default.boot;</pre>
+        </div>
+        <br />
+        <p>צורת העבודה הנוחה עם ה-IDE היא כזאת. מאתחלים שרת בעזרת Ctrl-b או כותבים את הפקודה ל-boot. כותבים את הקוד הרצוי להשמעת צליל, לצורך העניין, או כל פעולה אחרת (נראה בהמשך). ממקמים את הסמן על השורה הרצויה או בוחרים את הטקסט הרצוי. לאחר מכן Ctrl-Enter כדי לשלוח את הפקודה לשרת. כדי לעצור את המוסיקה: Ctrl-. (קונטרול נקודה).</p>
+        <p>הנה דוגמא לגל סינוס, ערכים דיפולטיבים - מונו:</p>
+        <div class="pre-code">
+          <pre class="code-content">{SinOsc.ar}.play;</pre>
+        </div>
+        <br />
+        <p>וזאת דוגמא לגל סינוס זהה - סטריאו:</p>
+        <div class="pre-code">
+          <pre class="code-content">{[SinOsc.ar, SinOsc.ar]}.play;</pre>
+        </div>
+        <br />
+        <p>מצאתי את הסרטוני יוטיוב האלה:</p>
+        <iframe width="740" height="417" src="https://www.youtube.com/embed/yRzsOOiJ_p4" title="SuperCollider Tutorial: 0. Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <br /><br />
+        <p>ואני נעזר בעיקר ב: <a href="https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf" rel="noopener noreferrer noopener" target="_blank">A Gentle Introduction To SuperCollider</a></p>
+        <p>* המשך הפוסט לא מדריך, המדריכים שהזכרתי מעולים. יהיו פה יותר snippets של דברים מעניינים שמצאתי ויועילו לי לפרויקטים אחרים.</p>
+        <p><u>דוגמא 1:</u></p>
+        <p>- הקוד הזה מייצר את התו מספר 0 (C אמצעי)</p>
+        <p>- אורך הצליל 0.17 שניות</p>
+        <p>- עוצמת הצליל משתנה רנדומלית ואותה הגדרה לא חוזרת על עצמה באותה תיבה (Pxrand לעומת Prand)</p>
+        <p>- הלגאטו משתנה רנדומלית וכנ&quot;ל לגבי החזרה באותה תיבה</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  Pbind(
+    \note, 0,
+    \dur, 0.17,
+    \amp, Pxrand([0, 0.3, 0.2], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  ).play;
+)
+</pre>
+        </div>
+        <br />
+        <p><u>דוגמא 2:</u></p>
+        <p>- קוד זהה לדוגמא 1, רק שהפעם מתנגנים באקראיות התוים המוגדרים כ-1,3,5,7</p>
+        <p>* מתחיל לקבל צורה ונשמע ממש טוב. בגדול, כמו שציינתי למעלה, במטרות - אני מעוניין לנגן סולמות ידועים, מודוסים וכן הלאה. כל זה בא מובנה ב-SC.</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  Pbind(
+    \note, Prand([1,3,5,7], inf),
+    \dur, 0.17,
+    \amp, Pxrand([0, 0.3, 0.2], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  ).play;
+)
+</pre>
+        </div>
+        <br />
+        <p><u>דוגמא 3:</u></p>
+        <p>- סולם מינור הרמוני</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  Pbind(
+    \scale, Scale.harmonicMinor,
+    \degree, Pxrand([0, 1, 2, 3, 4, 5, 6, 7], inf),
+    \dur, 0.17,
+    \amp, Pxrand([0, 0.3, 0.2], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  ).play;
+)
+</pre>
+        </div>
+        <br />
+        <p>* וזה בדיוק מה שחיפשתי ל<a href="%D7%AA%D7%99%D7%91%D7%AA-%D7%A0%D7%92%D7%99%D7%A0%D7%94-multizamor" rel="noopener noreferrer noopener" target="_top">תיבת נגינה</a> 🙂👍</p>
+        <p><u>דוגמא 4:</u></p>
+        <p>- נוסיף עוד אוקטבה, נמוכה יותר ונשנה את הסולם לסולם הודי</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  Pbind(
+    \scale, Scale.indian,
+    \degree, Pxrand([-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7], inf),
+    \dur, 0.17,
+    \amp, Pxrand([0, 0.3, 0.2], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  ).play;
+)
+</pre>
+        </div>
+        <br />
+        <p>* נשמע טוב</p>
+        <p><u>דוגמא 5:</u></p>
+        <p>- סולם מז&#39;ור פנטטוני (שתי אוקטבות וחצי):</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  ~octaves = [-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3];
+  
+  Pbind(
+    \scale, Scale.majorPentatonic,
+    \degree, Pxrand(~octaves, inf),
+    \dur, 0.17,
+    \amp, Pxrand([0, 0.3, 0.2], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  ).play;
+)
+</pre>
+        </div>
+        <br />
+        <p>לרשימת ה-scales המלאה:</p>
+        <div class="pre-code">
+          <pre class="code-content">Scale.directory</pre>
+        </div>
+        <br />
+        <p>כדי לקרוא פקודות sclang מקובץ:</p>
+        <div class="pre-code">
+          <pre class="code-content">sclang sc-file.scd</pre>
+        </div>
+        <br />
+        <p>* לא לשכוח להוסיף בראש הקובץ (או מתי שצריך) <strong>אתחול לשרת</strong>.</p>
+        <p><strong>שליטה על Pbind דרך OSC (סקריפט פייתון)</strong> - עודכן ב-20/7/19</p>
+        <p>הקוד בצד של ה-SC:</p>
+        <div class="pre-code">
+<pre class="code-content">
+(
+  x = OSCFunc( { | msg, time, addr, port |
+    var size = msg[1];
+    var start = msg[2];
+  
+    ( "size:" + size).postln;
+    ( "start:" + start).postln;
+  
+    ~degree.source = Pxrand(Array.series(size: size, start: start, step: 1), inf);
+  }, '/musicbox' );
+  )
+  
+  (
+  ~degree = PatternProxy(Pn(Pxrand(Array.series(size: 1, start: 0, step: 1), inf), inf));
+  
+  a = Pbind(
+    \scale, Scale.minorPentatonic,
+    \degree, ~degree,
+    \dur, 0.17,
+    \amp, Pxrand([0, 0, 0.3, 0.2, 0.2, 0.5], inf),
+    \legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+  );
+  a.play;
+)
+</pre>
+        </div>
+        <br />
+        <p>קוד הפייתון ששולח הודעות OSC ל-SC, סקריפט נפרד:</p>
+        <div class="code"><div class="code-content"><div><div><span style="color: rgb(206, 145, 120);">'''</span></div><div><span style="color: rgb(206, 145, 120);"># pip install pyosc (as root)</span></div><div><span style="color: rgb(206, 145, 120);">'''</span></div><br><div><span style="color: rgb(197, 134, 192);">import</span><span style="color: rgb(212, 212, 212);"> OSC</span></div><br><div><span style="color: rgb(212, 212, 212);">client </span><span style="color: rgb(212, 212, 212);">=</span><span style="color: rgb(212, 212, 212);"> OSC.OSCClient()</span></div><div><span style="color: rgb(212, 212, 212);">client.connect( ( </span><span style="color: rgb(206, 145, 120);">'127.0.0.1'</span><span style="color: rgb(212, 212, 212);">, </span><span style="color: rgb(181, 206, 168);">57120</span><span style="color: rgb(212, 212, 212);"> ) )</span></div><br><div><span style="color: rgb(212, 212, 212);">msg </span><span style="color: rgb(212, 212, 212);">=</span><span style="color: rgb(212, 212, 212);"> OSC.OSCMessage()</span></div><div><span style="color: rgb(212, 212, 212);">msg.setAddress(</span><span style="color: rgb(206, 145, 120);">"/musicbox"</span><span style="color: rgb(212, 212, 212);">)</span></div><div><span style="color: rgb(212, 212, 212);">msg.append([</span><span style="color: rgb(181, 206, 168);">12</span><span style="color: rgb(212, 212, 212);">, </span><span style="color: rgb(212, 212, 212);">-</span><span style="color: rgb(181, 206, 168);">5</span><span style="color: rgb(212, 212, 212);">])</span></div><br><div><span style="color: rgb(212, 212, 212);">client.send(msg)</span></div></div></div></div>
+        <br />
+        <p><u>הסבר:</u></p>
+        <p>נתחיל בצד של ה-SC, בבלוק שמתחיל ב:</p>
+        <div class="pre-code">
+          <pre class="code-content">~degree = PatternProxy...</pre>
+        </div>
+        <br />
+        <p>המשתנה degree קובע אילו צלילים ינוגנו מתוך הסולם שנקבע (במקרה שלנו מינור פנטטוני).</p>
+        <p>אני מייצר מערך בצורה דינמית בעזרת Array.series בניגוד לפעמים הקודמות בהן כתבתי מערך hardcoded. הגודל של המערך נקבע ב-size, מתחיל בערך שב-start וגודל ב-step, שקבענו כ-1.</p>
+        <p>המערך הזה נוצר רנדומלית בכל סיבוב כשהוא מתנגן ב-Pbind.</p>
+        <p>הדבר האחרון שנעשה בשורה הזאת הוא להכניס את כל האמור ל-PatternProxy מה שיאפשר לשנות את הנתנוים קבענו - לצורך העניין size, start, step - בלייב. במקרה שלנו, לקבל טריגר דרך ה-OSC.</p>
+        <p>בחלק של ה-OSCFunc אני גוזר את הנתונים שמתקבלים מהסקריפט פייתון ומריץ מחדש את ה-degree עם הפרמטרים שהתקבלו. בצורה הזאת, המוסיקה לא מפסיקה להתנגן ומתעדכנת לפי הנתונים.</p>
+        <p>שימו לב לכתובת שנתתי לה את השם musicbox. אפשר לבחור כל שם. נשתמש בכתובת בסקריפט פייתון.</p>
+        <p>הסקריפט פייתון פשוט ביותר. מתחברים ל-localhost פורט 57120 ושולחים לכתובת: musicbox את ההודעה:</p>
+        <div class="pre-code">
+          <pre class="code-content">[12, -5]</pre>
+        </div>
+        <br />
+        <p>אז המוסיקה התחילה עם צליל אחד, החל מהצליל מספר 0 בסולם שבחרנו וכששלחנו את הערכים החדשים, הגדלנו את טווח הצלילים ל-12 כשהטווח הזה מתחיל בצליל מספר מינוס 5 בסולם.</p>
+        <p>* ה-supercollider היא מערכת מאוד מורכבת ויש לי עוד הרבה מה ללמוד עליה. אעדכן בהמשך כאלמד דברים חדשים ומעניינים.</p>
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      <!-- mindwave-mobile-2-supercollider -->
+      <a class="card" href="mindwave-mobile-2-supercollider">
+        <img class="thumbnail" src="../images/thumbnails/mindwave-mobile-2-supercollider.png" />
+        <div class="content">
+          <div class="date">20 ביולי 2019</div>
+          <div class="title">נגינה בעזרת גלי המוח</div>
+          <div class="short">מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד...</div>
+        </div>
+      </a>
+      <!-- neurosky-brainwave-session-1 -->
+      <a class="card" href="neurosky-brainwave-session-1">
+        <img class="thumbnail" src="../images/thumbnails/neurosky-brainwave-session-1.jpeg" />
+        <div class="content">
+          <div class="date">11 ביולי 2019</div>
+          <div class="title">MindWave Mobile 2</div>
+          <div class="short">קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו. הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו...</div>
+        </div>
+      </a>
+      <!-- polargraph-neurosky-mindwave-mobile-2 -->
+      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
+        <div class="content">
+          <div class="date">14 ביולי 2019</div>
+          <div class="title">MindWave Mobile 2 + Polargraph</div>
+          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
+        </div>
+      </a>
+      <!-- polargraph-v-null -->
+      <a class="card" href="polargraph-v-null">
+        <img class="thumbnail" src="../images/thumbnails/polargraph-v-null.jpg" />
+        <div class="content">
+          <div class="date">17 ביוני 2019</div>
+          <div class="title">Polargraph - vClamp</div>
+          <div class="short">כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב...</div>
+        </div>
+      </a>
+      <!-- polargraph -->
+      <a class="card" href="polargraph">
+        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
+        <div class="content">
+          <div class="date">8 ביוני 2019</div>
+          <div class="title">Polargraph - vSappe</div>
+          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
+        </div>
+      </a>
+      <!-- מופע-אור-קולי-עם-ה-mindwave -->
+      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
+        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
+        <div class="content">
+          <div class="date">7 באוג׳ 2019</div>
+          <div class="title">מופע אורקולי עם ה-MindWave</div>
+          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
+        </div>
+      </a>
+      <!-- רעיונות-נוספים-עם-ה-MindWave -->
+      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
+        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
+        <div class="content">
+          <div class="date">27 ביולי 2019</div>
+          <div class="title">רעיונות נוספים עם ה-MindWave</div>
+          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
+        </div>
+      </a>
+      <!-- תיבת-נגינה-multizamor -->
+      <a class="card" href="תיבת-נגינה-multizamor">
+        <img class="thumbnail" src="../images/thumbnails/תיבת-נגינה-multizamor.jpg" />
+        <div class="content">
+          <div class="date">11 ביולי 2019</div>
+          <div class="title">תיבת נגינה - Multizamor</div>
+          <div class="short">ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה...</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

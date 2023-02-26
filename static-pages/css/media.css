@@ -1,0 +1,308 @@
+@media only screen and (max-width: 750px) {
+  header {
+    margin: 15px 0px 0px 0px;
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 2.5em;
+    margin-bottom: 7px;
+  }
+
+  header h4 {
+    font-size: 0.767em;
+  }
+
+  .main {
+    flex-direction: column;
+  }
+
+  .post .header .author-date {
+    font-size: 0.7em;
+    line-height: 1.1em;
+    padding: 0px 10px;
+    margin-top: 0px;
+  }
+
+  .post .header .title {
+    padding: 20px 10px 5px 10px;
+    font-size: 1.2em;
+  }
+
+  .post .header .back {
+    padding-left: 10px;
+  }
+
+  .post img {
+    max-width: 100%;
+  }
+
+  .post iframe {
+    margin-right: 10px;
+    max-width: 95%;
+    max-height: 200px;
+  }
+
+  .post .content {
+    margin-top: 15px;
+  }
+
+  .post .content p {
+    padding: 0px 10px 10px 10px;
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .post .content ul li {
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .post .content div.pre-code {
+    width: 85%;
+    margin-right: 10px;
+  }
+
+  .post .content div.pre-code pre {
+    font-size: 0.8em;
+    line-height: 1.2em;
+  }
+
+  .post .content div.code {
+    width: 85%;
+    margin-right: 10px;
+    font-size: 0.8em;
+    line-height: 1.2em;
+  }
+
+  .post .content h3 {
+    padding: 10px 10px 20px 0px;
+    font-size: 1.1em;
+  }
+
+  .post .content .soundcloud-embed {
+    width: 90%;
+  }
+
+  .related-posts > .title {
+    opacity: 1;
+    margin: 25px 0px;
+    padding-top: 20px;
+    font-size: 1.2em;
+    border-top: 1px solid #c9c6b455;
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .card .content .date {
+    font-size: 0.7em;
+    line-height: 1.1em;
+  }
+  
+  .card .content .title {
+    font-size: 1.1em;
+    line-height: 1.3em;
+  }
+  
+  .card .content .short {
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .top-section .preface {
+    padding: 10px;
+  }
+
+  .top-section .preface p {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .top-section .updates {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .top-section .updates .title {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.1em;
+  }
+
+  .top-section .updates p {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.1em;
+  }
+}
+
+@media only screen and (min-width: 751px) {
+  header {
+    margin: 20px 0px 0px 0px;
+    padding: 30px 20px;
+  }
+
+  header h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+  }
+
+  header h4 {
+    font-size: 1.07em;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .post {
+    flex: 80%;
+  }
+
+  .post .header {
+    padding: 20px 0px;
+  }
+
+  .post .header .author-date {
+    font-size: 0.8em;
+    line-height: 1.1em;
+    padding: 0px 20px;
+    margin-top: 5px;
+  }
+
+  .post .header .title {
+    padding: 0px 20px;
+    font-size: 1.8em;
+  }
+
+  .post .content {
+    background: #00000055;
+    padding: 10px 0px;
+  }
+
+  .post .content p {
+    padding: 5px 20px 15px 20px;
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .post .content ul li {
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .post .content div.pre-code {
+    width: 50%;
+    margin-right: 20px;
+  }
+
+  .post .content div.pre-code pre {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  .post .content div.code {
+    width: 50%;
+    margin-right: 20px;
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  .post .content h3 {
+    padding: 20px 20px 20px 0px;
+    font-size: 1.5em;
+  }
+
+  .post .content .soundcloud-embed {
+    width: 50%;
+  }
+
+  .related-posts {
+    flex: 20%;
+    padding-top: 20px;
+  }
+
+  .main .related-posts {
+    padding-top: 35px;
+  }
+
+  .related-posts > .title {
+    opacity: 0;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+  }
+
+  .cards {
+    margin-top: 10px;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .card {
+    margin: 0px 20px 20px 0px;
+  }
+
+  .card .content .date {
+    font-size: 0.8em;
+  }
+  
+  .card .content .title {
+    font-size: 1.4em;
+  }
+  
+  .card .content .short {
+    font-size: 1.0em;
+    line-height: 1.2em;  
+  }
+
+  .top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .top-section .preface {
+    padding: 20px;
+  }
+
+  .top-section .preface p {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .top-section .updates {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .top-section .updates .title {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .top-section .updates p {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    margin-bottom: 15px;
+  }
+}
