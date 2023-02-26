@@ -20,15 +20,15 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className='App' style={{ padding: '15px' }}>
+    <div className='App'>
       {pending ? (
         <div>Loading...</div>
       ) : error ? (
         <div>Error</div>
       ) : (
         posts.map((post) => (
-          <div style={{ marginBottom: '10px' }} key={post._id}>
-            {post._id} - {post.title} - {post.content}
+          <div key={post._id}>
+            {post._id} - {post.title} - {JSON.stringify(post.content)}
           </div>
         ))
       )}

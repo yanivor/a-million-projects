@@ -5,7 +5,7 @@ interface IPost {
   date: string;
   path: string;
   image: string;
-  content: object;
+  content: string;
   authorId: Types.ObjectId;
 }
 
@@ -14,7 +14,7 @@ const postSchema = new Schema<IPost>({
   date: { type: String, required: true },
   path: { type: String, required: true, unique: true },
   image: { type: String },
-  content: { type: Object, required: true },
+  content: { type: String, required: true },
   authorId: { type: Schema.Types.ObjectId },
 }, { timestamps: true });
 

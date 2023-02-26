@@ -29,9 +29,9 @@ class crudPost {
     }
   }
 
-  async update(id: string, data: any) {
+  async update(filter: any, params: any) {
     try {
-      return await this.model.update(id, data).lean();
+      return await this.model.updateOne(filter, params).lean();
     } catch (error) {
       console.log(error);
     }
