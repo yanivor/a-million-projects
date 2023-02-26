@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "63eda4297b8f5a2735bcf2a1"
+  },
+  "email": "yaniv.or.78@gmail.com",
+  "fname": "יניב",
+  "lname": "אור",
+  "createdAt": {
+    "$date": "2023-02-16T03:34:01.834Z"
+  },
+  "updatedAt": {
+    "$date": "2023-02-16T03:34:01.834Z"
+  },
+  "__v": 0
+}]
