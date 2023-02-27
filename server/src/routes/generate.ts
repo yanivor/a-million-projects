@@ -57,10 +57,8 @@ router.get('/api/generateIndex', async (req: Request, res: Response) => {
       '63f8f43f38470c86cefb7271',
       '63f8f44238470c86cefb7273',
       '63f8f45538470c86cefb7281',
-      '63f8f45b38470c86cefb7285',
-      '63f8f46138470c86cefb7289',
-      '63f8f46338470c86cefb728b',
       '63f8f46638470c86cefb728d',
+      '63f8f42938470c86cefb7263'
     ]}
   });
 
