@@ -39,4 +39,8 @@ export const savePostRequest = ({
   content: string
 }): SavePostRequest => ({
   type: SAVE_POST_REQUEST,
+  payload: {
+    _id,
+    content,
+  }
 });

@@ -41,6 +41,10 @@ export type FetchPostFailure = {
 
 export interface SavePostRequest {
   type: typeof SAVE_POST_REQUEST;
+  payload: {
+    _id: string;
+    content: string;
+  }
 }
 
 export type PostActions =

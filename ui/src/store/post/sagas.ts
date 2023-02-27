@@ -36,9 +36,12 @@ function* fetchPostSaga(): any {
   }
 }
 
-function* savePostSaga(): any {
+function* savePostSaga({ payload: {
+  _id, content
+} }: any): any {
+
   try {
-    const response = yield call(setPost, { _id: '63fc379b850da0ca08b8a440', content: 'update123' });
+    const response = yield call(setPost, { _id, content });
 
     /*
     yield put(

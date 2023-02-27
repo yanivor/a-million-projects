@@ -43,6 +43,7 @@ const Edit = () => {
 
   return (
     <div className='Edit'>
+      <h2>{currentPost.title}</h2>
       <ReactQuill
         theme="snow"
         modules={modules}
