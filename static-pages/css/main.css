@@ -181,3 +181,9 @@ header h4 {
 .top-section .updates p {
   color: #c9c6b4;
 }
+
+footer {
+  margin-top: 50px;
+  background: #222222;
+  height: 100px;
+}
