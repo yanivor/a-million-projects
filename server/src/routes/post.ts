@@ -30,10 +30,14 @@ router.post('/api/post', async (req: Request, res: Response) => {
 });
 
 router.put('/api/post/:_id', async (req: Request, res: Response) => {
-  const { _id, title, date, path, image, content, authorId } = req.body;
+  const { _id } = req.params;
+  const { content } = req.body;
+  // const { title, date, path, image, content, authorId } = req.body;
+
 
   const post = new crudPost(modelPost);
-  const dbResults = await post.update(_id, { title, date, path, image, content, authorId });
+  const dbResults = await post.update({ _id }, { content });
+  // const dbResults = await post.update({ _id }, { title, date, path, image, content, authorId });
 
   return res.status(201).send(dbResults);
 });

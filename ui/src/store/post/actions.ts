@@ -2,6 +2,7 @@ import {
   FETCH_POST_REQUEST,
   FETCH_POST_FAILURE,
   FETCH_POST_SUCCESS,
+  SAVE_POST_REQUEST,
 } from './actionTypes';
 import {
   FetchPostRequest,
@@ -9,6 +10,7 @@ import {
   FetchPostSuccessPayload,
   FetchPostFailure,
   FetchPostFailurePayload,
+  SavePostRequest,
 } from './types';
 
 export const fetchPostRequest = (): FetchPostRequest => ({
@@ -27,4 +29,14 @@ export const fetchPostFailure = (
 ): FetchPostFailure => ({
   type: FETCH_POST_FAILURE,
   payload,
+});
+
+export const savePostRequest = ({
+  _id,
+  content
+}:{
+  _id: string,
+  content: string
+}): SavePostRequest => ({
+  type: SAVE_POST_REQUEST,
 });

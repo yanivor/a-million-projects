@@ -2,6 +2,7 @@ import {
   FETCH_POST_REQUEST,
   FETCH_POST_SUCCESS,
   FETCH_POST_FAILURE,
+  SAVE_POST_REQUEST,
 } from './actionTypes';
 
 export interface IPost {
@@ -38,7 +39,12 @@ export type FetchPostFailure = {
   payload: FetchPostFailurePayload;
 };
 
+export interface SavePostRequest {
+  type: typeof SAVE_POST_REQUEST;
+}
+
 export type PostActions =
   | FetchPostRequest
   | FetchPostSuccess
-  | FetchPostFailure;
+  | FetchPostFailure
+  | SavePostRequest;

@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { getPostsSelector } from '../../store/post/selectors';
+import { savePostRequest } from '../../store/post/actions';
 
 const Edit = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const posts = useSelector(getPostsSelector);
   const [value, setValue] = useState('');
-
-  let relevantPost = posts.filter(({_id}) => _id === id);
-  const currentPost = relevantPost[0];
-  // currentPost
-
-  useEffect(() => {
-    setValue(currentPost.content);
-  }, [currentPost]);
 
   const  modules  = {
     toolbar: [
@@ -34,6 +28,19 @@ const Edit = () => {
     ],
   };
 
+  let relevantPost = posts.filter(({_id}) => _id === id);
+  const currentPost = relevantPost[0];
+  // currentPost
+
+  useEffect(() => {
+    setValue(currentPost.content);
+  }, [currentPost]);
+
+  const saveData = () => {
+    if (id)
+      dispatch(savePostRequest({ _id: id, content: value }));
+  };
+
   return (
     <div className='Edit'>
       <ReactQuill
@@ -41,6 +48,7 @@ const Edit = () => {
         modules={modules}
         value={value}
         onChange={setValue}/>
+      <button onClick={saveData}>SAVE</button>
     </div>
   );
 };
