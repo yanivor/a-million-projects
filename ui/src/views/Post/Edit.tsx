@@ -10,7 +10,8 @@ const Edit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const posts = useSelector(getPostsSelector);
-  const [value, setValue] = useState('');
+  const [ description, setDescription ] = useState('');
+  const [ content, setContent ] = useState('');
 
   const  modules  = {
     toolbar: [
@@ -30,25 +31,29 @@ const Edit = () => {
 
   let relevantPost = posts.filter(({_id}) => _id === id);
   const currentPost = relevantPost[0];
-  // currentPost
 
   useEffect(() => {
-    setValue(currentPost.content);
+    setDescription(currentPost.description);
+    setContent(currentPost.content);
   }, [currentPost]);
 
   const saveData = () => {
     if (id)
-      dispatch(savePostRequest({ _id: id, content: value }));
+      dispatch(savePostRequest({ _id: id, description, content }));
   };
 
   return (
     <div className='Edit'>
       <h2>{currentPost.title}</h2>
+      <textarea
+        value={description}
+        onChange={e => setDescription(e.target.value)}>
+      </textarea>
       <ReactQuill
         theme="snow"
         modules={modules}
-        value={value}
-        onChange={setValue}/>
+        value={content}
+        onChange={setContent}/>
       <button onClick={saveData}>SAVE</button>
     </div>
   );

@@ -2,11 +2,66 @@ import fs from 'fs/promises';
 import * as sysPath from 'path';
 import { BASE_PATH } from '../index';
 
-export const generateHtml = async (post: any) => {
+const renderCard = ({
+  title,
+  date,
+  path,
+  description,
+}:{
+  title: string;
+  date: string;
+  path: string;
+  description: string;
+}) => `
+  <!-- ${path} -->
+  <a class="card" href="post/${path}">
+    <img class="thumbnail" src="images/thumbnails/${path}.png" />
+    <div class="content">
+      <div class="date">${date}</div>
+      <div class="title">${title}</div>
+      <div class="short">${description}</div>
+    </div>
+  </a>
+  `;
+
+export const generateIndex = async (dbResults: any) => {
+  let cards = '';
+
+  dbResults.map(({
+    title,
+    date,
+    path,
+    description,
+  }:{
+    title: string;
+    date: string;
+    path: string;
+    description: string;
+  }) => {
+    cards += renderCard({
+      title,
+      date,
+      path,
+      description,
+    });
+  });
+
+  try {
+    let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/index.html'), { encoding: 'utf8' });
+    template = template
+      .replace(/{{cards}}/g, cards);
+
+    await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/index.html`), template ,{ encoding: 'utf8' });
+  } catch (err) {
+    console.log(err);
+  }  
+};
+
+export const generatePost = async (post: any) => {
   const { path, title, date, content } = post;
 
   try {
-    let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/template.html'), { encoding: 'utf8' });
+    let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/post.html'), { encoding: 'utf8' });
     template = template
       .replace(/{{title}}/g, title)
       .replace(/{{date}}/g, date)

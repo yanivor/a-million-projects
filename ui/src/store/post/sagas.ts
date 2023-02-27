@@ -10,12 +10,14 @@ const getPosts = () =>
 
 const setPost = ({
   _id,
+  description,
   content
 }:{
   _id: string,
+  description: string,
   content: string
 }) =>
-  axios.put<IPost>(`http://127.0.0.1:8000/api/post/${_id}`, { content });
+  axios.put<IPost>(`http://127.0.0.1:8000/api/post/${_id}`, { description, content });
 
 function* fetchPostSaga(): any {
   try {
@@ -37,11 +39,11 @@ function* fetchPostSaga(): any {
 }
 
 function* savePostSaga({ payload: {
-  _id, content
+  _id, description, content
 } }: any): any {
 
   try {
-    const response = yield call(setPost, { _id, content });
+    const response = yield call(setPost, { _id, description, content });
 
     /*
     yield put(

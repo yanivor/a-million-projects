@@ -33,14 +33,17 @@ export const fetchPostFailure = (
 
 export const savePostRequest = ({
   _id,
+  description,
   content
 }:{
   _id: string,
-  content: string
+  description: string,
+  content: string,
 }): SavePostRequest => ({
   type: SAVE_POST_REQUEST,
   payload: {
     _id,
+    description,
     content,
   }
 });
