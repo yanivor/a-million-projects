@@ -21,6 +21,10 @@ header h4 {
   color: #928e72;
 }
 
+.me {
+  float: right;
+}
+
 .container {
   display: flex;
   flex-direction: row;
