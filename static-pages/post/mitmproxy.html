@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>mitmproxy</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">mitmproxy</h1>
+          <div class="author-date">יניב אור - 17 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>התוכנה mitmproxy היא HTTPS proxy - חינמית ו-Open Source.</p>
+<p><a href="https://mitmproxy.org/"><u class="_3zM-5">mitmproxy</u></a></p>
+<p>ניתן בעזרתה לנתח או לערוך בקשות ותשובות (requests/responses) מסוגים שונים כגון HTTP/1, HTTP/2, WebSockets, SSL/TLS.</p>
+<p>בין היתר ניתן להשהות את הבקשות והתשובות - לערוך ולשלוח אותן מיד אחרי עריכה. יש גם אפשרות לשמור את התעבורה שערכנו ולשלוח אותה בכל מועד אחר - לפי הצורך.</p>
+<p>אחד היתרונות המרכזיים של התוכנה הוא האפשרות לייצר תעודת אבטחה (CA Certificate) ובמידה והצדדים אישרו את השימוש בתעודה - שזה נושא בפני עצמו ואותו אלמד תוך כדי התנסות - תעבורה מוצפנת SSL/TLS הופכת להיות כטקסט גלוי (clear text). כך ניתן לבצע התקפות MITM - בין היתר לתעבורה מוצפנת. אחקור בהמשך.</p>
+<p>התוכנה מגיעה עם מספר ממשקים לעבודה:</p>
+<p>- ממשק טרמינל אינטראקטיבי - הממשק הראשי כשרוב העבודה תתבצע באמצעותו.</p>
+<p>- ממשק Web - נקרא mitmweb.</p>
+<p>- ממשק CLI - נקרא mitmdump. דומה ל-tcpdump - אך ל-HTTP.</p>
+<p>- בנוסף, API לכתיבת סקריפטים ותוספים בפייתון 3.</p>
+<p>מצאתי ב-Docker Hub את התמונה הבאה:</p>
+<p><a href="https://hub.docker.com/"><u class="_3zM-5">Docker Hub</u></a></p>
+<p>https://hub.docker.com/r/mitmproxy/mitmproxy </p>
+<p><a href="https://hub.docker.com/r/mitmproxy/mitmproxy"><u class="_3zM-5">https://hub.docker.com/r/mitmproxy/mitmproxy</u></a></p>
+<p>משכתי את ה-image:</p>
+<p>$ docker pull mitmproxy/mitmproxy</p>
+<p>יצרתי תיקיה לתוכנה - לצורך שמירת תעודות אבטחה ומידע נוסף - ונכנסתי לתיקיה:</p>
+<p>$ mkdir mitmproxy && cd mitmproxy</p>
+<p>הרצתי קונטיינר שיימחק לאחר שימוש - אינטראקטיבי:</p>
+<p>$ docker run --rm -it -v $PWD:/home/mitmproxy/.mitmproxy mitmproxy/mitmproxy</p>
+<p>נפתח חלון הטרמינל הבא:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_0b4b627cd8e442b0b6acc289905f5866~mv2.png" /></p>
+<p>
+הגדרתי פרוקסי לפורט 8080 שעובד דרך ה-mitmproxy והשתמשתי ב-curl כדי להגיע לאתר שברשותי:</p>
+<p>$ http_proxy=http://localhost:8080/ curl http://167.172.46.93</p>
+<p>המסך הראשי מציג את רשימת הבקשות, כרגע בקשה אחת:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_7fd6319081d14868a5a81307a5613762~mv2.png" /></p>
+<p>
+ברגע שלוחצים על Enter מגיעים למידע מורחב:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_03a204e2cef448c896b8763ce9e7b904~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_34639ec388664c8a8e72d12c69421e7d~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_88ca909f04544aeaa9762defa41f3624~mv2.png" /></p>
+<p>הרצת קונטיינר של mitmweb:</p>
+<p>$ docker run --rm -it -v $PWD:/home/mitmproxy/.mitmproxy --network host mitmproxy/mitmproxy mitmweb -m transparent</p>
+<p>פתחתי את הדפדפן בכתובת:</p>
+<p>http://127.0.0.1:8081 </p>
+<p><a href="http://127.0.0.1:8081"><u class="_3zM-5">http://127.0.0.1:8081</u></a></p>
+<p><img src="https://static.wixstatic.com/media/17f292_10703c5b108342e286990d98d21086a1~mv2.png" /></p>
+<p>הרצת קונטיינר של mitmdump:</p>
+<p>$ docker run --rm -it --network host mitmproxy/mitmproxy mitmdump -m transparent</p>
+<p><img src="https://static.wixstatic.com/media/17f292_a666e803465346be9c4e736817a08282~mv2.png" /></p>
+<p>מעבדות סייבר בהן השתמשתי ב-mitmproxy:</p>
+<p>- מעבדת סייבר - קריאה ועריכת תעבורה של קורבן ברשת</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%91%D7%93%D7%AA-%D7%A1%D7%99%D7%99%D7%91%D7%A8-%D7%A7%D7%A8%D7%99%D7%90%D7%94-%D7%95%D7%A2%D7%A8%D7%99%D7%9B%D7%AA-%D7%AA%D7%A2%D7%91%D7%95%D7%A8%D7%94-%D7%A9%D7%9C-%D7%A7%D7%95%D7%A8%D7%91%D7%9F-%D7%91%D7%A8%D7%A9%D7%AA">מעבדת סייבר - קריאה ועריכת תעבורה של קורבן ברשת</a></p>
+<p>
+פרטים נוספים בקרוב...
+
+</p>
+<p>
+
+
+</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

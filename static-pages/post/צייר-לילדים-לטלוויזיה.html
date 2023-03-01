@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>צייר לילדים - לטלוויזיה</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">צייר לילדים - לטלוויזיה</h1>
+          <div class="author-date">יניב אור - 7 ביוני 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p><img src="https://static.wixstatic.com/media/17f292_b4a11df5b83d44f2b2769aeba540d22e~mv2.jpg"></p><p>יש ברשותי צייר Intuos של Wacom שבקושי השתמשתי בו בעצמי אבל הבת שלי בת ה-7 מראה בו התעניינות. עכשיו, להשתמש בו על ה-PC זה נחמד אבל מצאתי כמה בעיות. כל העניין הזה של להזיז את הסמן כשהעט חצי באוויר, כמעט נוגעת במשטח - כדי לבחור צבע אחר, מברשת אחרת וכו' - בעייתי. דבר נוסף, לפעמים כפתורים נלחצים בטעות, חלונות קופצים, החלון של התוכנת ציור בורח. דברים מהסוג הזה.</p><p>אפשרות א' - סמארטפון וכרומקאסט</p><p>אפשרות אחת היא להשתמש בכבל USB OTG ולחבר את ה-intuos לסמארטפון שלי (OnePlus X). צריך גירסת אנדרואיד 6 ומעלה כדי שזה יעבוד. על אייפון, אני בינתיים לא יודע.</p><p>במידה וזה יעבוד, אוכל לשדר לטלוויזיה באמצעות ה-Chromecast שלנו (הגירסה הראשונה).</p><p>עשיתי ניסיון ללא ה-Intuos - רק עם הטלפון - דרך ה-Chromecast. יש טיפה latency. אני תוהה אם הוספה של ה-Intuos לא תחמיר את המצב.</p><p>יכול להיות שעם כרומקאסט בגירסה חדשה יותר, זה לא יקרה.</p><p>קניתי כבל usb otg ואני מנסה אותו. אני נכנס ל-Settings ב-OnePlus X ל-Storage &amp; USB.</p><p>תפריט למעלה (שלוש נקודות) - Enable OTG. בוחר את האפשרות הזאת והנורית של ה-Intuos נדלקת. אני מנסה את ה-stylus, ללא תוצאות. לא הופיע סמן על המסך של הסמארטפון.</p><p>ניסיתי על סמסונג S5, כנ"ל. בסמסונג לא היה צורך לאפשר OTG.</p><p>חיברתי עכבר אלחוטי ומיד הופיע סמן על המסך שאיפשר לי להשתמש בעכבר כמו על PC.</p><p>אני מקווה שזה בכלל אפשרי להשתמש ב-Intuos. המשך יבוא...</p><p>אפשרות ב' - רספברי-פיי</p><p>מבחינת חיבורים וכבלים. מדובר על כבל HDMI מה-RPi לטלוויזיה וכבל USB מה-Intuos ל-RPi. **** לבדוק אפשרות של חיבור אלחוטי מה-Intuos. מערכת הפעלה, Raspbian עם GUI. * לבדוק תאימות של הצייר עם מערכת ההפעלה.</p><p>*** לבדוק אפשרות של חיבור אלחוטי מה-Intuos.</p><p>* לבדוק תאימות של הצייר עם מערכת ההפעלה.</p><p>בעליית המערכת ייפתח דפדפן (מסך מלא) עם האתר הרצוי.</p><p>לבדוק:</p><p>lsusb</p><p>אם לא יזוהה:</p><p>apt install xserver-xorg-input-wacom</p><p>אתר מעטפת - דף נחיתה</p><p>לכל האפשרויות מבחינת חומרה, התוכנה בקצה היא דפדפן עם איזשהו אתר או מספר אתרים.</p><p>אני רוצה לבנות דף עם אייקונים גדולים וצבעוניים שיהיו קישורים לאתרים של אפליקציות ציור אונליין. אפשרות נוספת היא אתר offline.</p><p>אפליקציות, ואתרים</p><p>אז המטרה שלי למצוא אפליקציה או אתר של צייר, עם הדרישות הבאות:</p><p>- שהאפליקציה תעבוד במצב landscape, עם הדפדפן אין בעיה.</p><p>- בלי פרסומות והסחות דעת.</p><p>- החלפת צבעים ומברשות בצורה נוחה.</p><p><a href="https://github.com/dli/paint.git" rel="noopener noreferrer" target="_blank">https://github.com/dli/paint.git</a></p><p><a href="https://www.youidraw.com/" rel="noopener noreferrer" target="_blank">https://www.youidraw.com/</a></p><p>אפשרויות להמשך</p><p>- להוסיף כפתורים למערכת. ה-Intuos ישב בתוך מעטפת שמסביב יהיו כפתורים, אולי מסך קטן שיראה את הצבע הנוכחי וכו'.</p><p>רשימת קניות</p><p>- כבל USB OTG</p><p>- כרומקאסט, גירסה אחרונה</p>
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

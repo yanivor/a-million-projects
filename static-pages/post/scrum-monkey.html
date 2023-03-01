@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <title>Scrum Monkey</title>
+  <title>SCRUM monkey - TIP family transistor (Darlington)</title>
 </head>
 <body dir="rtl">
   <header>
@@ -19,100 +19,45 @@
     <div class="post">
       <div class="header">
         <div class="right">
-          <h1 class="title">Scrum Monkey</h1>
+          <h1 class="title">SCRUM monkey - TIP family transistor (Darlington)</h1>
           <div class="author-date">יניב אור - 5 ביולי 2019</div>
         </div>
         <a href="../" class="back">לדף הראשי</a>
       </div>
       <div class="content">
-        תוכן הפוסט
+        <p>פרויקט מן העבר - 2016:</p>
+<p>https://www.instructables.com/id/SCRUM-Monkey/</p>
+<p>* הפוסט הזה הוא תרגום לעברית של הפרסום הנ"ל</p>
+<p>* הדגש הוא על מיתוג (switching) של התקן, מכשיר, צעצוע - שצורך הספק גבוה מההספק של הבקר (קונטרולר) לכן הוא מחובר למקור כוח חיצוני שלא קשור בשום אופן לקונטרולר.</p>
+<p>* לצורך כך, משתמשים בטרנזיסטור דרלינגטון. תלוי בהספק שעובדים איתו, במקרה שלנו, אחד הטרנזיסטורים  TIP120/121/122 מתאים.</p>
+<p>* חשוב לציין ש-driver-ים של מנועים חשמליים קטנים מכילים, בד"כ, טרנזיסטורי דרלינגטון. הצ'יפ ULN2003A הוא בעצם מערך של 7 דרלינגטונים.</p>
+<p>*@&* אפשר להדגים ניסיון של switching  עם טרנזיסטור NPN שמשמש למיתוג הספקים נמוכים.</p>
+<p>*@&* לצרף הסבר קצר על פעולת הטרנזיסטור.</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/T6SphTKMWPM" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>תרגום:</p>
+<p>במקום העבודה שלי (סל-באדי), יש לנו פגישת סקראם בכל יום בשעה 13:40. ללא קשר לדברים הללו, יש ברשותי קוף צעצוע קטן שמשמיע קולות קופיפיים והעיניים שלו מהבהבות - ברגע שלוחצים על האוזן הימנית שלו. החלטתי לחבר אותו ל-RPi ולהפוך אותו לשעון מעורר.</p>
+<p>לקופיף הזה יש מקור מתח משלו (3.3 וולט) ומהסיבה הזאת הוספתי למערכת טרנזיסטור דרלינגטון (TIP120/121/122 family) למיתוג (switching). צפו בתמונות ובתרשים, זה מעגל מאוד פשוט. כדי לשלוט בקוף ע"י ה-RPi, כתבתי קוד פייתון קטן ופשוט אשר מופעל בצורה אוטומטית בכל יום ב-13:40 ע"י ה-crontab הישן והטוב של לינוקס.</p>
+<p>שלב 1: רכיבים ותרשים</p>
+<p>- TIP120 (or 121, 122)  - 1K ohm resistor</p>
+<p><img src="https://static.wixstatic.com/media/17f292_07ff192bab2c40a6a2db6abf12c1989c~mv2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_e14e66cf1b254dc1bcc31525a43ab8c0~mv2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_fcb4833c74a2456a8764a06f20be6c01~mv2.jpg" /></p>
+<p>שלב 2: סקריפט פייתון</p>
+<p>שלב 3: crontab</p>
+<p>פתחו shell של לינוקס וכתבו:</p>
+<p>crontab -e</p>
+<p>בעורך הטקסט שנפתח, הוסיפו את השורה הבאה:</p>
+<p>הפורמט של crontab:</p>
+<p>ישנם מספר תווים מסויימים שניתן להשתמש בהם במקום הערכים המספריים. למשל, כוכבית (*) ב-Hour, הכוונה: בכל שעה. קראו את ה-manpage. אגב, שמתי לב שהפורמט יכול להיות שונה בהתאם להפצת לינוקס.</p>
+
       </div>
     </div>
     <div class="related-posts">
       <div class="title">פוסטים נוספים</div>
-      <!-- mindwave-mobile-2-supercollider -->
-      <a class="card" href="mindwave-mobile-2-supercollider">
-        <img class="thumbnail" src="../images/thumbnails/mindwave-mobile-2-supercollider.png" />
-        <div class="content">
-          <div class="date">20 ביולי 2019</div>
-          <div class="title">נגינה בעזרת גלי המוח</div>
-          <div class="short">מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד...</div>
-        </div>
-      </a>
-      <!-- neurosky-brainwave-session-1 -->
-      <a class="card" href="neurosky-brainwave-session-1">
-        <img class="thumbnail" src="../images/thumbnails/neurosky-brainwave-session-1.jpeg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2</div>
-          <div class="short">קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו. הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו...</div>
-        </div>
-      </a>
-      <!-- polargraph-neurosky-mindwave-mobile-2 -->
-      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
-        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
-        <div class="content">
-          <div class="date">14 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2 + Polargraph</div>
-          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
-        </div>
-      </a>
-      <!-- polargraph-v-null -->
-      <a class="card" href="polargraph-v-null">
-        <img class="thumbnail" src="../images/thumbnails/polargraph-v-null.jpg" />
-        <div class="content">
-          <div class="date">17 ביוני 2019</div>
-          <div class="title">Polargraph - vClamp</div>
-          <div class="short">כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב...</div>
-        </div>
-      </a>
-      <!-- polargraph -->
-      <a class="card" href="polargraph">
-        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
-        <div class="content">
-          <div class="date">8 ביוני 2019</div>
-          <div class="title">Polargraph - vSappe</div>
-          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
-        </div>
-      </a>
-      <!-- supercollider -->
-      <a class="card" href="supercollider">
-        <img class="thumbnail" src="../images/thumbnails/supercollider.png" />
-        <div class="content">
-          <div class="date">12 ביולי 2019</div>
-          <div class="title">SuperCollider</div>
-          <div class="short">פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית...</div>
-        </div>
-      </a>
-      <!-- מופע-אור-קולי-עם-ה-mindwave -->
-      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
-        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
-        <div class="content">
-          <div class="date">7 באוג׳ 2019</div>
-          <div class="title">מופע אורקולי עם ה-MindWave</div>
-          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
-        </div>
-      </a>
-      <!-- רעיונות-נוספים-עם-ה-MindWave -->
-      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
-        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
-        <div class="content">
-          <div class="date">27 ביולי 2019</div>
-          <div class="title">רעיונות נוספים עם ה-MindWave</div>
-          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
-        </div>
-      </a>
-      <!-- תיבת-נגינה-multizamor -->
-      <a class="card" href="תיבת-נגינה-multizamor">
-        <img class="thumbnail" src="../images/thumbnails/תיבת-נגינה-multizamor.jpg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">תיבת נגינה - Multizamor</div>
-          <div class="short">ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה...</div>
-        </div>
-      </a>
+      {{related-posts}}
     </div>
   </div>
+  <footer></footer>
   <script src="../js/main.js"></script>
 </body>
 </html>

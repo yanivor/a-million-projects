@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>טעינת פקודות נפוצות ל-history של Bash</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">טעינת פקודות נפוצות ל-history של Bash</h1>
+          <div class="author-date">יניב אור - 7 ביוני 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>במהלך העבודה מול פרוייקטים שונים, אני מוצא את עצמי פותח טרמינל Bash ומחפש ב-history (חץ למעלה) פקודות שאני צריך להריץ פעם אחת או מספר פעמים בכל סשן.</p>
+<p>אני רוצה אפשרות לכתוב נניח: historyload project1 והסקריפט הזה יטען ל-history פקודות רצויות (מתוך קובץ הגדרות).</p>
+<p>אז אחת האפשרויות, לערוך באופן אוטומטי את:</p>
+<p>~/.bash_history</p>
+<p>הנה סקריפט פשוט שמבצע את זה:</p>
+<p>./history_load/historyload.sh:</p>
+<p>כרגע, הסקריפט מקבל בשורת ריצה - כארגומנט הראשון - שם של פרויקט שאת הפקודות הנפוצות שלו אנחנו רוצים להעתיק לקובץ bash_history. 
+בתיקיה מקומית בשם bash_history_load אמורים להיות קבצים עם שם הפרויקט. בהמשך, התיקיה הזאת תעבור לצד bash_history,  תחת HOME$.</p>
+<p>./history_load/bash_history_load/project1:</p>
+<p>ונריץ את הסקריפט:</p>
+<p>* בהמשך נשכלל את זה, כמובן
+
+</p>
+<p>*@&* לפתוח Github לפרויקט</p>
+<p>*@&* לבדוק אילו פתרונות יש </p>
+<p>*@&* לבדוק אילו אפשרויות יש בפקודה history.</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

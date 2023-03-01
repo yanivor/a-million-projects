@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>driftnet</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">driftnet</h1>
+          <div class="author-date">יניב אור - 29 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>התוכנה driftnet  מאזינה לתעבורה ברשת (בעזרת libpcap) ומציגה על המסך תמונות שנתגלו על-ידה במידע שעבר באותה תעבורה. </p>
+<p><a href="https://github.com/deiv/driftnet"><u class="_3zM-5">driftnet</u></a></p>
+<p>כפי שכבר ציינתי בפוסטים ומאמרים קודמים, אני אוהב להשתמש ב-Docker. יש אפשרות, כמובן, להריץ Kali - או כל מערכת לינוקס אחרת שמיועדת ל-pentesters - על מכונה וירטואלית, למשל. פחות זורם לי כרגע. בכל מקרה, בפוסט על dsniff הדגמתי בנייה של קונטיינר שמכיל מספר תוכנות על מכונת Debian. מה שאעשה עם ה-driftnet זה, פשוט מאוד, אוסיף אותה לחבילה. אולי בהמשך אשנה את השם מ-dsniff לשם כללי יותר.</p>
+<p><a href="https://www.docker.com/"><u class="_3zM-5">Docker</u></a></p>
+<p><a href="https://www.kali.org/"><u class="_3zM-5">Kali</u></a></p>
+<p><a href="https://www.a-million-projects.com/post/dsniff"><u class="_3zM-5"><span style="color:#ffffff">dsniff</span></u></a></p>
+<p>dsniff</p>
+<p> הדגמתי בנייה של קונטיינר שמכיל מספר תוכנות על מכונת Debian. מה שאעשה עם ה-driftnet זה, פשוט מאוד, אוסיף אותה לחבילה. אולי בהמשך אשנה את השם מ-dsniff לשם כללי יותר.</p>
+<p>Dockerfile</p>
+<p>את ה-image אני בונה בצורה הבאה:</p>
+<p>$ docker build -t dsniff .</p>
+<p>התוכנה driftnet צריכה חלון גרפי של X כדי לעבוד, לכן יש צורך לאפשר ל-xhost הרשאות למשתמש docker. לאחר מכן, נריץ את הקונטיינר:</p>
+<p>$ xhost +local:docker</p>
+<p>$ docker run --rm -it --env DISPLAY=unix$DISPLAY --network host dsniff driftnet -i wlo1</p>
+<p>שימו לב שהעברתי לקונטיינר את משתנה הסביבה DISPLAY לצורך תצוגה גרפית. בנוסף לכך, הרצתי את התוכנה בצורה אינטראקטיבית - ללא צורך להיכנס ל-shell.</p>
+<p>ניתן לראות בסרטון הבא הדגמה לשימוש בתוכנה, בה אני מבצע תקיפת MITM בעזרת arpspoof ו-mitmproxy. את התמונות אני מציג, כמובן בעזרת driftnet. </p>
+<p>ניתן לראות בסרטון הבא </p>
+<p>התוקף הוא מכונת אובונטו על הלפטופ שלי כשהקורבן הוא מכשיר אנדרואיד שברשותי. בשניהם עשיתי צילום וידאו של המסך ושילבתי ביניהם. ב-00:26 ניתן לראות במרכז המסך את מכשיר האנדרואיד.</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/_bBv0_-Ua_Q" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>במאמר מעבדת סייבר - קריאה ועריכת תעבורה של קורבן ברשת אני מרחיב על תקיפה מהסוג הזה בשימוש בתוכנות שציינתי קודם לכן.</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%91%D7%93%D7%AA-%D7%A1%D7%99%D7%99%D7%91%D7%A8-%D7%A7%D7%A8%D7%99%D7%90%D7%94-%D7%95%D7%A2%D7%A8%D7%99%D7%9B%D7%AA-%D7%AA%D7%A2%D7%91%D7%95%D7%A8%D7%94-%D7%A9%D7%9C-%D7%A7%D7%95%D7%A8%D7%91%D7%9F-%D7%91%D7%A8%D7%A9%D7%AA"><u class="_3zM-5">מעבדת סייבר - קריאה ועריכת תעבורה של קורבן ברשת</u></a></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

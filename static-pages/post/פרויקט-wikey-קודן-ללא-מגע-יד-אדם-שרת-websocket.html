@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>פרויקט Wikey - שרת websocket וממשק משתמש למפעיל</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">פרויקט Wikey - שרת websocket וממשק משתמש למפעיל</h1>
+          <div class="author-date">יניב אור - 2 ביולי 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>בחלק זה אתאר את תהליך כתיבת השרת שדרכו נשלחות פקודות ל-ESP8266 שמחובר לקודן - כחלק מהפרויקט Wikey.</p><p><a href="wikey-%D7%A7%D7%95%D7%93%D7%9F-%D7%9C%D7%9C%D7%90-%D7%9E%D7%92%D7%A2-%D7%99%D7%93-%D7%90%D7%93%D7%9D-%D7%94%D7%A7%D7%93%D7%9E%D7%94" rel="noopener noreferrer" target="_blank">פרויקט Wikey - קודן ללא מגע יד אדם - הקדמה</a></p><p><br></p><p>הקוד מקור נמצא ב-Github הבא:</p><p><a href="https://github.com/YanivOr/wikey-web" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/wikey-web</a></p><p><br></p><h3>שרת websocket</h3><p>סך הכל שרת פשוט מאוד - שרת NodeJS, אגב - ללא הרבה קוד וסיבוכיות. החבילות npm היחידות בהן השתמשתי הן: express ו-ws (ל-websocket).</p><p>השרת מאזין לבקשות משני סוגי לקוחות במערכת:</p><p>1. המפעיל (operator)</p><p>2. רכיב ה-IoT ובמקרה שלנו ה-ESP8266 - שמחובר לקודן (device)</p><p>כל הודעה שנשלחת לשרת - לאחר בדיקה שמדובר על JSON תקין - עוברת דרך הפונקציה messagesHandler שמנתבת את ההודעות לסוג לקוח המתאים. כשמדובר על device, הטיפול בסוג הלקוח הז מתבצע בפונקציה deviceHandler.</p><p>ההודעה היחידה כרגע ש-device שולח היא הודעת INIT שמודיעה לשרת שהוא מותקן ומוכן לקבל פקודות. מלבד הפקודה INIT, הוא שולח את ה-unique id שלו. זהו המספר הרנדומלי אותו יצר בזמן הקינפוג (ראו חלקים קודמים). המספר הזה משמש כמפתח באובייקט שמכיל את הרכיבים במערכת. המידע הנוסף שמקושר לכל רכיב הוא: connected -עם הערכים true או false - והאובייקט socket שבאמצעותו יהיה אפשר לשלוח הודעות לרכיב בהמשך ע"י המפעיל.</p><p>לרשימת TODO: פקודת ניתוק שמעבירה את connected למצב false ופקודת מחיקה מאובייקט הרכיבים.</p><p>לרשימת TODO:</p><p>יש טיפול במספר סוגי הודעות אותן המפעיל יכול לשלוח והן כולן כוללות את המספר של הרכיב אליו הוא רוצה לתת פקודה, מספר מזהה מפעיל ומידע נוסף. הטיפול בפקודה עצמה מותנה בכך שה-device קיים במערכת (באובייקט רכיבים) והוא מחובר. הפקודה INIT מוסיפה לאובייקט של הרכיב את פרטי המפעיל שכולל את המזהה שלו ואת אובייקט ה-socket שלו. מעבר לכך, יש 4 פקודות נוספות אותן המפעיל יכול לשלוח לרכיב והן: GPIO, PULSE, STR ו-PING.</p><p>בהמשך אציג ממשק משתמש שנכתב לצורך טסטים וכך מטרת הפקודות יהיו ברורות יותר.</p><p>לרשימת TODO: הוספת certificate וטיפול ב-HTTPS.</p><p>לרשימת TODO:</p><p>הוספת certificate וטיפול ב-HTTPS.</p><p><br></p><h3>ממשק משתמש למפעיל</h3><p>אפרט בהמשך, בינתיים תמונה להמחשה:</p><p><img src="https://static.wixstatic.com/media/17f292_ea9bfe07b031427386f2b40b2148d810~mv2.png"></p>
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>כתיבת Web Components</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">כתיבת Web Components</h1>
+          <div class="author-date">יניב אור - 1 בספט׳ 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>אני רוצה להדגים תהליך יצירה של web component ושימוש בסיסי ברכיב כזה.</p>
+<p>לא נעשה פה שימוש בספריות חיצוניות - יש תמיכה מובנית בדפדפנים המודרניים.</p>
+<p>לצורך העניין, ניצור רכיב שמציג את האמוג'י 👍 ונקרא לו: thumbs-up-component.</p>
+<p>זה יהיה שם התגית, בה נשתמש כמו בכל תגית HTML אחרת. שם תגית של רכיב מותאם באופן אישי (Custom Element), חייב להכיל מקף אמצעי (לפחות אחד) כדי שהדפדפן יבדיל בינו לבין התגיות המובנות.</p>
+<p>thumbs-up-component.js</p>
+<p>* הערה קטנה, שם הקובץ לא חייב להיות כשם הרכיב וכל הקוד המוצג כאן יכול להיות כחלק מקוד מורכב יותר שמכיל מספר רכיבים, לצורך העניין.</p>
+<p>הסבר. דבר ראשון, אנחנו יוצרים אלמנט HTML בשם template אשר מכיל div ובתוכו האימוג'י.</p>
+<p>אגב, ה-template יכול להכיל עץ DOM שלם - ובנוסף, הגדרות CSS. בהמשך.</p>
+<p>לאחר מכן, יצירת מחלקה שיורשת מ-HTMLElement. יש למחלקה הזאת כמה מתודות שימושיות. גם לזה נגיע בהמשך. הדבר הבא שנעשה זה ניצור Shadow DOM ונוסיף לתוכו עותק של עץ ה-DOM, של הרכיב שלנו.
+ה-Shadow DOM יוצר חיץ בין הרכיב שלנו לשאר ה-DOM בו הוא יושב כך שהרכיב לא יושפע מהגדרות חיצוניות, כמו למשל CSS.
+
+</p>
+<p>הקובץ הבא שניצור:</p>
+<p>index.html</p>
+<p>מעטפת html5 סטנדרטית. הוספתי מספר הגדרות CSS ל-body. שני דברים אנחנו עושים כאן, טוענים את קובץ הרכיב באמצעות תגית script והדבר השני, משתמשים בתגית החדשה שנוצרה. תגית של רכיב שנוצר בקוד, חייבת להיסגר ע"י התגית המתאימה גם אם היא לא מכילה child elements. אין אפשרות לסגור אותה עם slash כמו במקרה של:</p>
+<p>וזאת התוצאה לבינתיים:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_91dccacf6821429186e98ac79299223c~mv2.png" /></p>
+<p>פשוט וקל. עכשיו טיפה נרחיב ונשכלל ובהמשך נוסיף טיפולב-attributes. איך מעבירים אותם, איך מתעדכנים על שינוי וכו'.</p>
+<p>נחזור ל-thumbs-up-component.js לחלק של ה-template.</p>
+<p>כמו שציינתי, יש אפשרות לכתוב עץ DOM שלם ובנוסף, הגדרות CSS.</p>
+<p>הוספתי תגית style ובתוכה הגדרות CSS.</p>
+<p>לשים לב לשימוש ב-host: ב-style. ה-host מתייחס לאלמנט הראשי שעוטף את ה-component ובמקרה שלנו <thumbs-up-component>.</p>
+<p>הוספתי את האלמנט label עם הכיתוב "Thumbs Up".</p>
+<p>עכשיו זה נראה כך:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_f3bbe83ac8204b20bdb365948230b5c4~mv2.png" /></p>
+<p>נמשיך בהעברת attributes לרכיב.</p>
+<p>ב-thumbs-up-component.js - בחלק של ה-template - אני מוחק את  "Thumbs Up" שבתוך ה-label.</p>
+<p>ב-index.html אני מעביר attribute בשם title שמכיל את המחרוזת: "Thumbs up" לרכיב.</p>
+<p>נחזור ל-ThumbsUpComponent, בקובץ JS.
+נשתמש בשתי פונקציות מובנות:</p>
+<p>- ה-getter שנקרא observedAttributes - בה אנחנו מגדירים לאילו attributes אנחנו רוצים להאזין</p>
+<p>- הפונקציה attributeChangedCallback שנקראת בכל פעם שיש שינוי ב-attributes שהוגדרו קודם לכן.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_6cebe9c142a0413ca051ba0242b7e9e5~mv2.png" /></p>
+<p>* כרגע אנחנו רק מדפיסים ל-console את הערכים ולא עושים בהם בינתיים שימוש, לכן לא מוצג טקסט מעל לאמוג'י.</p>
+<p>באופן כללי, עדיף את כל ה-querySelector למיניהם לעשות פעם אחת ב-constructor, לכן נאסוף ב-constructor את התגית label אל תוך משתנה.</p>
+<p>שימו לב ב-console.log ש-this.title מכיל את ה-string שלנו. נעדכן את התוכן של התגית label  ב-this.title:</p>
+<p>יפה, עכשיו אני רוצה לשנות את התוכן של title בצורה דינמית, מחוץ ל-component. הוספתי תיבת טקסט לדף HTML הראשי (index.html) ו-event listener כך שבכל הקלדה בשדה הטקסט, ה-title ישתנה בהתאם:</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/De5oPWaCdUo" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>הדבר הבא שאני רוצה להראות זה שימוש בתגית slot. היא מאפשרת העברה של החל מאלמנט בודד ועד עץ DOM מורכב - כילדים של ה-Custom Element שיצרנו. מאוד דומה ל-children ב-React, אם אתם מכירים. הילדים הללו לא נכללים ב-shadow dom והם נשלטים מחוץ לרכיב.</p>
+<p>אז, נוסיף תגית slot ל-thumbs-up-component.js. לצורך העניין, מתחת ל-<div>👍</div>:</p>
+<p>וב-index.html נוסיף תגית label עם תוכן - כילד של thumbs-up-component:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_0aaaedf417bc488fab7426ce383cdf52~mv2.png" /></p>
+<p>שימו לב שההגדרות CSS ל-label שנמצאות בקובץ של הרכיב לא משפיעות על הילד שהועבר דרך ה-slot למרות שגם הוא label. הגדרות שכן ישפיעו עליו יימצאו ב-index.html:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_843c7ddaa7004880813633068f3afa21~mv2.png" /></p>
+<p>*** המשך יבוא...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

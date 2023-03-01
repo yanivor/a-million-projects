@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>SysV init</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">SysV init</h1>
+          <div class="author-date">יניב אור - 8 ביוני 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>מערכת ותיקה מאוד לניהול פרוססים ולאתחול מערכות דמויות יוניקס. בימינו, רוב ההפצות מגיעות עם מערכות חדשות יותר, כמו systemd למשל.</p>
+<p>בחרתי להשתמש במערכת הזאת מכמה סיבות:</p>
+<p>המטרה היא ללמוד כמה שיותר על המערכת וניהול ידני/חצי-אוטומטי משיג את המטרה הזאת</p>
+<p>אנחנו הולכים להתעסק עם קינפוגים וסקריפטים - לצורך העניין  רשתות - בצורה ניסויית ועם מערכות כמו systemd יש סיכוי גבוה יותר לקונפליקטים.</p>
+<p>סביבת מעבדה, כמה שיותר שליטה, פחות הפרעות.</p>
+<p>בכל רגע נתון, System V, נמצא באחד מכמה מצבים מוגדרים. הם נקראים runlevels.</p>
+<p>מעבר משלב-ריצה אחד לאחר גורם להרצה של סקריפטים ששייכים לשלב החדש.</p>
+<p>מדובר על סקריפטים להרצת או עצירת daemons, סקריפטים שקשורים לניהול רשתות וכן הלאה.</p>
+<p>בעיקרון, ישנם 7 שלבי-ריצה, 3 מהם נחשבים סטנדרט והם חיוניים לפעולה התקינה של המערכת.</p>
+<p>0 עצירה - Halt</p>
+<p>1 מוד משתמש יחיד - Single-user mode - (נקרא גם S או s)</p>
+<p>6 אתחול - Reboot</p>
+<p>השלבים הנוספים הם: 2-5 מוד ריבוי משתמשים (Multi-user mode)</p>
+<p>יש אפשרות להשתמש גם ב-7 עד 9 אבל זה לא נהוג.</p>
+<p>ב-Debian Strecth, שלבי הריצה הבאים מוגדרים:</p>
+<p>  N       System bootup (NONE).</p>
+<p>  S       Single user mode (not to be switched to directly)</p>
+<p>  0       halt</p>
+<p>  1       single user mode</p>
+<p>  2 .. 5  multi user mode</p>
+<p>  6       reboot</p>
+<p>ב-/etc/inittab מוגדרים שלבי-הריצה השונים.</p>
+<p>runlevel or who -r - to see current run-level</p>
+<p>ה-process הראשון שרץ ע"י ה-kernel זה init - ה-pid שלו 1.</p>
+<p>אחד החסרונות ב-init שהוא מריץ את המשימות שלו בצורה טורית מה שמאט את מהירות אתחול המערכת ובעיות נוספות.</p>
+<p>ב-/etc/init.d/ נמצאים הסקריפטים עצמם וב-/etc/rc* נמצאים לינקים לקבצים ב-init.d והם קובעים את ה-priority והסדר בזמן ריצת ה-init.</p>
+<p>התוכנה service שמנהלת את הסרביסים במערכת - מריצה ומנהלת את הסקריפטים האלה. </p>
+<p>היא לא קשור ספציפית ל-init.d והיא מערכת ניהול service-ים עצמאית (היא עובדת גם מול systemd, למשל ואחרים).</p>
+<p>service SCRIPT COMMAND [OPTIONS]</p>
+<p>הסקריפטים ש-service מריץ חייבים להכיל לפחות את הפקודות: start ו-stop</p>
+<p>סקריפטים של init לפי תקן LSB חייבים לעמוד בדרישות הבאות:</p>
+<p>לממש את: start, stop, restart, force-reload, status</p>
+<p>להחזיר exit code תקין</p>
+<p>service SCRIPT --full-restart</p>
+<p>יריץ את SCRIPT פעמיים, פעם ראשונה במצב stop ובפעם השנייה במצב start.</p>
+<p>service --status-all</p>
+<p>מריץ את כל הסקריפטים לפי סדר האלף-בית, עם COMMAND = status</p>
+<p>אלו הם משתני המערכת שמועברים לסקריפטים ב-init.d:</p>
+<p>      LANG, LANGUAGE, LC_CTYPE, LC_NUMERIC, LC_TIME, LC_COLLATE, LC_MONETARY, LC_MESSAGES, LC_PAPER, LC_NAME, LC_ADDRESS, LC_TELEPHONE, LC_MEASUREMENT, LC_IDENTIFICATION, LC_ALL, TERM,</p>
+<p>      PATH</p>
+<p>example: echo $LANG</p>
+<p>cat /etc/init.d/skeleton</p>
+<p>שלד לקובץ מסוג init.d</p>
+<p>less /etc/init.d/README</p>
+<p>קרא הסבר מפורט ובנוסף man insserv</p>
+<p>update-rc.d</p>
+<p>מנהל את הלינקים ב-/etc/rcrunlevel.d/NNname ובעצם מאפשר/לא מאפשר לסקריפטים לרוץ ב-init</p>
+<p>אם רוצים למנוע מסקריפט להיטען ב-init מחליפים את הלינק מ-S ל-K</p>
+<p>יש אפשרות לערוך את הסקריפטים עצמם ואת הלינקים - בצורה ידנית. </p>
+<p>החבילה sysv-rc-conf מכילה כלים לניהול, בצורה נוחה יותר.</p>
+<p>/lib/lsb/init-functions </p>
+<p>יש בקובץ הזה פונקציות שימושיות, אפשר להכליל אותו בסקריפט בצורה: </p>
+<p>. /lib/lsb/init-functions</p>
+<p>/lib/init/vars.sh</p>
+<p>מכין את המשתנים של rcS</p>
+<p>/var/run/utmp and /var/log/wtmp</p>
+<p>שים לב לקבצים הבאים</p>
+<p>בהתקנות של Debian, בברירת מחדל,  אין הבחנה בין שלבי-ריצה 2 עד 5 מה שנותן לנו חופש פעולה וקינפוג.</p>
+<p>השימוש בשלבי-הריצה S ו-1 הוא לצורך תחזוקה.הם מתחילים service-ים בצורה מינימלית כדי למנוע בעיות אפשריות.</p>
+<p>לשים לב, אתחול המערכת ב-Debian, בברירת המחדל נעשה בשלב-ריצה 2. כפי שמוגדר ב-/etc/inittab</p>
+<p>ניתן לדרוס את ההגדרה הזאת בזמן ה-boot בעזרת פרמטר kernel.</p>
+<p>יש גם אפשרות לשנות שלב-ריצה בזמן ריצה. שנה רק 1 עד 5.</p>
+<p>init [runlevel]</p>
+<p>     or</p>
+<p>telinit [runlevel] - רצוי להשתמש בזה</p>
+<p>ניסיתי לארגן לקבוצות את הקבצים, סקריפטים וכו' שקשורים לנושא (אין סיבה לכך שה-validate LSB מודגש, אני אעדכן את השרטוט בהמשך).</p>
+<p><img src="https://static.wixstatic.com/media/17f292_b06d80974c8141c8b58360bf8860afcf~mv2.png" /></p>
+<p>וזה הביא לי רעיון לפתח איזושהי מערכת לינוקס לימודית שחלק מהממשק נראה בערך ככה, ארחיב בהמשך:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_905be8608feb444a80cdad2b66ae91b6~mv2.png" /></p>
+<p>עוד שירטוטים שהכנתי. הסברים ומאמרים, בהמשך...</p>
+<p><img src="https://static.wixstatic.com/media/17f292_e429e2957eab4845a9332a52f6e78c5b~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_2b51c8aa030d4867b29dd85819949c92~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_6b6b0a72cd5245a89bf5da721049e168~mv2.png" /></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

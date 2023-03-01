@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>פרוטוקול ARP - איך הוא עובד?</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">פרוטוקול ARP - איך הוא עובד?</h1>
+          <div class="author-date">יניב אור - 9 באוג׳ 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>פרוטוקול תרגום כתובות - Address Resolution Protocol</p>
+<p>כדי שמכונה א' תוכל לתקשר עם מכונה ב' - ושתיהן נמצאות על אותה רשת - היא צריכה לדעת את הכתובת הפיזית (ה-MAC address) של אותה מכונה, על פי הכתובת IP המקומית שלה.</p>
+<p>מה שהיא תעשה (במידה ויישמה את הפרוטוקול בצורה מלאה) זה תחפש ב-arp cache - אותו עידכנה לאורך הזמן כשהכירה מכונות ברשת - רשומה שהמפתח שלה הוא האיי-פי של מכונה ב'.</p>
+<p>אם לא מצאה, תשלח הודעה מסוג ARP שהיא בעצם הודעת Broadcast - הנשלחת לכל המכונות ברשת - עם הכתובת FF:FF:FF:FF:FF:FF בשדה היעד וכתובת ה-IP המבוקשת (של מכונה ב').</p>
+<p>מכונה ב' שקיבלה את ההודעה וזיהתה שהיא מיועדת אליה, תשלח חזרה הודעת Unicast למכונה א' שתכלול, בין היתר, את כתובת ה-MAC שלה.</p>
+<p>המשך יבוא...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

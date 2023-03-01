@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>מערכת ניהול - React - חלק 9</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">מערכת ניהול - React - חלק 9</h1>
+          <div class="author-date">יניב אור - 8 בינו׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>בחלק זה נמשיך עם הרכיב החדש שיצרתי, שמיועד לעריכת פוסטים ונקרא gridEditor. אגב, את ההשראה לקחתי מהעורך פוסטים  של וויקס, איתו אני משתמש כרגע. הרעיון הוא שהדף מחולק מראש לשורות וכשמקליקים על שורה נפתח toolbar עם אפשרויות עריכה שונות. אפשרות לכתוב טקסט, להוסיף תמונה, לשתף סרטון, קישורים וכן הלאה. ברגע שבוחרים בכתיבת טקטס, יפתח חלון לעריכת טקסט ובסיום העריכה הוא יופיע  בשורה. אם בחרנו תמונה, היא תופיע בשורה עליה הקלקנו וכן הלאה.</p>
+<p>בינתיים יש לנו כותרת, שורות אותן ניתן לבחור ו-toolbar. כמו כן, חיברתי את הקוד ל-Redux. נעבור על הקוד.</p>
+<p>src/components/Common/GridEditor/index.js</p>
+<p>src/components/Common/GridEditor/toolbar.js</p>
+<p>src/components/Layout/Entity.js (החלק הרלוונטי)</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/T13paqzyUQ4" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>עדכון 28/3/2020</p>
+<p>להזכירכם, את הבלוג ומערכת הניהול שמפורטטת כאן אני כותב בזמני הפנוי לכן לא נגעתי בקוד תקופה מסויימת. בכל אופן נמשיך.</p>
+<p>הוספתי רכיב, חלון עריכה - EditForm -  כרגע עם textarea פשוט וכתבתי את הפונקציונליות שקשורה בכך. עדיין אין שמירה של הנתונים.</p>
+<p>src/components/Common/GridEditor/editForm.js</p>
+<p>את הרכיב הוספתי ל-GridEditor.</p>
+<p>והחלק הרלוונטי ברכיב Entity. המאפיינים: editFormChanged, editFormSubmitted ו-editFormCanceled.</p>
+<p>editFormChanged, editFormSubmitted ו-editFormCanceled.</p>
+<p>src/components/Layout/Entity.js</p>
+<p>ה-actions שקשורים ל-gridEditor נראים כך:</p>
+<p>src/store/actions/entities/gridEditor/index.js</p>
+<p>src/store/actions/entities/gridEditor/creators.js</p>
+<p>מבחינת reducers, הקוד נראה כך. פירוט בהמשך.</p>
+<p>src/store/reducers/entities/index.js</p>
+<p>src/store/reducers/entities/initialState/common.js</p>
+<p>src/store/reducers/entities/main/gridEditor.js</p>
+<p>המשך יבוא...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

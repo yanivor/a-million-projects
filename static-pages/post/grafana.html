@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Grafana - פאנל ומקור מידע - מותאמים אישית</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">Grafana - פאנל ומקור מידע - מותאמים אישית</h1>
+          <div class="author-date">יניב אור - 28 במרץ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>ללא ספק, גרפאנה היא המערכת המובילה והמרשימה כיום להצגת מידע של מדדים (metrics) בפאנלים מסוגים שונים כגון טבלאות, גרפים, שעונים וכדומה. את הפאנלים מחברים למקורות מידע שונים כמו למשל: Prometheus, MySQL, MongoDB, Graphite, ElasticSearch ואחרים. הכל נעשה בממשק נוח לשימוש שאינו דורש כתיבת קוד.</p>
+<p><a href="https://grafana.com/"><u class="_3zM-5">גרפאנה</u></a></p>
+<p>כנסו לאתר: https://play.grafana.org ותוכלו לשחק עם מערכת מוכנה</p>
+<p><a href="https://play.grafana.org/"><u class="_3zM-5">https://play.grafana.org</u></a></p>
+<p><img src="https://static.wixstatic.com/media/17f292_1c37338947e74bdc86a4d358c2acf098~mv2.png" /></p>
+<p>יש לא מעט מדריכים וסרטונים להקמת מערכת גרפאנה ושימוש בה. מה שאני מעוניין בפוסט הזה זה להראות איך יוצרים פאנל מותאם אישית ואיך יוצרים מקור מידע מותאם אישית. על כך אין כמעט מידע ברשת.</p>
+<p>התקנת גרפאנה לצורך פיתוח</p>
+<p>יש מספר דרכים להתקנת גרפאנה, אנחנו מעוניינים בצורה שתאפשר סביבה נוחה לפיתוח. לכן, ניכנס לדף של גרפאנה ב-Github ונפעל לפי ההוראות המוצגות באתר.</p>
+<p>https://github.com/grafana/grafana </p>
+<p><a href="https://github.com/grafana/grafana"><u class="_3zM-5">https://github.com/grafana/grafana</u></a></p>
+<p>https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md </p>
+<p><a href="https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md"><u class="_3zM-5">https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md</u></a></p>
+<p>להרצת גרפאנה יש צורך ב-go, ב-nodejs וב-yarn. התקינו לפי מערכת ההפעלה שלכם.</p>
+<p>נגדיר את המיקום אליו נרצה ש-go יוריד את גרפאנה בצורה הבאה (יש אפשרות לבחור מיקום אחר, כמובן).</p>
+<p>נוסיף את השורה:</p>
+<p>export GOPATH=$HOME/go/</p>
+<p>לקובץ:</p>
+<p>$HOME/.bashrc</p>
+<p>או לקובץ הבא (בהתאם למערכת הפעלה):</p>
+<p>$HOME/.bash_profile</p>
+<p>ונריץ:</p>
+<p>$ go get github.com/grafana/grafana </p>
+<p><a href="http://github.com/grafana/grafana"><u class="_3zM-5">github.com/grafana/grafana</u></a></p>
+<p>נריץ את השרת בחלון טרמינל נפרד:</p>
+<p>$ cd go/src/github.com/grafana/grafana
+$ make run</p>
+<p>אם קיבלתם שגיאה, משהו בסגנון של:</p>
+<p>can't load package: package github.com/unknwon/bra: cannot find package "github.com/unknwon/bra"</p>
+<p>כנראה שהגירסת go שלכם ישנה מדי. אצלי השגיאה הופיעה עם גירסה 1.10. התקינו גירסה חדשה יותר. למשל 1.14.1.</p>
+<p>אם הגירסה תקינה, לאחר סיום ההרצה תופיע השורה שאומרת שהשרת מאזין לפורט 3000. ניתן לשנות את הפורט - http_port - בקובץ:</p>
+<p>http_port -</p>
+<p>conf/defaults.ini</p>
+<p>את הפרונטאנד נתקין ונריץ בחלון טרמינל נפרד בצורה הבאה:</p>
+<p>$ cd go/src/github.com/grafana/grafana
+$ yarn install --pure-lockfile
+$ yarn start</p>
+<p>המתינו בסבלנות עד לסיום בניית הקוד ופתחו את הדפדפן בכתובת:</p>
+<p>http://localhost:3000</p>
+<p><a href="http://localhost:3000/login"><u class="_3zM-5">http://localhost:3000</u></a></p>
+<p>הזינו שם וסיסמא admin admin ובהתאם להוראות שנו את הסיסמא. מזל טוב, יש לכם גרפאנה מוכנה להמשך פיתוח.</p>
+<p>אנו זקוקים לשלושה רכיבים או תתי-פרויקטים על מנת להשלים את המשימה שלנו. הרכיב הראשון הוא פאנל מותאם אישית שאת הבוילרפלייט שלו אוריד מ-Github, מה-repo הרשמי של גרפאנה. הוא עשוי 100% קוד ריאקט. רכיב נוסף הוא הפרונטאנד ל-datasource. יש אחד רשמי ב-repo של גרפאנה אך הוא בלתי שמיש ולא ניתן לבנות את הקוד, לכן אשתמש בבוילרפלייט אחר שמבוסס עליו. עשוי מאנגולר. הרכיב השלישי הוא השרת שישלח JSON-ים לפרונטאנד של מקור המידע. נתחיל ב-datasource.</p>
+<p>יצירת מקור מידע מותאם אישית</p>
+<p>אז כמו שציינתי, הבוילרפלייט ל-datasource מה-repo של גרפאנה שנמצא בכתובת הבאה:</p>
+<p>https://github.com/grafana/simple-json-datasource </p>
+<p><a href="https://github.com/grafana/simple-json-datasource"><u class="_3zM-5">https://github.com/grafana/simple-json-datasource</u></a></p>
+<p> לא שמיש מבחינת בניית הקוד. מצאתי את הקוד הבא שעובד מצויין:</p>
+<p>https://github.com/simPod/grafana-json-datasource </p>
+<p><a href="https://github.com/simPod/grafana-json-datasource"><u class="_3zM-5">https://github.com/simPod/grafana-json-datasource</u></a></p>
+<p>ניכנס לתיקיית התוספים ונוריד את הקוד מ-Github:</p>
+<p>$ cd go/src/github.com/grafana/grafana/data/plugins
+$ git clone https://github.com/simPod/grafana-json-datasource.git</p>
+<p><a href="https://github.com/simPod/grafana-json-datasource.git"><u class="_3zM-5">https://github.com/simPod/grafana-json-datasource.git</u></a></p>
+<p>ניכנס לתיקיית ה-datasource, נתקין מודולים ונבנה את הקוד:</p>
+<p>$ cd grafana-json-datasource
+$ yarn install
+$ yarn run build
+
+</p>
+<p>אם נרצה לפתח את הקוד, נריץ את הפקודה הבאה שבכל שינוי תבנה מחדש את הקוד:</p>
+<p>$ yarn watch</p>
+<p>אתחלו את שרת ה-go של גרפאנה, רפרשו את האתר והקליקו על Add data source שנמצא בדף הראשי או דרך גלגל השיניים בתפריט צד.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_9a6d53496b4c42c699bb42dac7bc9c41~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_0b31d34844394b62bc8e24a55b47a5d8~mv2.png" /></p>
+<p>ה-datasource נקרא JSON כפי שניתן לראות בתמונה. ברגע שנקליק עליו נעבור לדף הגדרות שבו נצטרך להגדיר לפחות URL לשרת שישלח JSON. את השרת ניצור בשלב הבא. אם אתם מעוניינים להשתמש בשרתים מוכנים לעבודה עם מקור המידע הזה, כנסו לדף הבא ותמצאו מספר שרתים מוכנים לשימוש:</p>
+<p>https://github.com/grafana/simple-json-datasource#example-backend-implementations </p>
+<p><a href="https://github.com/grafana/simple-json-datasource#example-backend-implementations"><u class="_3zM-5">https://github.com/grafana/simple-json-datasource#example-backend-implementations</u></a></p>
+<p>יצירת שרת NodeJS לעבודה מול ה-datasource</p>
+<p>את בסיס הקוד לשרת אני מייצר בעזרת express-generator</p>
+<p>$ npx express-generator grafana-node-server</p>
+<p>ה-repo נמצא כאן:</p>
+<p>https://github.com/YanivOr/grafana-node-server </p>
+<p><a href="https://github.com/YanivOr/grafana-node-server"><u class="_3zM-5">https://github.com/YanivOr/grafana-node-server</u></a></p>
+<p>ה-datasource מחייב לממש לפחות 4 ראוטים ויש אפשרות ל-2 נוספים. מהאתר הרשמי:</p>
+<p>Your backend needs to implement 4 urls:</p>
+<p>    1. / - should return 200 ok. Used for "Test connection" on the datasource config page.
+    2. /search - used by the find metric options on the query tab in panels.
+    3. /query - should return metrics based on input.
+    4. /annotations - should return annotations.
+
+Those two urls are optional:
+    /tag-keys should return tag keys for ad hoc filters.
+    /tag-values should return tag values for ad hoc filters.</p>
+<p>מחקתי את ה-route של ברירת המחדל שהיה קשור ל-users מהקובץ app.js ומתיקיית routes.</p>
+<p>ערכתי את index.js בתיקיית routes והוספתי את ארבעת ה-URL-ים. בתור התחלה כולם מחזירים 200. בהמשך נפתח את העניינים.</p>
+<p>routes/index.js</p>
+<p>נריץ את השרת ונחזור לממשק של הגרפאנה. הפעם נקליק על האייקון של מקור המידע שיצרנו - JSON - נגיע לדף ההגדרות, נזין את הכתובת של השרת ונקליק על Save & Test.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_ab866949903847e7ba54283e81768fba~mv2.png" /></p>
+<p>המשך פיתוח ה-datasource</p>
+<p>הדבר הבא שנעשה זה ליצור dashboard, לאחר מכן פאנל ו-visualization כשבברירת המחדל נקבל גרף. עברו ל-queries.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_421d96f8957742b88769dd0855171da8~mv2.png" /></p>
+<p>קיבלנו שגיאה משום שקריאת ה-API שלנו ל-query מחזירה רק קוד 200 ולא דאטא. נטפל בעניין בהמשך. דבר נוסף, שימו לב לשני ה-dropdown-ים ב-query. הראשון Format as הוא הארד-קודד בקוד הפרונטאנד (אנגולר) ומכיל שני סוגים: Time series ו-Table. אלו שני הסוגים היחידים שגרפאנה תומכת בהם וכל אחד מהם מצפה למבנה דאטא מסויים שיגיע מהשרת. הדרופדאון השני Metric מצפה לקבל מערך של נתונים מקריאת ה-API ל-search. </p>
+<p>data/plugins/grafana-json-datasource/src/query_ctrl.ts</p>
+<p>שימו לב ל-this.types שהוא מערך של אובייקטים לצורך הדרופדאון הראשון ו-findMetrics, פונקציה שתמלא את הדרופדאון השני.</p>
+<p>data/plugins/grafana-json-datasource/src/partials/query.editor.html</p>
+<p>בהתאמה, ctrl.types בדרופדאון הרלוונטי ב-HTML ו-ctrl.findMetrics($query) בדרופדאון הרלוונטי האחר.</p>
+<p>נוסיף בשרת ל-search מערך שאותו נרצה להעביר לדרופדאון של Metric.</p>
+<p>routes/index.js (החלק הרלוונטי)</p>
+<p>נריץ מחדש את השרת ונרפרש את הגרפאנה. הפעם הדרופדאון של ה-Metric טעון במידע.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_40dd8039eb514017ab0be0ae445f9c8a~mv2.png" /></p>
+<p>ברגע שאנחנו בוחרים אפשרות כלשהי ב-query או מזינים מידע כלשהו - למשל ב-Additional JSON Data - נשלחת קריאת query לשרת. החלק הרלוונטי לנו כרגע נראה כך:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_848ec896945b47b8920153a9dfe419a5~mv2.png" /></p>
+<p>שימו לב ל-targets. מערך של אובייקטים. ה-item הראשון (0) תואם ל-query שנקרא A בממשק הגרפי. יש אפשרות להוסיף queries נוספים והם יהיו item-ים נוספים במערך.</p>
+<p>כרגע, מה שרלוונטי לנו זה target שבדוגמא שלנו הוא metric-1 ו-type שבדוגמא שלנו הוא timeseries.</p>
+<p>נוסיף מעט קוד לקריאת API של query בשרת.</p>
+<p>באופן שרירותי בחרתי לכתוב את הקוד כך שברגע שהמשתמש בוחר timeseries ו-metric-1 השרת מחזיר מערך של אובייקטים עם item אחד בודד בפורמט שמתאים ל-timeseries לפי החוקיות של גרפאנה. אין קוד ספציפי ל-metric-2 והשרת יחזיר מערך ריק. לאפשרות שקראתי metric-3 and metric-4 השרת יחזיר מערך עם שני item-ים.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_887e1c6b290c4de795155133025e34c4~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_ce4228b34489484ebe033bf81fc9f370~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_915691b860d5490686993c7a4999ef3a~mv2.png" /></p>
+<p>מבחינת המידע הטבלאי, בחרתי להחזיר את אותו מידע ללא תלות ב-Metric שנשלח. שימו לב למבנה הנתונים עם ה-columns ו-rows. זה המבנה נתונים שגרפאנה - לא ה-datasource - מצפה שנשלח כשמדובר על טבלה.</p>
+<p>נעבור לתצוגה טבלאית והתוצאה נראית בתמונה הבאה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_92851820c7384fd9962504c7366cdc56~mv2.png" /></p>
+<p>אגב, אם נישאר בתצוגה הטבלאית ונחזור ל-Format של timeseries נקבל את התוצאה הבאה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_b28b5b9daac448cc97a86ffe6f65d15b~mv2.png" /></p>
+<p>מבחינת הקוד של ה-datasource, אין צורך כרגע לבצע שינויים וניתן להשתמש בתוסף כמו שהוא. אם תרצו לערוך את הקוד, הריצו בתיקייה yarn watch.</p>
+<p>בחלק של ה-annotaions וכל מה שקשור ב-tag-keys ו-tag-values נטפל בהמשך, נעבור לבניית פאנל מותאם אישית בנוי בריאקט.</p>
+<p>פאנל מותאם אישית</p>
+<p>את הבוילרפלייט לפאנל נתקין מה-repo הבא:</p>
+<p>https://github.com/grafana/simple-react-panel </p>
+<p><a href="https://github.com/grafana/simple-react-panel"><u class="_3zM-5">https://github.com/grafana/simple-react-panel</u></a></p>
+<p>
+$ cd go/src/github.com/grafana/grafana/data/plugins
+$ git clone https://github.com/grafana/simple-react-panel.git
+$ cd simple-react-panel
+$ yarn install
+$ yarn watch</p>
+<p>נאתחל את ה-go, ריפרש לגרפאנה והפאנל יופיע ברשימת הפאנלים</p>
+<p><img src="https://static.wixstatic.com/media/17f292_59e2bc0cb2e04c0baeb70d30b88d964b~mv2.png" /></p>
+<p>שימו לב לקובץ:</p>
+<p>simple-react-panel/src/SimplePanel.tsx</p>
+<p>זה הקובץ הראשי של הרכיב. בברירת מחדל הערך היחיד שמשוייך ל-datasource הוא data.series.length ומציג את מספר סדרות המידע שקיבלנו ובמקרה שלנו יציג 1 ב-metric-1 יציג 0 ב-metric-2 ו-2 ב-metric-3 and metric-4. בכל מקרה, data.series מכיל את המידע הרלוונטי.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_ed752786291b487089065a2b9fddd643~mv2.png" /></p>
+<p>המשך יבוא...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>שדרוג ה-setup הקיים</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">שדרוג ה-setup הקיים</h1>
+          <div class="author-date">יניב אור - 24 ביוני 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>כרגע, המצב הוא כזה שאני צריך לנתק כבלים וחוטים ברגע שאני עובר ממצב תכנות ה-AVR בעזרת ה-Programmer לעבודה עם ה-RPi - משום שה-Programmer עובד עם מתחים של 5 וולט וה-RPi עם 3.3 וולט. אני צריך למצוא פיתרון לזה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_4e3e9d8d5d674c7fa3379a7cdb189630~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p>עדכון: הפתרון לזה צריך להיות Logic Level Converter. לוח כזה:</p>
+<p>https://www.sparkfun.com/products/12009</p>
+<p><a href="https://www.sparkfun.com/products/12009"><u class="_3zM-5">https://www.sparkfun.com/products/12009</u></a></p>
+<p><img src="https://static.wixstatic.com/media/17f292_161f8aac086c4084bf5924aa7709a70b~mv2.jpg" /></p>
+<p>מה שצריך לעשות זה להזין את HV (high voltage) ב-5 וולט ואת ה-LV ב-3.3 וולט (שניהם מהארדואינו) וכך המערכת כולה תעבוד על 3.3 וולט. נראה לי שזה ככה, אני צריך לבדוק.</p>
+<p>אם זה המקרה, ואני צריך בעצם לשים באפר בין הכבל השטוח שיוצא מה-Programmer, אז לוח כזה של 4 ערוצים לא מספיק. אם אפשר לשרשר, זה גם טוב אבל יש 8 ערוצים וכו'.</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

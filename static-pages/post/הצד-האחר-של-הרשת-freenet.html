@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>הצד האחר של הרשת - Freenet</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">הצד האחר של הרשת - Freenet</h1>
+          <div class="author-date">יניב אור - 6 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>בפרק הזה ביומן שלי אכתוב על מסעותיי ברחבי רשת ה-P2P שנקראת Freenet. הכתבה הזאת היא חלק מסדרת כתבות בנושא ה-deep web. ההקדמה נמצאת בקישור הבא:</p>
+<p><a href="https://freenetproject.org/index.html"><u class="_3zM-5">Freenet</u></a></p>
+<p>הצד האחר של הרשת - הקדמה</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%94%D7%A7%D7%93%D7%9E%D7%94">הצד האחר של הרשת - הקדמה</a></p>
+<p>לצורך הגלישה ב-freenet אני משתמש ב-Docker. אז הנה התמונה שמצאתי:</p>
+<p><a href="https://www.docker.com/"><u class="_3zM-5">Docker</u></a></p>
+<p>https://hub.docker.com/r/nextgens/freenet </p>
+<p><a href="https://hub.docker.com/r/nextgens/freenet"><u class="_3zM-5">https://hub.docker.com/r/nextgens/freenet</u></a></p>
+<p>משכתי את התמונה:</p>
+<p>$ docker pull nextgens/freenet</p>
+<p>יצרתי תיקיה חדשה למידע שעתיד לרדת מהרשת ונכנסתי לתיקיה:</p>
+<p>$ mkdir freenet && cd freenet</p>
+<p>הרצתי קונטיינר שירוץ ברקע ויימחק ברגע שיעצור:</p>
+<p>$ docker run -d --rm --name freenet --net=host -v $PWD:/freenet/data nextgens/freenet:latest</p>
+<p>פתחתי את הדפדפן בכתובת הבאה:</p>
+<p>http://127.0.0.1:8888/ </p>
+<p><a href="http://127.0.0.1:8888/"><u class="_3zM-5">http://127.0.0.1:8888/</u></a></p>
+<p>וזה הכל :)</p>
+<p>בפעמים הראשונות השתמשתי עם Firefox ב-incognito כדי להיכנס לרשת. לאחר מכן הורדתי chromium והשתמשתי בו. קינפגתי לא להשתמש כמעט בכל פיצ'ר שקיים בו - כגון שימוש ב-Javascritpt, מצלמה, מיקום, מיקרופון וכן הלאה. בהמשך חזרתי ל-Firefox מוקשח.</p>
+<p>בהמשך חזרתי ל-Firefox מוקשח.</p>
+<p>אז כפי שציינתי בהקדמה, אין לי ניסיון מעשי עם Freenet ובנוסף על כך לא קראתי על המלצות לאתרים בסביבה הזאת , לא צפיתי בסרטונים על הרשת, אין לי מכרים שמסתובבים שם ואני ממש חדש בסביבה. אני נמצא בדף הראשי - ב-localhost ורואה שיש כאן קישורים למספר אתרים ואינדקסים. נראה טוב, סך הכל.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_066dee14d50a4d149c414aeb2f6e0986~mv2.png" /></p>
+<p>אני נכנס ל-Enzo's Index. על פי התיאור: קישורים לרוב האתרים ב-Freenet, ממויינים לפי קטגוריות לעזרה בחיפוש לפי הצורך. אגב, ברגע שנכנסים לדף ב-Freenet, קודם לכן מועברים לדף הורדה שמראה את תהליך הורדת הקובץ או הקבצים. כשהתוכן ירד, הדף מועבר לדף עם התוכן. </p>
+<p><img src="https://static.wixstatic.com/media/17f292_ce811f41f44b403f96ec891f6c5aeda0~mv2.png" /></p>
+<p>בצד ימין למעלה כתוב שהעדכון האחרון לתוכן היה בתאריך: ה-20 ביוני 2016. הדף הראשי מציג מספר דפים נבחרים ובצד ימין יש רשימת קטגוריות כשלכל קטגוריה מצויין מספר הדפים שמשוייכים אליה. כמו כן, לכל דף מוצמד דגל עם השפה של התוכן ויש אפשרות לסנן לפי שפה.</p>
+<p>אני בודק את הקטגוריה של ספרי טקסט וספרי אודיו - 115 פריטים בקטגוריה הזאת. נתחיל בספרים שכתובים באנגלית.</p>
+<p>אתר הקומיקס Super Anarcho Happy Fun Pages. מופיעים קישורים לקבצי pdf. ברגע שאני נכנס לאחד הקבצים מופיע הדף הבא:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_61765fc39a624f8da5466d93bd4d6def~mv2.png" /></p>
+<p>* הדף הזה אינו קשור, כמובן, לאתר הקומיקס אלא ל-Freenet באופן כללי בכל הקשור לפתיחת קבצים שהם לא מהסוג טקסט או HTML.</p>
+<p>קראתי את תוכן הדף. בגדול, אם הקובץ הוא לא טקסט או HTML - יש חשש שהוא עלול לחשוף פרטים כמו כתובת IP, להשתיל סוסים טרויאנים וכן הלאה. יש מספר אפשרויות:</p>
+<p>1. להמיר לטקסט - חסר טעם, כמובן. מה שנקבל זה ג'יבריש.</p>
+<p>2. להוריד את הקובץ למחשב - יכול להיות יעיל אם אוריד את הקובץ ואפתח אותו במחשב שלא מחובר לרשת. סביבת מעבדה סטרילית כלשהי. רעיון נחמד דווקא.</p>
+<p>3. לפתוח את הקובץ בדפדפן - לא מומלץ, בהתאם להסבר שצויין קודם לכן. בכל מקרה, יש לי תחושה שאתרים ידועים (כנראה) כמו הקומיקס הזה לא יכילו קוד זדוני. אני לא בטוח בזה, סתם תחושה.</p>
+<p>4. להוריד את הקובץ לתיקיה של Freenet. הדבר מאפשר מעקב אחר ההורדה בדף ההורדות. זהה לאפשרות השניה מבחינת אבטחה.</p>
+<p>5. לקרוא לקובץ שירד ברקע. הוא יופיע אך ורק בדף ההורדות ויימחק ברגע שנסיר את ה-Freenet.</p>
+<p>אני לא בטוח כרגע מה לעשות, אשאיר בצד לבינתיים את עניין הטיפול בקבצים שהם לא טקסט או HTML ואמשיך הלאה. הקומיקס הזה יחכה לי.</p>
+<p>חזרתי לרשימת הספרים ונכנסתי ל-Sci-fi and fantasy books. עשרות קבצי rar בגודל כולל של 6 ג'יגה, פחות או יותר - ומכילים יותר מ-4000 ספרי מדע בדיוני ופנטזיה. רוב הקבצים הם מסוג rtf, lit, pdf ויש המלצה להמיר אותם באמצעות תוכנה שנקראת Kalibre. הדף מכיל קישור לקובץ טקסט עם רשימת הספרים.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_57a9ebaab41f4b7ab157c912a4620c5e~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_758cc8eb8ab44e99b2224f703255ba40~mv2.png" /></p>
+<p>נחמד אבל בינתיים אני מעדיף לא להוריד שום קובץ עד שלא אדע איך לעשות את זה נכון. אגב, את הספרים שלי אני אוהב עם כריכה ולא חובב הורדות לא חוקיות. אני ממשיך לאתר הבא.</p>
+<p>נכנסתי לאתר Dayblind - The prequel to House of Symmetry. סיפור קצר שכתוב בדף HTML עצמו. אולי אקרא בהמשך.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_31cfe11712dd4048930b5a4657fb40a9~mv2.png" /></p>
+<p>אני ממשיך הלאה ומגיע לאתר שנקרא The Science of Discworld. נראה מאוד מעניין. זה סוג התוכן שחיפשתי. </p>
+<p><img src="https://static.wixstatic.com/media/17f292_fefa2d5f12c44be8b627011e6f703219~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_c3a05fd914854dd1be223b0556579a5a~mv2.png" /></p>
+<p>חבל שאי אפשר לעשות כמה דברים במקביל ושאין זמן להכל. בכל מקרה, אני בינתיים ממשיך הלאה בטיול.</p>
+<p>האתר  Papers on Information Theory. שלושה ספרים מעניינים בפורמט HTML:</p>
+<p>A Mathematical Theory of Communication
+by C.E. Shannon (1948)
+The paper that laid the foundation for information theory. This is the revised edition that appeared in the book 'The Mathematical Theory of Communication'.
+
+</p>
+<p>Communication Theory of Secrecy Systems
+by C.E. Shannon (1949)
+A paper discussing cryptography from the viewpoint of information theory. It is one of the foundational treatments (arguably the foundational treatment) of modern cryptography. It is also a proof that all theoretically unbreakable ciphers must have the same requirements as the one-time pad.
+
+</p>
+<p>Recent Contributions to The Mathematical Theory of Communication
+by Warren Weaver (1949)
+Appeared in a book titled 'The Mathematical Theory of Communication' as an introduction to the revised edition of A Mathematical Theory of Communication.
+
+</p>
+<p>הלאה, האתר Media Arc - eBooks ~ Audiobooks. מכיל כמות עצומה של ספרי טקסט ואודיו. בנוסף לכך, יש קישורים לסרטים ומוסיקה שהאתר מפרסם בדפים אחרים.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_da1a049bb8d2491da7fb9ae372f2bdc4~mv2.png" /></p>
+<p>אני עובר הלאה לקטגוריה של הבלוגים, שבמונחים של Freenet נקראים flogs. יש 420 בנושאים כלליים, 10 למבוגרים ו-463 מסוג FMS : Freenet Message System.</p>
+<p>שתי דוגמאות לבלוגים בנושאים כלליים. נראים מעניינים, סך הכל. הראשון random babcom.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_ecb8a50140b54f56b14235948df170c5~mv2.png" /></p>
+<p>דוגמא נוספת, Mr Bamboo's personal flog - Index.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_32c581baea88400e872103c3f34c9c1a~mv2.png" /></p>
+<p>דוגמא ל-FMS, האתר FMS Site of ArneBab.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_46aea246afbf44a2b38239b9e87515fc~mv2.png" /></p>
+<p>* אין לי מושג כרגע מאיפה מגיעות ההודעות הללו ומה הבלוגים מסוג FMS אמורים להביע.</p>
+<p>יש קטגוריות רבות נוספות. תכנות, אבטחת מידע, פורנו, מדע וטכנולוגיה, בידור וכן הלאה.</p>
+<p>אני ממשיך הלאה לאינדקס אחר. הוא נקרא NERDAGEDDON. עודכן לאחרונה ב-2017-02-18. </p>
+<p><img src="https://static.wixstatic.com/media/17f292_642ecd46ac5345cead48f07f2877cc25~mv2.png" /></p>
+<p>אני שם לב שהתכנים שם עודכנו ב-2016. לא מתעכב שם ולא נכנס לאתרים, הבנתי את העיקרון.</p>
+<p>ממשיך לאינדקס הבא. The Filtered Index.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_0628bb7770754624b61e46e526b74b6f~mv2.png" /></p>
+<p>האינדקס הזה כבר יותר מעודכן. למעשה, הוא עודכן אתמול. אחקור אותו בהמשך. אני ממשיך הלאה. JFniki Index. </p>
+<p><img src="https://static.wixstatic.com/media/17f292_4de266e2fea244a4b7694dce50707729~mv2.png" /></p>
+<p>כפי שניתן לראות בתמונה, יש קישור לאינדקס הראשי וקישורים לאינדקסים פעילים ולכאלה שאינם פעילים יותר. שניים מהם הם אותם אינדקסים שסקרתי קודם לכן והם אכן לא עודכנו בשנים האחרונות. אני עוד רואה שיש דגש על כך שתכנים פוגעניים הוסרו. זה מצויין, אין צורך בכל הגועל והטינופת הזאת - יש הרבה דברים טובים אחרים.</p>
+<p>אני חוזר לדף הראשי. הדף מחולק לעוד שלוש קטגוריות מלבד הקטגוריה של האינדקסים. הראשונה - מסמכים ומידע שקשור ל-Freenet, השניה - תוכנות שקשורות ל-Freenet והשלישית - בלוגים אישיים של הצוות של Freenet. נראה מעניין, אחקור בהמשך.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_a8f45bd4d2a8464d82b91c16b6b0f05f~mv2.png" /></p>
+<p>הצד האחר של הרשת - גלישה בטוחה</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%92%D7%9C%D7%99%D7%A9%D7%94-%D7%91%D7%98%D7%95%D7%97%D7%94"><span style="color:#5e8f86">הצד האחר של הרשת - גלישה בטוחה</span></a></p>
+<p>הצד האחר של הרשת - Tor</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-tor"><span style="color:#ffffff">הצד האחר של הרשת - Tor</span></a></p>
+<p>הצד האחר של הרשת - I2P</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-i2p">הצד האחר של הרשת - I2P</a></p>
+<p>הצד האחר של הרשת - ZeroNet</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-zeronet">הצד האחר של הרשת - ZeroNet</a></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

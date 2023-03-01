@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>עולם ה-ARM</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">עולם ה-ARM</h1>
+          <div class="author-date">יניב אור - 17 באוג׳ 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>צפיתי בהרצאה מעניינת על ARM ותמיכה בלינוקס:</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/NNol7fRGo2E" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>המרצה הוא תומס פטצוני, כיום ה-CTO ומהנדס embedded linux בחברת Bootlin. חלק גדול מאוד מהעבודה שלו מתועד באתר. כמו כן, החברה מעבירה קורסים והכשרות.</p>
+<p><a href="https://bootlin.com/"><u class="_3zM-5">Bootlin</u></a></p>
+<p>תקציר של החלק הראשון - הקדמה ל-ARM</p>
+<p>כידוע, ARM נמצאת בכל מקום מסביבנו. בסמארטפון, בטלוויזיה, בראוטר, ברכב ובמכשירים נוספים. ARM (Advanced RISC Machine) היא ארכיטקטורת סט פקודות עבור מעבדים מסוג RISC, בבעלות החברה Arm holdings. במקור, הטכנולוגיה פותחה ע"י החברה Acorn ונקראה Acorn RISC Machine.</p>
+<p>החברה Arm holdings איננה עוסקת ביצור מעבדים או חומרה אלא מתכננת ומוכרת רשיונות שימוש בארכיטקטורה אותה היא מפתחת.</p>
+<p>המפרטים הנכתבים על ידה מגדירים סט פקודות, מתארים איך פועל ה-CPU, איך עובד ה-MMU וכן הלאה. הם נקראים: ARM ARM (Architecture Reference Manual).</p>
+<p>במשך הזמן - עם הכנסת שיפורים למערכת - נכתבו גירסאות שונות: </p>
+<p>ARMv4, ARMv5, ARMv7, ARMv8</p>
+<p>בהסתמך על המפרטים הללו, Arm holdings מייצרת IP cores (מימוש ב-VHDL או Verilog).</p>
+<p>לדוגמא:</p>
+<p>מימוש של ARMv5 שנקרא ARM926</p>
+<p>מימוש של ARMv8-A שנקרא Cortex-A53</p>
+<p>* יש אפשרות לכתוב מימושים שונים לאותו מפרט</p>
+<p>אז יש מפרט ויש מימוש של המפרט - של ה-CPU בלבד. עדיין לא הגענו לחומרה עצמה.</p>
+<p>השלב הבא הוא: מערכת על שבב - SoC - System on a Chip - שזהו שבב אחד בודד המכיל בתוכו מעבד (או מספר מעבדים) ולוגיקה ל-peripherals שונים כמו GPU, UART, I2C, USB, Ethernet וכולי.</p>
+<p>חברות הפצה של SoC רוכשות מ-Arm holdings ליבת ARM לצורך עיצוב ה-CPU עצמו ומפתחות בעצמן או קונות IP blocks ל-peripherals האחרים שיהיו על השבב.</p>
+<p>מספר חברות רוכשות רשיונות גם למימוש CPU חדש שמבוסס על המפרטים השונים. </p>
+<p>יש מגוון רחב של שבבי SoC לפי שימושים וצרכים שונים.</p>
+<p>אז יש לנו צ'יפ SoC והוא, כמובן, לא יכול לעבוד מעצמו. הוא צריך תמיכה של רכיבים נוספים כמו שבב של בלוטות', שבב ל-wifi, אמצעי זיכרון שונים, מחברים, חוטים, ניהול הספקים חשמליים וכן הלאה. כל זאת על לוח PCB.</p>
+<p>ומכאן אנחנו מגיעים לפלטפורמת חומרה עצמה. לדוגמא הסמארטפון, RPi, ראוטר וכולי.</p>
+<p>לסיכום, ארבע שכבות: מפרט, מימוש, מערכת על שבב ופלטפורמת חומרה.</p>
+<p>פוסט נוסף באותו הקשר:</p>
+<p>מערכת ההפעלה RISC OS על RPi 2</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%94%D7%94%D7%A4%D7%A2%D7%9C%D7%94-risc-os"><u class="_3zM-5">מערכת ההפעלה RISC OS על RPi 2</u></a></p>
+<p>* עדכונים נוספים בקרוב...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

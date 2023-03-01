@@ -25,32 +25,24 @@
         <a href="../" class="back">לדף הראשי</a>
       </div>
       <div class="content">
-        <p>מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד.
-        אז קניתי <a href="neurosky-brainwave-session-1" rel="noopener noreferrer noopener" target="_top">MindWave Mobile 2</a> (מכשיר EEG קומפקטי), כתבתי <a href="%D7%AA%D7%99%D7%91%D7%AA-%D7%A0%D7%92%D7%99%D7%A0%D7%94-multizamor" rel="noopener noreferrer noopener" target="_top">תיבת נגינה</a> ב-sclang לשרת <a href="supercollider" rel="noopener noreferrer noopener" target="_top">SuperCollider</a> (מנוע אודיו ומחולל סאונד) - וזה הזמן לחבר ביניהם ולנגן בעזרת גלי המוח.</p>
-        <p>זה היה טיפה מייגע ללמוד את שפת התכנות sclang - אבל התוצאות, בסופו של דבר, ממש טובות - וזאת רק ההתחלה. יש לי עוד הרבה מה ללמוד שם, אעדכן בפוסטים השונים.
-        <br />
-        הנה דוגמא, הסבר מפורט על הקטע בהמשך:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/653952179&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-7-mindwave-1" title="SuperCollider - Example - 7 - MindWave - 1 - Indian scale - Clean Swirl" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 7 - MindWave - 1 - Indian scale - Clean Swirl</a></div>
-        <p>* זו פשוט הנאה צרופה לנגן בצורה כזאת 🙂</p>
-        <p>* הקלטות נוספות בהמשך הפוסט - אחרי ההסברים והקטעי קוד</p>
-        <p>הנתונים שהשתמשתי בהם מה-MindWave הם: ריכוז ומדיטציה. שניהם 0 עד 100 כש-0 שווה לחוסר ריכוז וחוסר שקט.
-        <br />
-        ללא חיבור לנתונים של ה-MindWave, ה-SuperCollider מנגן את הסולם ההודי שבחרתי - צליל אחד מהסולם, את צליל 0.
-        <br />
-        בחיבור ל-OSC - ככל שרמת ה-attention גבוהה יותר, כך מספר הצלילים שינוגנו מתוך הסולם, קטן יותר. ככל שרמת ה-meditation גבוהה יותר, כך האוקטבה שתנוגן תהיה נמוכה יותר.
-        <p>את הקטע שצירפתי למעלה הקלטתי בעוד ה-Headset על ראשי והסקריפט פייתון שקורא נתונים מה-MindWave ושולח הודעות OSC ל-SC מוכן ללחיצה על Enter.
-        <br />
-        מ-00:00 עד 00:07 - הרצתי את ה-SuperCollider ואת החלקים השונים של קוד ה-sclang שמופיע מולי ב-scide. צליל אחד, מונוטוני.
-        <br />
-        מ-00:07 עד 00:14 - לחצתי על Enter והרצתי את הסקריפט פייתון. צלילים נוספים הצטרפו ורובם בחלק הגבוה של המקלדת. צלילים גבוהים. מה שאומר שרמת המדיטציה נמוכה (צלילים גבוהים) ורמת הריכוז נמוכה (מספר רב של צלילים).
-        <br />
-        מ-00:14 עד 00:36 - נכנסתי לריכוז ומדיטציה. רמות קרוב ל-100 (ב-scale של NeuroPy).
-        <br />
-        מ-00:36 עד 01:03 - פקחתי עיניים והתחלתי להתכונן לכבות את ההקלטה וכולי. עירנות מוגברת וריכוז ברמות משתנות.
-        <br />
-        מ-01:03 עד הסוף - בשביל הסיום היפה, נכנסתי שוב לריכוז ומדיטציה.</p>
-        <p>* את המוסיקה שה-SuperCollider יצר העברתי דרך Rakarrack (תוכנה לאפקטים של גיטרה) - הקונפיגורציה שנקראת Clean Swirl - כדי שיהיה נעים יותר לאוזן. בכל מקרה, זה לא פוגע בניסוי.</p>
-        <p>הקוד בצד של ה-SC:</p>
+        <p>מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד.</p>
+<p>אז קניתי <a href="neurosky-brainwave-session-1">MindWave Mobile 2</a> (מכשיר EEG קומפקטי), כתבתי <a href="תיבת-נגינה-multizamor">תיבת נגינה</a> ב-sclang לשרת <a href="supercollider">SuperCollider</a> (מנוע אודיו ומחולל סאונד) - וזה הזמן לחבר ביניהם ולנגן בעזרת גלי המוח.</p>
+<p>זה היה טיפה מייגע ללמוד את שפת התכנות sclang - אבל התוצאות, בסופו של דבר, ממש טובות - וזאת רק ההתחלה. יש לי עוד הרבה מה ללמוד שם, אעדכן בפוסטים השונים.</p>
+<p>הנה דוגמא, הסבר מפורט על הקטע בהמשך:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/653952179&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>* זו פשוט הנאה צרופה לנגן בצורה כזאת 🙂</p>
+<p>הנתונים שהשתמשתי בהם מה-MindWave הם: ריכוז ומדיטציה. שניהם 0 עד 100 כש-0 שווה לחוסר ריכוז וחוסר שקט. </p>
+<p>ללא חיבור לנתונים של ה-MindWave, ה-SuperCollider מנגן את הסולם ההודי שבחרתי - צליל אחד מהסולם, את צליל 0.</p>
+<p>בחיבור ל-OSC - ככל שרמת ה-attention גבוהה יותר, כך מספר הצלילים שינוגנו מתוך הסולם, קטן יותר. ככל שרמת ה-meditation גבוהה יותר, כך האוקטבה שתנוגן תהיה נמוכה יותר.</p>
+<p>את הקטע שצירפתי למעלה הקלטתי בעוד ה-Headset על ראשי והסקריפט פייתון שקורא נתונים מה-MindWave ושולח הודעות OSC ל-SC מוכן ללחיצה על Enter.</p>
+<p>מ-00:00 עד 00:07 - הרצתי את ה-SuperCollider ואת החלקים השונים של קוד ה-sclang שמופיע מולי ב-scide. צליל אחד, מונוטוני.</p>
+<p>מ-00:07 עד 00:14 - לחצתי על Enter והרצתי את הסקריפט פייתון. צלילים נוספים הצטרפו ורובם בחלק הגבוה של המקלדת. צלילים גבוהים. מה שאומר שרמת המדיטציה נמוכה (צלילים גבוהים) ורמת הריכוז נמוכה (מספר רב של צלילים).</p>
+<p>מ-00:14 עד 00:36 - נכנסתי לריכוז ומדיטציה. רמות קרוב ל-100 (ב-scale של NeuroPy).</p>
+<p>מ-00:36 עד 01:03 - פקחתי עיניים והתחלתי להתכונן לכבות את ההקלטה וכולי. עירנות מוגברת וריכוז ברמות משתנות.</p>
+<p>מ-01:03 עד הסוף - בשביל הסיום היפה, נכנסתי שוב לריכוז ומדיטציה.</p>
+<p> * את המוסיקה שה-SuperCollider יצר העברתי דרך Rakarrack (תוכנה לאפקטים של גיטרה) - הקונפיגורציה שנקראת  Clean Swirl - כדי שיהיה נעים יותר לאוזן. בכל מקרה, זה לא פוגע בניסוי.</p>
+<p>* הקלטות נוספות בהמשך הפוסט</p>
+<p>הקוד בצד של ה-SC:</p>
         <div class="pre-code">
           <pre class="code-content">
 (
@@ -78,129 +70,45 @@
   
   Scale.directory;
           </pre>
-        </div>
-        <br /><br />
-        <p>הסקריפט פייתון שקורא את ה-MindWave ושולח הודעות OSC ל-SC:</p>
-        <div class="code"><div class="code-content"><div><div><span style="color: rgb(206, 145, 120);">'''</span></div><div><span style="color: rgb(206, 145, 120);">attention, meditation, rawValue, delta, theta, lowAlpha, highAlpha, lowBeta, highBeta, lowGamma, midGamma, poorSignal, blinkStrength </span></div><div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);"><br></span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install pyserial</span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install NeuroPy</span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install pyosc</span></div></div><div><span style="color: rgb(206, 145, 120);">'''</span></div><br><div><span style="color: rgb(197, 134, 192);">from</span> NeuroPy <span style="color: rgb(197, 134, 192);">import</span> NeuroPy</div><div><span style="color: rgb(197, 134, 192);">import</span> OSC</div><div><span style="color: rgb(197, 134, 192);">import</span> time</div><br><div>neuroPy = NeuroPy(<span style="color: rgb(206, 145, 120);">"/dev/rfcomm0"</span>, <span style="color: rgb(181, 206, 168);">57600</span>)</div><div>neuroPy.start()</div><br><div>oscClient = OSC.OSCClient()</div><div>oscClient.connect((<span style="color: rgb(206, 145, 120);">'127.0.0.1'</span>, <span style="color: rgb(181, 206, 168);">57120</span>))</div><br><div><span style="color: rgb(197, 134, 192);">while</span> <span style="color: rgb(86, 156, 214);">True</span>:</div><div>  attention = neuroPy.attention</div><div>  meditation = neuroPy.meditation</div><br><div>  oscMsg = OSC.OSCMessage()</div><div>  oscMsg.setAddress(<span style="color: rgb(206, 145, 120);">"/neuro"</span>)</div><div>  oscMsg.append([attention, meditation])</div><br><div>  oscClient.send(oscMsg)</div><br><div>  <span style="color: rgb(220, 220, 170);">print</span> <span style="color: rgb(206, 145, 120);">"attention: "</span> + <span style="color: rgb(78, 201, 176);">str</span>(attention) + <span style="color: rgb(206, 145, 120);">" - "</span> + <span style="color: rgb(206, 145, 120);">"meditation: "</span> + <span style="color: rgb(78, 201, 176);">str</span>(meditation)</div><br><div>  time.sleep(<span style="color: rgb(181, 206, 168);">0.1</span>)</div><br></div></div></div>
-        <br /><br /><br />
-        <h3>הקלטות נוספות</h3>
-        <p>סולם ניירוז עם Angel&#39;s Chorus ב-Rakarrack:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654016598&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-8-minwave-2-nairuz" title="SuperCollider - Example - 8 - MindWave - 2 - Nairuz scale - Angel&#x27;s Chorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 8 - MindWave - 2 - Nairuz scale - Angel&#x27;s Chorus</a></div>
-        <br /><br />
-        <p>סולם Aeolian, אפקט Ambient Flange (ב-Rakarrack):</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654065840&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-7-mindwave-1-aeolian" title="SuperCollider - Example - 9 - MindWave - 3 - Aeolian scale - Ambient Flange" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 9 - MindWave - 3 - Aeolian scale - Ambient Flange</a></div>
-        <br /><br />
-        <p>סולם Nikriz, אפקט Octaflange:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654069950&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-7-mindwave-4-nikriz" title="SuperCollider - Example - 10 - MindWave - 4 - Nikriz scale - Octaflange" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 10 - MindWave - 4 - Nikriz scale - Octaflange</a></div>
-        <br /><br />
-        <p>סולם Romanian Minor, אפקט Angel&#39;s Chorus:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654433346&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-11-mindwave-5-romanianminor-angelschorus" title="SuperCollider - Example - 11 - MindWave - 5 - Romanian Minor - Angel&#x27;s Chorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 11 - MindWave - 5 - Romanian Minor - Angel&#x27;s Chorus</a></div>
-        <br /><br />
-        <p>סולם Marva, אפקט Angel&#39;s Chorus:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654441893&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-example-12-mindwave-6-marva-angelschorus" title="SuperCollider - Example - 12 - MindWave - 6-Marva - AngelsChorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 12 - MindWave - 6-Marva - AngelsChorus</a></div>
-        <br /><br />
-        <p>* צריך עוד לעבוד על הסאונד. הפוטנציאל אדיר.</p>
-        <p>* אפשר ליצור להקת נגנים, לכל אחד MindWave וצליל אחר. יש אפשרות לכלי הקשה ולכל צליל שאפשר לסנתז. כמובן, גם סאמפלים WAV או AIFF.</p>
-        <p>שימו לב ל-Nairuz ול-Nikriz. שני סולמות בתור דוגמא, שקשה לנגן עליהם עם ה-MindWave - יחסית ל-Indian למשל - משום שבשני אלו המוסיקה נשמעת טוב בעיקר כשמנגנים מרווחים קטנים ברצף. מה שאומר שיש צורך להתרכז יותר - כך טווח הצלילים קטן והסיכוי לנגן בצורה שציינתי, גדל.
-        ואכן אפשר להבחין בזה ש-Nairuz נשמע די טוב רוב הקטע וב-Nikriz הלכתי לאיבוד לקראת הסוף.
-        עם Indian או למשל Pentatonic Minor אין לי צורך בכלל להתרכז במוסיקה ומה שמתנגן נשמע טוב.</p>
-        <br /><br />
-        <h3>עוד הקלטות</h3>
-        <p>סולם Prometheus, אפקט Angel&#39;s Chorus:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655475402&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/supercollider-example-12-mindwave-7-prometheus-angelschorus" title="SuperCollider - Example - 15 - MindWave - 9 - prometheus - Angel&#x27;s Chorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 15 - MindWave - 9 - prometheus - Angel&#x27;s Chorus</a></div>
-        <br /><br />
-        <p>סולם Hex Phrygian, אפקט Angel&#39;s Chorus:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655494266&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/supercollider-example-16-mindwave-10-hexphrygian-angelschorus" title="SuperCollider - Example - 16 - MindWave - 10 - Hex Phrygian - Angel&#x27;s Chorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 16 - MindWave - 10 - Hex Phrygian - Angel&#x27;s Chorus</a></div>
-        <br /><br />
-        <p>סולם Minor Pentatonic, אפקט Angel&#39;s Chorus:</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655494662&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/supercollider-example-17-mindwave-11-minorpentatonic-angels-chorus" title="SuperCollider - Example - 17 - MindWave - 11 - MinorPentatonic - Angel&#x27;s Chorus" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - Example - 17 - MindWave - 11 - MinorPentatonic - Angel&#x27;s Chorus</a></div>
-        <br /><br />
-        <p>סולם Marva</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655812356&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/sc-mindwave-marva-another-example-2" title="SuperCollider - MindWave - Marva - another example 2" target="_blank" style="color: #cccccc; text-decoration: none;">SuperCollider - MindWave - Marva - another example 2</a></div>
-        <br /><br />
-        <p>סולם כלשהו עם אפקטים כאלה ואחרים ;)</p>
-        <iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655768778&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/yaniv-or" title="Yaniv Or" target="_blank" style="color: #cccccc; text-decoration: none;">Yaniv Or</a> · <a href="https://soundcloud.com/yaniv-or/supercollider-synth1" title="Supercollider - MindWave - another example 1" target="_blank" style="color: #cccccc; text-decoration: none;">Supercollider - MindWave - another example 1</a></div>
-        <br /><br />
-        <p>וזהו בינתיים לפוסט הזה.</p>
-        <br /><br />
+        </div><br /><br />
+<p>הסקריפט פייתון שקורא את ה-MindWave ושולח הודעות OSC ל-SC:</p>
+<div class="code"><div class="code-content"><div><div><span style="color: rgb(206, 145, 120);">'''</span></div><div><span style="color: rgb(206, 145, 120);">attention, meditation, rawValue, delta, theta, lowAlpha, highAlpha, lowBeta, highBeta, lowGamma, midGamma, poorSignal, blinkStrength </span></div><div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);"><br></span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install pyserial</span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install NeuroPy</span></div><div style="white-space: pre-wrap;"><span style="color: rgb(206, 145, 120);">$ pip install pyosc</span></div></div><div><span style="color: rgb(206, 145, 120);">'''</span></div><br><div><span style="color: rgb(197, 134, 192);">from</span> NeuroPy <span style="color: rgb(197, 134, 192);">import</span> NeuroPy</div><div><span style="color: rgb(197, 134, 192);">import</span> OSC</div><div><span style="color: rgb(197, 134, 192);">import</span> time</div><br><div>neuroPy = NeuroPy(<span style="color: rgb(206, 145, 120);">"/dev/rfcomm0"</span>, <span style="color: rgb(181, 206, 168);">57600</span>)</div><div>neuroPy.start()</div><br><div>oscClient = OSC.OSCClient()</div><div>oscClient.connect((<span style="color: rgb(206, 145, 120);">'127.0.0.1'</span>, <span style="color: rgb(181, 206, 168);">57120</span>))</div><br><div><span style="color: rgb(197, 134, 192);">while</span> <span style="color: rgb(86, 156, 214);">True</span>:</div><div>  attention = neuroPy.attention</div><div>  meditation = neuroPy.meditation</div><br><div>  oscMsg = OSC.OSCMessage()</div><div>  oscMsg.setAddress(<span style="color: rgb(206, 145, 120);">"/neuro"</span>)</div><div>  oscMsg.append([attention, meditation])</div><br><div>  oscClient.send(oscMsg)</div><br><div>  <span style="color: rgb(220, 220, 170);">print</span> <span style="color: rgb(206, 145, 120);">"attention: "</span> + <span style="color: rgb(78, 201, 176);">str</span>(attention) + <span style="color: rgb(206, 145, 120);">" - "</span> + <span style="color: rgb(206, 145, 120);">"meditation: "</span> + <span style="color: rgb(78, 201, 176);">str</span>(meditation)</div><br><div>  time.sleep(<span style="color: rgb(181, 206, 168);">0.1</span>)</div><br></div></div></div><br /><br />
+<h3>הקלטות נוספות</h3>
+<p>סולם ניירוז עם Angel's Chorus ב-Rakarrack:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654016598&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Aeolian, אפקט Ambient Flange (ב-Rakarrack):</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654065840&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Nikriz, אפקט Octaflange:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654069950&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Romanian Minor, אפקט Angel's Chorus:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654433346&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Marva, אפקט Angel's Chorus:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/654441893&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>* צריך עוד לעבוד על הסאונד. הפוטנציאל אדיר.</p>
+<p>* אפשר ליצור להקת נגנים, לכל אחד MindWave וצליל אחר. יש אפשרות לכלי הקשה ולכל צליל שאפשר לסנתז. כמובן, גם סאמפלים WAV או AIFF.</p>
+<p>שימו לב ל-Nairuz ול-Nikriz. שני סולמות בתור דוגמא, שקשה לנגן עליהם עם ה-MindWave - יחסית ל-Indian למשל - משום שבשני אלו המוסיקה נשמעת טוב בעיקר כשמנגנים מרווחים קטנים ברצף. מה שאומר שיש צורך להתרכז יותר - כך טווח הצלילים קטן והסיכוי לנגן בצורה שציינתי, גדל.</p>
+<p>ואכן אפשר להבחין בזה ש-Nairuz נשמע די טוב רוב הקטע וב-Nikriz הלכתי לאיבוד לקראת הסוף.</p>
+<p>עם Indian או למשל Pentatonic Minor אין לי צורך בכלל להתרכז במוסיקה ומה שמתנגן נשמע טוב.</p>
+<p>***</p>
+<p>סולם Prometheus, אפקט Angel's Chorus:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655475402&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Hex Phrygian, אפקט Angel's Chorus:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655494266&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Minor Pentatonic, אפקט Angel's Chorus:</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655494662&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם Marva</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655812356&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+<p>סולם כלשהו עם אפקטים כאלה ואחרים ;)</p>
+<p><iframe class="soundcloud-embed" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655768778&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></p>
+
       </div>
     </div>
     <div class="related-posts">
       <div class="title">פוסטים נוספים</div>
-      <!-- neurosky-brainwave-session-1 -->
-      <a class="card" href="neurosky-brainwave-session-1">
-        <img class="thumbnail" src="../images/thumbnails/neurosky-brainwave-session-1.jpeg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2</div>
-          <div class="short">קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו. הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו...</div>
-        </div>
-      </a>
-      <!-- polargraph-neurosky-mindwave-mobile-2 -->
-      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
-        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
-        <div class="content">
-          <div class="date">14 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2 + Polargraph</div>
-          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
-        </div>
-      </a>
-      <!-- polargraph-v-null -->
-      <a class="card" href="polargraph-v-null">
-        <img class="thumbnail" src="../images/thumbnails/polargraph-v-null.jpg" />
-        <div class="content">
-          <div class="date">17 ביוני 2019</div>
-          <div class="title">Polargraph - vClamp</div>
-          <div class="short">כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב...</div>
-        </div>
-      </a>
-      <!-- polargraph -->
-      <a class="card" href="polargraph">
-        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
-        <div class="content">
-          <div class="date">8 ביוני 2019</div>
-          <div class="title">Polargraph - vSappe</div>
-          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
-        </div>
-      </a>
-      <!-- supercollider -->
-      <a class="card" href="supercollider">
-        <img class="thumbnail" src="../images/thumbnails/supercollider.png" />
-        <div class="content">
-          <div class="date">12 ביולי 2019</div>
-          <div class="title">SuperCollider</div>
-          <div class="short">פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית...</div>
-        </div>
-      </a>
-      <!-- מופע-אור-קולי-עם-ה-mindwave -->
-      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
-        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
-        <div class="content">
-          <div class="date">7 באוג׳ 2019</div>
-          <div class="title">מופע אורקולי עם ה-MindWave</div>
-          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
-        </div>
-      </a>
-      <!-- רעיונות-נוספים-עם-ה-MindWave -->
-      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
-        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
-        <div class="content">
-          <div class="date">27 ביולי 2019</div>
-          <div class="title">רעיונות נוספים עם ה-MindWave</div>
-          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
-        </div>
-      </a>
-      <!-- תיבת-נגינה-multizamor -->
-      <a class="card" href="תיבת-נגינה-multizamor">
-        <img class="thumbnail" src="../images/thumbnails/תיבת-נגינה-multizamor.jpg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">תיבת נגינה - Multizamor</div>
-          <div class="short">ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה...</div>
-        </div>
-      </a>
+      {{related-posts}}
     </div>
   </div>
+  <footer></footer>
   <script src="../js/main.js"></script>
 </body>
 </html>

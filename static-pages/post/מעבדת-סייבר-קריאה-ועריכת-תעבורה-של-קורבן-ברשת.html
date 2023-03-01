@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>מעבדת סייבר - 1</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">מעבדת סייבר - 1</h1>
+          <div class="author-date">יניב אור - 20 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>המטרה</p>
+<p>לגרום לקורבן להעביר את כל התעבורה שלו - במקום דרך הראוטר - דרך התוקף ובנוסף לכך לערוך את תוכן התעבורה. </p>
+<p>סוג התקיפה</p>
+<p>אדם בתווך - man in the middle (MITM)</p>
+<p>התוקף</p>
+<p>לפטופ Asus ROG Strix - מריץ אובונטו 18.04.</p>
+<p>הקורבן</p>
+<p>סמארטפון OnePlus X שברשותי - מריץ Android 6.0.1.</p>
+<p>הכלים</p>
+<p>- התוכנה arpspoof שמגיעה כחלק מהחבילה dsniff - אותה אני מריץ בתוך קונטיינר שהכינותי מראש. מדריך ליצירת קונטיינר dsniff.</p>
+<p><a href="https://www.a-million-projects.com/post/dsniff"><u class="_3zM-5">מדריך ליצירת קונטיינר dsniff</u></a></p>
+<p>- התוכנה mitmproxy - גם היא רצה בקונטיינר נפרד. מאמר שלי באותו נושא.</p>
+<p><a href="https://www.a-million-projects.com/post/mitmproxy"><u class="_3zM-5">מאמר שלי באותו נושא</u></a></p>
+<p>- התוכנה nmap הותיקה והטובה - לסריקת רשתות ופורטים - ובמקרה שלי לגילוי מכשיר הקורבן.</p>
+<p>הערות</p>
+<p>- המכשירים שייכים לי, כמובן, והניסוי נערך ברשת הביתית שלי.</p>
+<p>- נקודת המוצא היא שאני והקורבן מחוברים לאותה רשת. במציאות זה לאו דווקא יהיה המצב, כמובן, ואצטרך למצוא דרך להיכנס לרשת שבה נמצא הקורבן או להעביר אותו לרשת שלי.</p>
+<p>- אני יודע מראש את סוג המכשיר של הקורבן.</p>
+<p>שלב 1 - זיהוי כתובת ה-IP של הקורבן</p>
+<p>- אני מריץ arp-scan לממשק שמחובר לרשת האלחוטית - על הרשת המקומית:</p>
+<p>$ sudo arp-scan --interface=wlo1 --localnet</p>
+<p>- קיבלתי כתובות IP שמקושרות לכתובות MAC של מכשירים ברשת - ובעמודת הספק (vendor) רוב הערכים לא ידועים (unknown). אין לי מושג מי מהם זה הקורבן שלי.</p>
+<p>- מכיוון שהמכשיר ברשותי, אני יודע את כתובת ה-IP ברשת וממשיך הלאה.</p>
+<p>- ה-IP הוא 192.168.1.4</p>
+<p>- [להשלים: זיהו כתובת הקורבן על פי סוג המכשיר או פרמטרים אחרים]</p>
+<p>שלב 2 - הגדרות ל-Forwarding ו-Redirect</p>
+<p>במחשב התוקף, אני מאפשר את ה-packet forwarding:</p>
+<p>$ sysctl -w net.ipv4.ip_forward=1</p>
+<p>הדבר הבא הוא להגדיר ב-iptables אפשרות של FORWARD לרכיב הרשת האלחוטית (wlo1) - איתו אני מתחבר לרשת:</p>
+<p>$ iptables -A FORWARD --in-interface wlo1 -j ACCEPT</p>
+<p>הגדרה נוספת ב-iptables היא ביצוע REDIRECT לכל התעבורה שמיועדת לפורט 80, לפורט 8080 - בו תשב התוכנה mitmproxy:</p>
+<p>$ iptables -t nat -A PREROUTING -i wlo1 -p tcp --dport 80 -j REDIRECT --to-port 8080</p>
+<p>בהמשך אגדיר פורטים נוספים - 443 ל-HTTPS ועוד.</p>
+<p>בשלב הזה אני פותח את הדפדפן במכשיר ה-OnePlus X (הקורבן), נכנס לאתר http שברשותי ובודק שיש לי תקשורת עם האתר. אכן יש תקשורת והאתר מופיע על המסך.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_32c8d749558c4b16894a43be0fe454ac~mv2.png" /></p>
+<p>שלב 3 - ARP Poisoning כך שכל תעבורת הקורבן תעבור דרכי</p>
+<p>אני מריץ את הקונטיינר של  dsniff כך שישתמש בצורה ישירה בכרטיס הרשת של ה-host:</p>
+<p>$ docker run --rm -it --network host dsniff</p>
+<p>אני ב-shell של הקונטיינר, מריץ שני חלונות screen. בחלון הראשון אני מריץ:</p>
+<p>$ arpspoof -i wlo1 -t 192.168.1.4 192.168.1.1</p>
+<p>- הפקודה אומרת ל-gateway (ראוטר) שאני - התוקף המתחזה - הוא בעל הכתובת 192.168.1.4, כך שהתעבורה תגיע אלי ולא למכשיר הקורבן.</p>
+<p>ובחלון השני אני מריץ:</p>
+<p>$ arpspoof -i wlo1 -t 192.168.1.1 192.168.1.4</p>
+<p>- הפקודה אומרת לקורבן שאני הוא הראוטר, כך שהתעבורה תגיע אלי ולא לראוטר.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_76af74d5fea84b61a7ca83637c4ee0ff~mv2.png" /></p>
+<p>אני עושה refresh בדפדפן הקורבן והתקשורת עם האתר לא קיימת יותר. זאת משום שהתעבורה עוברת דרך  התוקף - אך בפורט 8080 אין שירות רץ והבקשות נזרקות ולא מועברות הלאה. בהמשך, אריץ את mitmproxy על הפורט הזה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_3674483d2b454ce390e9d92caf53f496~mv2.png" /></p>
+<p>שלב 4 - שימוש ב-mitmproxy</p>
+<p>אני מריץ את הקונטיינר של mitmproxy בצורה הבאה:</p>
+<p>$ docker run --rm -it -v $PWD:/home/mitmproxy/.mitmproxy --network host mitmproxy/mitmproxy mitmproxy -m transparent</p>
+<p>שימו לב לעובדה שאני אומר לקונטיינר שישתמש ברשת של ה-host - ודבר נוסף, שהתוכנה תעבוד ב-mode של transparent proxy. אני עושה refresh בדפדפן הקורבן והאתר שוב מופיע.</p>
+<p>בנוסף לזה, אני רואה שהתווספה רשומה ל-mitmproxy. עכשיו יש לי אפשרות לערוך את התעבורה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_d5df0292f9f24cb0ad3bc4b867ec5e9e~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_392270cff820450d8b7edb04f0d2129e~mv2.png" /></p>
+<p>(מבטיח סרטוני וידאו)</p>
+<p>אני חוזר לשלב 1 - זיהוי כתובת ה-IP של הקורבן.</p>
+<p>לא ציינתי, אבל באחד מתוך כמה ניסיונות של arp-scan שעשיתי, כן הצלחתי לראות OnePlus Technology (Shenzhen) Co., Ltd - אבל זה לא יציב, לכן לא ציינתי את העניין הזה. באחד הפוסטים שקשורים להתעסקויות שלי עם RPi כבר כתבתי על כך. זה די מטריד אותי ואני ממש רוצה להבין למה זה קורה.</p>
+<p>הדבר הבא שעשיתי זה להריץ nmap עם פרמטרים שונים וניסיתי לגלות את סוג המכשיר ופרטים נוספים. קיבלתי:  android-abcxxxxxxx7b8b0a. ניסיתי לסרוק טלפון אחר (Redmi) וכן קיבלתי את סוג המכשיר והמודל. RedmiNote8-Redmi. אגב, ה-Redmi הופיע ב-arp-scan כ-unknown.</p>
+<p>דבר נוסף ראוי לציון, הרצתי nmap מספר פעמים וכשהטלפון היה על מצב רדום, קיבלתי פחות מידע. אערוך מעבדה נפרדת בנושא הזה בהמשך. בינתיים אמשיך הלאה.</p>
+<p>* עדכון: אני מזכיר שאת המעבדה שמוצגת כאן עשיתי עם אובונטו 18.04. ניסיתי לאחר מכן להריץ arp-scan עם לינוקס Kali והופיעה רשימת Vedors מלאה - מה שאומר שב-Kali יש איזשהו קובץ מעודכן (או גישה לשירות ברשת, צריך לבדוק) - שממפה בין החלק הרלוונטי של ה-MAC address ל-vendor. המסקנה היא שכדאי לערוך את הניסויים האלה עם Kali (או מערכות דומות) כפי שנהוג בתחום.</p>
+<p>המשכתי עם ניסיון לנתב תעבורה של HTTPS דרך מהקורבן לתוקף. לצורך כך, הוספתי את הכלל הבא ל-iptables:</p>
+<p>$ iptables -t nat -A PREROUTING -i wlo1 -p tcp --dport 443 -j REDIRECT --to-port 8080</p>
+<p>הרצתי arp spoofing ואת mitmproxy. נכנסתי עם מכשיר הקורבן לאתר HTTPS ועל המסך של הטלפון הופיעה ההודעה הבאה:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_24f2139924304b6394ba5a5c098063f7~mv2.png" /></p>
+<p>ובתחתית החלון של mitmproxy קיבלתי:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_077339b9a4b54bb485cf72e9c457aae2~mv2.png" /></p>
+<p>זה צפוי. עכשיו אני צריך לבדוק איך לעבור את השלב הזה.</p>
+<p>לפי האתר של mitmproxy יש צורך להתקין על מכשיר הקורבן את ה-CA certificates של mitmproxy כך שהדפדפן לא יציג את הודעת האזהרה.</p>
+<p>בזמן שה-arpspoof וה-mitmproxy עובדים והתעבורה של הקורבן עוברת דרך התוקף, נכנסים עם הדפדפן של הקורבן לכתובת:</p>
+<p>http://mitm.it/ </p>
+<p><a href="http://mitm.it/"><u class="_3zM-5">http://mitm.it/</u></a></p>
+<p>בוחרים את הפלטפורמה הרצויה ומתקינים את תעודות האבטחה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_87e7d1a32eae473eb540a07bd173fcc6~mv2.png" /></p>
+<p>בטלפון שלי - ה-OnePlus X - ההתקנה לא צלחה אך הקובץ ירד. כנראה גירסת אנדרואיד ישנה מדי.</p>
+<p>הקלקתי על הקובץ והתקנתי ידנית.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_7c5af78203994788b865a599dbbd5bac~mv2.png" /></p>
+<p>ההתקנה עברה בהצלחה והופיע ה-notification הבא:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_e6470d10d78a4e97b35311b95f6034f3~mv2.png" /></p>
+<p>נכנסתי לאתר שלי</p>
+<p><img src="https://static.wixstatic.com/media/17f292_3528224756a0484482ab7f8a81da1f2d~mv2.png" /></p>
+<p>ובדקתי במקביל את mitmproxy:</p>
+<p><img src="https://static.wixstatic.com/media/17f292_296ad0faa6504a06b4a45715f73f669c~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_e459e30461a04a67af654bfa6ce31635~mv2.png" /></p>
+<p>יפה 👍</p>
+<p>עכשיו השאלה היא איך תוקף אמיתי מתגבר על הקשיים הללו ומתקין את תעודת האבטחה מבלי לגעת במכשיר הקורבן בצורה פיזית, איך לגרום לכך שלא יופיע ה-notification שמזהיר מפני האפשרות שהרשת מנוטרת וכן הלאה.</p>
+<p>המסקנה היא שתקיפה מהסוג הזה - כשמדובר על HTTPS - היא מיושנת ופחות יעילה. בעיקר באתרי HSTS. בכל אופן, יש לא מעט מידע רגיש שעובר ב-HTTP.</p>
+<p>
+נעבור לעריכה של התעבורה. בתור התחלה, נערוך את תוכן התשובה (response) שמגיעה מהשרת. לצורך העניין את תוכן ה-HTML שבדף אליו נכנסתי קודם לכן (http פורט 80).</p>
+<p><img src="https://static.wixstatic.com/media/17f292_05d54b83b0224514a1550b2309ff6cdf~mv2.png" /></p>
+<p>שימו לב שהקוד HTTP הוא 304 מה שאומר שהשרת לא שלח את תוכן הקובץ (שימו לב ל-no content) אלא הודיע שנשלחה בעבר בקשה זהה ושיש עותק של הקובץ, שמור ב-cache.</p>
+<p>לקבלת התוכן המעודכן מהשרת ולא השמור ב-cache, יש אופציה ב-mitmproxy שנקראת anticache שלמעשה מוחקת מהבקשה לשרת את ה-headers הרלוונטים לעניין - if-none-match ו-if-modified-since . ניתן להפעיל את האופציה בהרצת התוכנה או בצורה אינטראקטיבית. בחרתי בצורה האינטראקטיבית. מקישים O (האות האנגלית o גדולה) במקלדת ומשנים את האפשרות של anticahce מ-false ל-true.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_0df282a8d2724b7394ebb4a7e7265c41~mv2.png" /></p>
+<p>חזרתי אחורה עם q, ריפרשתי את הדף במכשיר הקורבן וקיבלתי 200.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_bd54c64e5ddb49aabc2c8be2ee723696~mv2.png" /></p>
+<p>נחזור לעריכת התעבורה. לפני כן, מחקתי את השורות הקודמות בלחיצה על מקש d - לכל שורה - וניקיתי את המסך. הדבר הבא שעשיתי היה להגדיר interception (עיכוב). לוחצים על מקש i במקלדת ובתחתית המסך מופיעה שורה: set intercept שבה יש אפשרות להגדיר עיכוב של תעבורה - על-פי פרמטרים מסוימים. בהגדרה הזאת יש אפשרות להשתמש גם ב-regex. בהתאם לפרמטר על-פיו רוצים לסנן את התעבורה. כתבתי s~ שאומר ל-mitmproxy לעכב כל response מכל בקשה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_7d86247ef76e4d8493fa3ddf8d896f7e~mv2.png" /></p>
+<p>ריפרשתי את הדף, הטעינה עוכבה והפס הכחול שמראה על טעינת הדף - נעצר במיקום שמוצג למעלה, עד סיום הפעולה.</p>
+<p>ב-mitmproxy בקשה מעוכבת נצבעת באדום. שימו לב לתחתית המסך: [i:~s]</p>
+<p><img src="https://static.wixstatic.com/media/17f292_6b232f5119b9455ea5343ce6da68116c~mv2.png" /></p>
+<p>לחצתי Enter כדי להיכנס לפרטי השורה שנוצרה. עברתי ללשונית של Response (שמסומנת עכשיו כ-intercepted) ולחצתי e. נפתח פופאפ לבחירת החלק אותו ארצה לערוך. בחרתי ב-b שהוא response-body.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_1e2ae8b0bafb4e9dae4308098b3b6f55~mv2.png" /></p>
+<p>נפתח עורך טקסט ובמקרה שלי vi. ערכתי את קוד ה-HTML ושמרתי.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_730574c8d74549feb8b97246e8a6a84f~mv2.png" /></p>
+<p>הגעתי חזרה למסך של ה-mitmproxy ללשונית Response וה-HTML אכן השתנה. לחצתי על a כדי לבטל את העיכוב ולהמשיך את פעולת הבקשה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_a8885b9254aa4db0af782b9361b4b4e4~mv2.png" /></p>
+<p>ה-OnePlus X (הקורבן) קיבל את התוכן המעובד.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_28c9011182344529bd2302d44f1dd769~mv2.png" /></p>
+<p>עצירת התעבורה ועריכה ידנית בממשק האינטראקטיבי - זה נחמד לצורך בדיקות וניסויים אבל במצב אמיתי עדיף להשתמש בסקריפטים ואוטומציה. במקרה של mitmproxy - אעשה שימוש בפייתון.</p>
+<p>עד כאן למאמר הנוכחי. יש נושאים רבים לחקירה שצצו במעבדה הזאת. אמשיך את המחקר עליהם במעבדות ובמאמרים נפרדים. </p>
+<p>ראה גם: driftnet - תוכנה המאזינה לתעבורה ברשת ומציגה על המסך תמונות שנתגלו על-ידה במידע שעבר באותה תעבורה. </p>
+<p><a href="https://www.a-million-projects.com/post/driftnet"><u class="_3zM-5"><span style="color:#ffffff">driftnet</span></u></a></p>
+<p>driftnet</p>
+<p> - </p>
+<p>תוכנה המאזינה לתעבורה ברשת ומציגה על המסך תמונות שנתגלו על-ידה במידע שעבר באותה תעבורה. </p>
+<p>מעבדות נוספות:</p>
+<p>מעבדות סייבר</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%91%D7%93%D7%95%D7%AA-%D7%A1%D7%99%D7%99%D7%91%D7%A8"><u class="_3zM-5"><span style="color:#ffffff">מעבדות סייבר</span></u></a></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

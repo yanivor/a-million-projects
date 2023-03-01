@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Prometheus</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">Prometheus</h1>
+          <div class="author-date">יניב אור - 9 באפר׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>פרומתאוס היא מערכת שהוקמה לצורך איסוף ושמירת מדדים בזמן-אמת. מדובר על מדדי סדרת זמן (time series metrics). יש לי מספר פרויקטים שבהם אני צריך לשמור נתונים מהסוג הזה - אחד הפרויקטים הוא מכשיר ה-EEG שרכשתי והתממשקתי אליו. הוא נקרא NeuroSky MindWave Mobile 2.</p>
+<p><a href="https://prometheus.io/"><u class="_3zM-5">פרומתאוס</u></a></p>
+<p><a href="https://www.a-million-projects.com/post/neurosky-brainwave-session-1"><u class="_3zM-5">NeuroSky MindWave Mobile 2</u></a></p>
+<p>מצאתי ב-Docker Hub את ה-image הבא:</p>
+<p>https://hub.docker.com/r/prom/prometheus </p>
+<p><a href="https://hub.docker.com/r/prom/prometheus"><u class="_3zM-5">https://hub.docker.com/r/prom/prometheus</u></a></p>
+<p>משכתי את התמונה:</p>
+<p>$ docker pull osminogin/tor-simple</p>
+<p>יצרתי תיקיה חדשה למידע שעתיד לרדת מהרשת ונכנסתי לתיקיה:</p>
+<p>$ mkdir prometheus && cd prometheus</p>
+<p>יצרתי קובץ קונפיגורציה:</p>
+<p>$ touch prometheus.yml</p>
+<p>prometheus.yml</p>
+<p>בתור התחלה, נעשות דגימות עצמיות לפרומתאוס עצמו, כל 5 שניות. בהמשך אוסיף את המקורות הרצויים.</p>
+<p>הרצתי קונטיינר שירוץ ברקע ויימחק ברגע שיעצור:</p>
+<p>$ docker run -d --rm --name prometheus -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml</p>
+<p>פתחתי את הדפדפן בכתובת הבאה:</p>
+<p>http://127.0.0.1:9090 </p>
+<p><a href="http://127.0.0.1:9090"><u class="_3zM-5">http://127.0.0.1:9090</u></a></p>
+<p><img src="https://static.wixstatic.com/media/17f292_3998c83c0ac64d2090cf9e2e99683bbd~mv2.png" /></p>
+<p>מדובר על הממשק של פרומתאוס. בהמשך אשתמש בממשק של Grafana לצורך הצגת הנתונים.</p>
+<p><a href="https://www.a-million-projects.com/post/grafana"><u class="_3zM-5">Grafana</u></a></p>
+<p>המשך יבוא...</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -25,310 +25,142 @@
         <a href="../" class="back">לדף הראשי</a>
       </div>
       <div class="content">
-        <p>כפי שציינתי בפוסט הזה: <a href="polargraph" rel="noopener noreferrer noopener" target="_top">Polargraph - vSappe</a>, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק. הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב.</p>
-        <p>יש ברשותי זוג מנועי צעד (Nema 17), תושבות, ברגים, כבלים, רצועות תזמון (טיימינג) וגלגלות לרצועות תזמון.</p>
-        <p><img alt="" src="../images/polargraph-v-null/1.jpg" /></p>
-        <p>יש גם ארדואינו ו-shield מתאים - CNC Shield V3.0 - כחלק מה<a href="איחוד-המודולים-במגש-ניירת.html" rel="noopener noreferrer noopener" target="_top">מארז מודולים</a> שבניתי.
-        <br />
-        חסר: ספק כוח 12 וולט. אני אקנה של 5 אמפר.</p>
-        <p><img alt="" src="../images/polargraph-v-null/2.png" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/3.jpg" /></p>
-        <p>* עדכון - לאחר מספר ימים - יש ספק כוח 12 וולט.</p>
-        <p>המשכתי בבניה של הראש צייר. אילתור מחפצים שמצאתי בבית - כרגיל.</p>
-        <p><img alt="" src="../images/polargraph-v-null/4.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/5.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/6.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/7.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/8.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/9.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/10.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/11.jpg" /></p>
-        <p>* התפקיד של הסרוו - ברגע שאוסיף אורך לזרוע שלו - הוא לדחוף את הצייר מהלוח. אתם תראו בהמשך. ואלו הפעולות היחידות שאפשר לעשות עם מנועי סרוו מהסוג הזה (מיקרו, הזולים, מנגנון פלסטיק וכו&#39;). אי אפשר להגיע איתם לדיוק, אם מחפשים דיוק.</p>
-        <p><img alt="" src="../images/polargraph-v-null/12.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/13.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/14.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/15.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/16.jpg" /></p>
-        <p>9-7-19 23:00</p>
-        <p>זהו, ה-Polargraph מוכן. נשאר לחבר כבלים ולהתעסק עם תוכנה.</p>
-        <p><img alt="" src="../images/polargraph-v-null/17.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/18.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/19.jpg" /></p>
-        <p><img alt="" src="../images/polargraph-v-null/20.jpg" /></p>
-        <p>מבחינת תוכנה, יש אחת ספציפית ל-Polargraph. השתמשתי בה בפעם הקודמת:
-          <br />
-          <a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/" rel="noopener noreferrer" target="_blank">https://github.com/euphy/polargraphcontroller</a>
-        </p>
-        <p>אבדוק גם אחרות.</p>
-        <p>הפרוטוקול בו נהוג להשתמש ב-CNC נקרא G-Code וישנו parser נפוץ שנקרא GRBL. בכל מקרה, ללא קשר לשימוש בתוכנות ופרוטוקולים נפוצים, אני מעוניין ללמוד וללמד את התיאוריה המתימטית מאחורי רובוט מסוג כזה. לכן, אכתוב גם קוד מאפס וכולי.</p>
-        <p>* הערה קטנה: בהמשך אני מתקין grbl ומצאתי טעות לוגית במה שעשיתי. ה-grbl מקבל פקודות x, y, z במערכת קרטזית ואילו ה-Polargraph עובד במערכת בי-פולרית. בכל מקרה, אני משאיר את הטעות הזאת ואתקן בהמשך. אני צריך לבדוק אם יש אפשרות לקנפג את grbl למערכת פולרית.</p>
-        <br />
-        <h3>התקנת GRBL על הארדואינו</h3>
-        <p>עשיתי clone ל:
-          <br />
-          <a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/" rel="noopener noreferrer" target="_blank">https://github.com/gnea/grbl</a>
-        </p>
-        <p>העתקתי את התיקיית grbl הפנימית (עם ה-source קוד ו-examples) ל-Arduino/libraries
-          <br />
-          פתחתי את התוכנה של Arduino ופתחתי את הסקריפט: Examples/grbl/grblUpload
-        </p>
-        <p>העליתי את הקוד לארדואינו UNO. פתחתי את ה-Serial Monitor וראיתי בעיה בקידוד של הטקסט (סימני שאלה, ג&#39;יבריש). שיניתי את ה-baud rates עד שקיבלתי הודעה שאפשר לקרוא אותה:
-          <div class="pre-code">
-            <pre class="code-content">Grbl 1.1g ['$' for help]</pre>
-          </div>
-        </p>
-        <p>אגב, ה-baud הוא 115200.</p>
-        <p>אני אזכר קצת בפקודות ל-grbl ואעדכן.
-          <br />
-          <a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/" rel="noopener noreferrer" target="_blank">https://github.com/grbl/grbl/wiki/Interfacing-with-Grbl</a>
-        </p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/-9zMJLBgi08" title="Arduino - Serial Monitor - grbl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br />
-        <p>עדכון 10/7/19 הפקודות הבסיסיות ביותר כדי להניע את המנועים הם: x, y, z... וערך מספרי.</p>
-        <div class="pre-code">
-<pre class="code-content">
-x2
-x0 y1
-z3 y3
-etc...
-</pre>
-        </div>
-        <br />
-        <p>אפשר לראות כי ניתן לשלוח בשורה אחת יותר מהוראה אחת. הוראות באותה שורה מתבצעות במקביל, לא אחת אחרי השניה. השורות מתבצעות בצורה טורית, אחת אחרי השנייה.</p>
-        <p>שורה בה מופיעה יותר מהוראה אחת למנוע, תחזיר שגיאה. שורה כזאת, למשל, לא חוקית:
-          <div class="pre-code">
-            <pre class="code-content">x0 y1 x2</pre>
-          </div>
-        </p>
-        <p>מה מייצג הערך המספרי הזה - מה זה אומר 1, למשל - את זה אפשר לקנפג ע&quot;י שליחת פקודות מסויימות ל-grbl. בהמשך.</p>
-        <p>אוקיי, נעבור להדגמה קצרה.</p>
-        <p>דבר ראשון, אני רוצה לאפס את המנועים ולהחזיר אותם למצב ההתחלתי. הורדתי את הראש צייר כולל הרצועות טיימינג שלו מהגלגלות וב-grbl שלחתי x0 y0.
-        החזרתי את הראש צייר ומיקמתי אותו, ידנית, במרכז הלוח. שרירותי, כדי שיהיה טווח עבודה.</p>
-        <p>בסרטון, אני שולח את סדרת הפקודות הבאות, כל אחת בתורה:
-          <div class="pre-code">
-<pre class="code-content">
-x1
-y1
-x0
-y0
-x-1
-</pre>
-          </div>
-        </p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/N6o6x0bQml0" title="Polargraph - vClamp - testing 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br /><br />
-        <p>בהמשך, שמתי לב שהמנוע השמאלי משמיע צלילי חריקה. נשמע כאילו צריך לשמן אותו. חיפשתי קצת בגוגל ולא מצאתי הסברים על שימון מנועי צעד - כי אין, לא משמנים מנועי צעד.
-        זה גם קורה רק כשמעבירים אליו פקודה להסתובב. זאת אומרת, כשמסובבים ביד - התנועה חלקה ביותר.</p>
-        <p>אחרי זמן מה במבט חטוף על ה-cnc shield קלטתי את הפוטנציומטרים שעל המודולים הקטנים (אלה עם הצלעות קירור עליהן) ונזכרתי מה צריך לעשות. צריך לעשות כיוונון עדין (fine tuning) של המתחים שמגיעים למנועים, עד שהחריקות מפסיקות והצליל נשמע חלק.</p>
-        <p>כדי שיהיה נוח לטפל בעניין הנ&quot;ל, יש צורך ברצף פקודות ארוך מספיק כך שאוכל לסובב את הפוטנציומטרים עד שתהליך הכיוונון יסתיים. מה שאני צריך לעשות זה לשלוח קובץ הוראות ל-Serial Console ואת זה אי אפשר לעשות דרך הממשק הגרפי של ארדואינו.</p>
-        <p>יש כמה תוכנות cli (בלינוקס). בתור חובב screen, אשתמש בתוכנה הזאת. אני לא ארחיב פה על השימושים הרבים ב-screen וכולי. מבטיח להקדיש פוסט מלא בעניין.</p>
-        <p>בטרמינל כתבתי:
-          <div class="pre-code">
-            <pre class="code-content">screen -S cnc-shield /dev/ttyACM1 115200</pre>
-          </div>
-        </p>
-        <p>ובצורה הזאת, אני מחובר ל-device הרצוי. נתתי ל-session שם: cnc-shield כדי שאוכל למצוא אותו בקלות בהמשך (במקום להשתמש בשם שנוצר אוטומטית או ב-pid).</p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/EUNVID19Xuo" title="grbl 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br /><br />
-        <p>* בהמשך אערוך את הסרטון, בינתיים הסבר קצר:
-          <br />
-          0:17 - כתבתי את הפקודה, לחצתי Enter - מסך ריק. סביר להניח שיכולתי בשלב הזה פשוט לשלוח פקודות וזה היה עובד אבל רציתי לראות את ה-banner של grbl בשביל ההרגשה הטובה. לחצתי על כפתור ה-reset בארדואינו והבאנר הופיע.
-          <br />
-          0:21 - הקלדתי x0 (לא מופיע על המסך) ולחצתי Enter. המנוע הסתובב והופיע ok על המסך.
-          <br />
-          0:25 - הקלדתי y0 ו-Enter. המנוע השני (השמאלי) הסתובב והופיע ok.
-          <br />
-          0:28 - הקלדתי x1 ו-Enter. המנוע הסתובב והופיע ok.
-          <br />
-          0:30 - הקלדתי y1 ו-Enter. המנוע הסתובב והופיע ok.
-          <br />
-          0:40 - הרצתי screen -ls כדי להראות שהסשן חי.
-        </p>
-        <p>יופי, זה עובד. נכין קובץ להעלאה עם סדרת הוראות למנועים ולפני שנעבור לטעינת הקובץ, הסבר קצר על אחת התכונות של screen והשימוש בה - למי שלא מכיר.</p>
-        <p>ברגע שאנחנו כותבים screen בטרמינל, נפתח session חדש. גם אם נסגור את החלון של הטרמינל, הסשן עדיין קיים ופרוססים או סקריפטים שרצים בסשן הזה ימשיכו לרוץ.</p>
-        <p>אם נפתח שוב טרמינל ונכתוב:
-          <div class="pre-code">
-            <pre class="code-content">screen -ls</pre>
-          </div>
-        </p>
-        <p>נוכל להיווכח שה-screen שלנו, הקודם, עדיין קיים:
-          <div class="pre-code">
-<pre class="code-content">
-There is a screen on:
-	9050.pts-1.yaniv-Strix-15-GL503GE	(12/07/19 00:21:03)	(Detached)
-1 Socket in /run/screen/S-yaniv.
-</pre>
-          </div>
-        </p>
-        <p>אז לאחר שהדברים הללו נאמרו, יש שתי שיטות להעלאת קובץ ל-screen. מתוך ה-session ומחוצה לו. <strong>בתוך הסשן</strong>, כשאנחנו בטאב של ה-grbl נקליד:
-          <div class="pre-code">
-            <pre class="code-content">Ctrl-a + :</pre>
-          </div>
-        </p>
-        <p>* זאת הדרך להיכנס למצב פקודה ב-screen בלי קשר להעלאת קובץ</p>
-        <p>נטען את הקובץ ל-buffer:
-          <div class="pre-code">
-            <pre class="code-content">:readreg p [filename]</pre>
-          </div>
-        </p>
-        <p>ונעביר את התוכן ל-grbl:
-          <div class="pre-code">
-            <pre class="code-content">:paste p</pre>
-          </div>
-        </p>
-        <p><strong>מחוץ לסשן</strong> בחלון נפרד:
-          <div class="pre-code">
-<pre class="code-content">
-screen -S cnc-shield -X readreg p [filename]
-screen -S cnc-shield -X paste p
-</pre>
-          </div>
-        </p>
-        <p>מחוץ לסשן זה מאוד נוח. ה-screen רץ ברקע, אין צורך להתחבר אליו, רק לשלוח data.</p>
-        <p>יצרתי קובץ עם מידע לסיבוב המנועים, כל אחד בנפרד ושיחקתי עם הפוטנציונטרים עד שהגעתי למצב הרצוי. המידע הבא והסרטון מתייחסים למנוע השמאלי (y). אותו תהליך עשיתי עם x.
-          <div class="pre-code">
-<pre class="code-content">
-y0.0
-y0.1
-y0.2
-y0.3
-y0.4
-y0.5
-y0.6
-y0.7
-y0.8
-y0.9
-y1.0
-</pre>
-          </div>
-        </p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/j9oOuYwjlI8" title="stepper cnc shield tuning" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br />
-        <p>* אין כמו הסאונד של מנוע צעד איכותי ;)</p>
-        <p>הדבר הבא שעשיתי היה להתקין תוכנה עם GUI. התקנתי את bCNC שמאפשרת חיבור סריאלי לקונטרולר ושליטה ב-grbl. יש אפשרות להעלות קבצים בפורמטים שונים, בין היתר gcode, שזה הפורמט שעבדתי איתו קודם לכן. אגב, היא לא מתאימה מאה אחוז לרובוט שלנו, הסבר בהמשך.</p>
-        <p>התקנה פשוטה ביותר:
-          <div class="pre-code">
-<pre class="code-content">
-pip2 install --upgrade bCNC
-python2 -m bCNC
-</pre>
-          </div>
-        </p>
-        <p>הפקודה האחרונה פותחת חלון GUI. הנה סרטון קצר:</p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/wpwxbRix8OU" title="bCNC - short demo 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br />
-        <p>שימו לב: ב-bCNC, השרטוט מוצג על המסך במערכת צירים קרטזית לעומת מערכת הצירים ב-Polargraph שהקואורדינטות בהן - אם אני לא טועה - הן קואורדינטות קוטביות (Bipolar coordinates). לכן, הפיצ&#39;ר הזה לא שימושי לנו. בכל אופן, לצורך טעינת ה-gcode, זה מספיק בשבילי כרגע.</p>
-        <p>הסבר תיאורטי מעמיק בהמשך - אני חייב להסיר חלודה ולשבת על זה קצת. מה שחשוב לדעת כרגע זה שהרובוט הזה מצייר בקשתות, אם אפשר לומר בצורה כזאת, כשכל מנוע הוא מרכז של מעגל. זאת הצורה ה&quot;טבעית&quot; שלו. כדי שיצא, למשל, קו אנכי ישר - המנועים חייבים לעבוד בסנכרון מושלם. לעומת מערכת הצירים הקרטזית (שולחן XY), שבה דווקא ליצור מעגל זה &quot;מסובך&quot; יותר - פחות טבעי. אני מקווה שזה ברור. *@&amp;* להכין שרטוטים, אנימציה וכו&#39;</p>
-        <p>היוצר - סנדי נובל - זה שפיתח את הרובוט על בסיס <a href="http://juerglehni.com/works/hektor/" rel="noopener noreferrer noopener" target="_blank">הקטור</a> ונתן לו את השם Polargraph כותב:
-          <br />
-          &quot;הרובוט לא משתמש במערכת פולרית, אלא למעשה סוג של מערכת דו-זוויתית. הזוית של כל מיתר נקבעת ע&quot;י האורך של שני המיתרים, לעומת הצבה של זווית ומרחק במערכת פולרית אמיתית. השם &#39;Polargraph&#39; נשאר אך הוא לא מדוייק&quot;.
-        </p>
-        <p>את עניין הציור בקשתות אפשר לראות בבירור פה (ה-flickr של סנדי נובל):
-          <br />
-          <a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/" rel="noopener noreferrer" target="_blank">https://www.flickr.com/photos/euphy/sets/72157626497662024/</a>
-        </p>
-        <p>או ב<a href="https://www.google.com/search?q=polargraph&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwjkzMyWnLXjAhWJwAIHHTeNDhAQ_AUIECgB&amp;biw=1280&amp;bih=631" rel="noopener noreferrer noopener" target="_blank">חיפוש בגוגל תמונות</a>.</p>
-        <p>שימו לב למספר שיטות הציור שפותחו לרובוט מהסוג הזה. הרבה מהן מבוססות על צפיפות שונה של הקווים שיוצרת גוונים שונים.</p>
-        <p>בפעם הקודמת שבניתי מכשיר כזה, הורדתי את <a href="https://github.com/euphy/polargraphcontroller" rel="noopener noreferrer noopener" target="_blank">התוכנה המותאמת</a> ובאמת נתתי לרובוט לצייר בשיטות השונות. אגב, יש אפשרות גם לציור וקטורי. הציורים יוצאים מדהימים.</p>
-        <p>בהמשך אתקין אותה - אבל כרגע מה שחשוב לי זה התאוריה, לכן אכתוב קוד בשלבים ונראה לאן אגיע.</p>
-        <p><strong>המשך - תיקון הטעות שנוצרה</strong></p>
-        <p>אני מתקן את השימוש ב-grbl ל-<a href="https://github.com/ilaro-org/grbl-polar" rel="noopener noreferrer noopener" target="_blank">grbl-polar</a>, שמתאים למערכת הבי-פולרית שלנו:</p>
-        <iframe width="740" height="417" src="https://www.youtube.com/embed/QJ6fUZua0AA" title="grbl-polar installation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <br /><br />
-        <p>השלבים בסרטון:
-          <div class="pre-code">
-<pre class="code-content">
-git clone https://github.com/ilaro-org/grbl-polar.git
-cd grbl-polar/
-make clean
-make grbl.hex
-avrdude -v -patmega328p -carduino -P/dev/ttyACM1 -b57600 -D -Uflash:w:grbl.hex:i
-</pre>
-          </div>
-        </p>
-        <p>* תקנו אותי אם אני טועה, אין ב-GUI של ארדואינו אפשרות להעלות (לצרוב) קובץ hex - לכן אני משתמש ב-avrdude מה-cli.</p>
-        <p>נשאר לקנפג את grbl לפי המידות והמימדים של הרובוט אבל אני לא אעשה את זה עכשיו.</p>
-        <p>יש לנו grbl-polar - הוא יחכה בצד כי מה שאני רוצה לעשות עכשיו זה לחזור אחורה, לנקות את הארדואינו ולהתחיל לכתוב קוד מאפס.</p>
-        <p>אגב, עדיין לא חיברנו את המנוע סרוו, גם לשם נגיע.</p>
-        <br /><br /><br />
+        <p>כפי שציינתי בפוסט הזה: Polargraph - vSappe, בניתי ב-2016 צייר כזה - לא תיעדתי והוא פורק.</p>
+<p><a href="https://www.a-million-projects.com/post/polargraph"><u class="_3zM-5">Polargraph - vSappe</u></a></p>
+<p>הגיע הזמן לבנות אחד נוסף, לתעד ולהשאיר אותו מורכב.</p>
+<p>יש ברשותי זוג מנועי צעד (Nema 17), תושבות, ברגים, כבלים, רצועות תזמון (טיימינג) וגלגלות לרצועות תזמון.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_9d162a4e50db43a8b01bd162552393e8~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p>יש גם ארדואינו ו-shield מתאים - CNC Shield V3.0  - כחלק מהמארז מודולים שבניתי.</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%90%D7%99%D7%97%D7%95%D7%93-%D7%94%D7%9E%D7%95%D7%93%D7%95%D7%9C%D7%99%D7%9D-%D7%91%D7%9E%D7%92%D7%A9-%D7%A0%D7%99%D7%99%D7%A8%D7%AA"><u class="_3zM-5">מארז מודולים</u></a></p>
+<p>חסר: ספק כוח 12 וולט. אני אקנה של 5 אמפר.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_8da411d2b3df448bb8b149d15f008fa8~mv2.png" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_3d4dc602c4cc4469a446c1a6acaedb18~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p>* עדכון - לאחר מספר ימים - יש ספק כוח 12 וולט.</p>
+<p>המשכתי בבניה של הראש צייר. אילתור מחפצים שמצאתי בבית - כרגיל.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_feb05664f99848f396e7ecd11e8cfbd5~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_9efcb10d188346b6b6c2bba5be78a217~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_f1b193ffce5b4d1c864a14cf7c7908fe~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_9a822a17377e457298163a77ba61060f~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_d61ddccd13b54fd5b2ec259cba85230a~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_4f97459532384160b58afa36238a23b8~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_4958c66dac0b412a8faf6a34f6addec4~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_4eb6260825f247c19de58ef578b347b1~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p>* התפקיד של הסרוו - ברגע שאוסיף אורך לזרוע שלו - הוא לדחוף את הצייר מהלוח. אתם תראו בהמשך. ואלו הפעולות היחידות שאפשר לעשות עם מנועי סרוו מהסוג הזה (מיקרו, הזולים, מנגנון פלסטיק וכו'). אי אפשר להגיע איתם לדיוק, אם מחפשים דיוק. שימו לב ל פוסט הזה.</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%A9%D7%9D-%D7%9C%D7%90-%D7%99%D7%93%D7%95%D7%A2"><u class="_3zM-5">פוסט הזה</u></a></p>
+<p><img src="https://static.wixstatic.com/media/17f292_5af22642a953461fabb55ee0a624516f~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_dfed248ebc7b4988b380535f3f47fb57~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_4293bd90ba8c41ea8aac6146b6309dc1~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_198c94f31ed44c3b9b64a7b9c5d59192~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_682f465bbcf64968a1b2c5f4ade98a05~mv2_d_3120_4160_s_4_2.jpg" /></p>
+<p>9-7-19 23:00</p>
+<p>זהו, ה-Polargraph מוכן. נשאר לחבר כבלים ולהתעסק עם תוכנה.</p>
+<p><img src="https://static.wixstatic.com/media/17f292_0b03b2afeb24449fa4e6c83725bec1e2~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_ae40cf97a05b4b95afd7b215131112b4~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_5c2f676621364db69daeb62b8ba0007c~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p><img src="https://static.wixstatic.com/media/17f292_ff3ceeea87fc4f819a196d47a0d63b5a~mv2_d_4160_3120_s_4_2.jpg" /></p>
+<p>מבחינת תוכנה, יש אחת ספציפית ל-Polargraph. השתמשתי בה בפעם הקודמת:</p>
+<p> https://github.com/euphy/polargraphcontroller</p>
+<p><a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/"><u class="_3zM-5">https://github.com/euphy/polargraphcontroller</u></a></p>
+<p>אבדוק גם אחרות.</p>
+<p>הפרוטוקול בו נהוג להשתמש ב-CNC נקרא G-Code וישנו parser נפוץ שנקרא GRBL. </p>
+<p>בכל מקרה, ללא קשר לשימוש בתוכנות ופרוטוקולים נפוצים, אני מעוניין ללמוד וללמד את התיאוריה המתימטית מאחורי רובוט מסוג כזה. לכן, אכתוב גם קוד מאפס וכולי.</p>
+<p>* הערה קטנה: בהמשך אני מתקין grbl ומצאתי טעות לוגית במה שעשיתי. ה-grbl מקבל פקודות x, y, z במערכת קרטזית ואילו ה-Polargraph עובד במערכת בי-פולרית. בכל מקרה, אני משאיר את הטעות הזאת ואתקן בהמשך. אני צריך לבדוק אם יש אפשרות לקנפג את grbl למערכת פולרית.</p>
+<p>התקנת GRBL על הארדואינו</p>
+<p>עשיתי clone ל: </p>
+<p>https://github.com/gnea/grbl</p>
+<p><a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/"><u class="_3zM-5">https://github.com/gnea/grbl</u></a></p>
+<p>העתקתי את התיקיית grbl הפנימית (עם ה-source קוד ו-examples) ל-Arduino/libraries</p>
+<p>פתחתי את התוכנה של Arduino ופתחתי את הסקריפט:</p>
+<p>Examples/grbl/grblUpload</p>
+<p>העליתי את הקוד לארדואינו UNO. </p>
+<p>פתחתי את ה-Serial Monitor וראיתי בעיה בקידוד של הטקסט (סימני שאלה, ג'יבריש). שיניתי את  ה-baud rates עד שקיבלתי הודעה קריאה:</p>
+<p>אגב, ה-baud הוא 115200.</p>
+<p>אני אזכר קצת בפקודות ל-grbl ואעדכן.</p>
+<p>https://github.com/grbl/grbl/wiki/Interfacing-with-Grbl
+
+</p>
+<p><a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/"><u class="_3zM-5">https://github.com/grbl/grbl/wiki/Interfacing-with-Grbl</u></a></p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/-9zMJLBgi08" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>
+עדכון 10/7/19 
+הפקודות הבסיסיות ביותר כדי להניע את המנועים הם: x, y, z... וערך מספרי.</p>
+<p>אפשר לראות כי ניתן לשלוח בשורה אחת יותר מהוראה אחת. הוראות באותה שורה מתבצעות במקביל, לא אחת אחרי השניה. השורות מתבצעות בצורה טורית, אחת אחרי השנייה.</p>
+<p>שורה בה מופיעה יותר מהוראה אחת למנוע, תחזיר שגיאה. שורה כזאת, למשל, לא חוקית:</p>
+<p>מה מייצג הערך המספרי הזה - מה זה אומר 1, למשל - את זה אפשר לקנפג ע"י שליחת פקודות מסויימות ל-grbl. בהמשך.</p>
+<p>אוקיי, נעבור להדגמה קצרה.</p>
+<p>דבר ראשון, אני רוצה לאפס את המנועים ולהחזיר אותם למצב ההתחלתי. הורדתי את הראש צייר כולל הרצועות טיימינג שלו מהגלגלות וב-grbl שלחתי x0 y0. </p>
+<p>החזרתי את הראש צייר ומיקמתי אותו, ידנית, במרכז הלוח. שרירותי, כדי שיהיה טווח עבודה.</p>
+<p>בסרטון, אני שולח את סדרת הפקודות הבאות, כל אחת בתורה:</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/N6o6x0bQml0" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>בהמשך, שמתי לב שהמנוע השמאלי משמיע צלילי חריקה. נשמע כאילו צריך לשמן אותו. חיפשתי קצת בגוגל ולא מצאתי הסברים על שימון מנועי צעד - כי אין, לא משמנים מנועי צעד. </p>
+<p>זה גם קורה רק כשמעבירים אליו פקודה להסתובב. זאת אומרת, כשמסובבים ביד - התנועה חלקה ביותר. </p>
+<p>אחרי זמן מה במבט חטוף על ה-cnc shield קלטתי את הפוטנציומטרים שעל המודולים הקטנים (אלה עם הצלעות קירור עליהן) ונזכרתי מה צריך לעשות. צריך לעשות כיוונון עדין (fine tuning) של המתחים שמגיעים למנועים, עד שהחריקות מפסיקות והצליל נשמע חלק.
+
+</p>
+<p>כדי שיהיה נוח לטפל בעניין הנ"ל, יש צורך ברצף פקודות ארוך מספיק כך שאוכל לסובב את הפוטנציומטרים עד שתהליך הכיוונון יסתיים. מה שאני צריך לעשות זה לשלוח קובץ הוראות ל-Serial Console ואת זה אי אפשר לעשות דרך הממשק הגרפי של ארדואינו.</p>
+<p>יש כמה תוכנות cli (בלינוקס). בתור חובב screen, אשתמש בתוכנה הזאת. אני לא ארחיב פה על השימושים הרבים ב-screen וכולי. מבטיח להקדיש פוסט מלא בעניין.</p>
+<p>בטרמינל כתבתי:</p>
+<p>ובצורה הזאת, אני מחובר ל-device הרצוי. נתתי ל-session שם: cnc-shield כדי שאוכל למצוא אותו בקלות בהמשך (במקום להשתמש בשם שנוצר אוטומטית או ב-pid).</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/EUNVID19Xuo" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>* בהמשך אערוך את הסרטון, בינתיים הסבר קצר:</p>
+<p>0:17 - כתבתי את הפקודה, לחצתי Enter - מסך ריק. סביר להניח שיכולתי בשלב הזה פשוט לשלוח פקודות וזה היה עובד אבל רציתי לראות את ה-banner של grbl בשביל ההרגשה הטובה. לחצתי על כפתור ה-reset בארדואינו והבאנר הופיע.</p>
+<p>0:21 - הקלדתי x0 (לא מופיע על המסך) ולחצתי Enter. המנוע הסתובב והופיע ok על המסך.</p>
+<p>0:25 - הקלדתי y0 ו-Enter. המנוע השני (השמאלי) הסתובב והופיע ok.</p>
+<p>0:28 - הקלדתי x1 ו-Enter. המנוע הסתובב והופיע ok.</p>
+<p>0:30 - הקלדתי y1 ו-Enter. המנוע הסתובב והופיע ok.</p>
+<p>0:40 - הרצתי screen -ls כדי להראות שהסשן חי.</p>
+<p>יופי, זה עובד. נכין קובץ להעלאה עם סדרת הוראות למנועים ולפני שנעבור לטעינת הקובץ, הסבר קצר על אחת התכונות של screen והשימוש בה - למי שלא מכיר.</p>
+<p>ברגע שאנחנו כותבים screen בטרמינל, נפתח session חדש. גם אם נסגור את החלון של הטרמינל, הסשן עדיין קיים ופרוססים או סקריפטים שרצים בסשן הזה ימשיכו לרוץ.</p>
+<p>אם נפתח שוב טרמינל ונכתוב:</p>
+<p>נוכל להיווכח שה-screen שלנו, הקודם, עדיין קיים:</p>
+<p>אז לאחר שהדברים הללו נאמרו, יש שתי שיטות להעלאת קובץ ל-screen. מתוך ה-session ומחוצה לו. בתוך הסשן, כשאנחנו בטאב של ה-grbl נקליד:</p>
+<p>* זאת הדרך להיכנס למצב פקודה ב-screen בלי קשר להעלאת קובץ</p>
+<p>      </p>
+<p> נטען את הקובץ ל-buffer:</p>
+<p>ונעביר את התוכן ל-grbl:</p>
+<p>מחוץ לסשן בחלון נפרד:</p>
+<p>מחוץ לסשן זה מאוד נוח. ה-screen רץ ברקע, אין צורך להתחבר אליו, רק לשלוח data.</p>
+<p>יצרתי קובץ עם מידע לסיבוב המנועים, כל אחד בנפרד ושיחקתי עם הפוטנציונטרים עד שהגעתי למצב הרצוי. המידע הבא והסרטון מתייחסים למנוע השמאלי (y). אותו תהליך עשיתי עם x.</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/j9oOuYwjlI8" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>* אין כמו הסאונד של מנוע צעד איכותי ;)</p>
+<p>הדבר הבא שעשיתי היה להתקין תוכנה עם GUI. התקנתי את bCNC שמאפשרת חיבור סריאלי לקונטרולר ושליטה ב-grbl. יש אפשרות להעלות קבצים בפורמטים שונים, בין היתר gcode, שזה הפורמט שעבדתי איתו קודם לכן. אגב, היא לא מתאימה מאה אחוז לרובוט שלנו, הסבר בהמשך.</p>
+<p>התקנה פשוטה ביותר:</p>
+<p>הפקודה האחרונה פותחת חלון GUI. הנה סרטון קצר:</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/wpwxbRix8OU" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>שימו לב: ב-bCNC, השרטוט מוצג על המסך במערכת צירים קרטזית לעומת מערכת הצירים ב-Polargraph שהקואורדינטות בהן - אם אני לא טועה - הן קואורדינטות קוטביות (Bipolar coordinates). לכן, הפיצ'ר הזה לא שימושי לנו. בכל אופן, לצורך טעינת ה-gcode, זה מספיק בשבילי כרגע.</p>
+<p>הסבר תיאורטי מעמיק בהמשך - אני חייב להסיר חלודה ולשבת על זה קצת. מה שחשוב לדעת כרגע זה שהרובוט הזה מצייר בקשתות, אם אפשר לומר בצורה כזאת, כשכל מנוע הוא מרכז של מעגל. זאת הצורה ה"טבעית" שלו. כדי שיצא, למשל, קו אנכי ישר - המנועים חייבים לעבוד בסנכרון מושלם. לעומת מערכת הצירים הקרטזית (שולחן XY), שבה דווקא ליצור מעגל זה "מסובך" יותר - פחות טבעי. אני מקווה שזה ברור. *@&* להכין שרטוטים, אנימציה וכו'</p>
+<p>*@&* להכין שרטוטים, אנימציה וכו'</p>
+<p>היוצר - סנדי נובל - זה שפיתח את הרובוט על בסיס הקטור ונתן לו את השם Polargraph כותב:</p>
+<p><a href="http://juerglehni.com/works/hektor/"><u class="_3zM-5">הקטור</u></a></p>
+<p>"הרובוט לא משתמש במערכת פולרית, אלא למעשה סוג של מערכת דו-זוויתית. הזוית של כל מיתר נקבעת ע"י האורך של שני המיתרים, לעומת הצבה של זווית ומרחק במערכת פולרית אמיתית. השם 'Polargraph' נשאר אך הוא לא מדוייק".</p>
+<p>את עניין הציור בקשתות אפשר לראות בבירור פה (ה-flickr של סנדי נובל):</p>
+<p>https://www.flickr.com/photos/euphy/sets/72157626497662024/</p>
+<p><a href="https://www.flickr.com/photos/euphy/sets/72157626497662024/"><u class="_3zM-5">https://www.flickr.com/photos/euphy/sets/72157626497662024/</u></a></p>
+<p>או בחיפוש בגוגל תמונות.</p>
+<p><a href="https://www.google.com/search?q=polargraph&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjkzMyWnLXjAhWJwAIHHTeNDhAQ_AUIECgB&biw=1280&bih=631"><u class="_3zM-5">חיפוש בגוגל תמונות</u></a></p>
+<p>שימו לב למספר שיטות הציור שפותחו לרובוט מהסוג הזה. הרבה מהן מבוססות על צפיפות שונה של הקווים שיוצרת גוונים שונים.</p>
+<p>בפעם הקודמת שבניתי מכשיר כזה, הורדתי את התוכנה המותאמת ובאמת נתתי לרובוט לצייר בשיטות השונות. אגב, יש אפשרות גם לציור וקטורי. הציורים יוצאים מדהימים.</p>
+<p><a href="https://github.com/euphy/polargraphcontroller"><u class="_3zM-5">התוכנה המותאמת</u></a></p>
+<p>בהמשך אתקין אותה - אבל כרגע מה שחשוב לי זה התאוריה, לכן אכתוב קוד בשלבים ונראה לאן אגיע.</p>
+<p>המשך - תיקון הטעות שנוצרה</p>
+<p>אני מתקן את השימוש ב-grbl ל-grbl-polar, שמתאים למערכת הבי-פולרית שלנו:</p>
+<p><a href="https://github.com/ilaro-org/grbl-polar"><u class="_3zM-5">grbl-polar</u></a></p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/QJ6fUZua0AA" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>השלבים בסרטון:</p>
+<p>* תקנו אותי אם אני טועה, אין ב-GUI של ארדואינו אפשרות להעלות (לצרוב) קובץ hex - לכן אני משתמש ב-avrdude מה-cli.</p>
+<p>נשאר לקנפג את grbl לפי המידות והמימדים של הרובוט אבל אני לא אעשה את זה עכשיו.</p>
+<p>יש לנו grbl-polar - הוא יחכה בצד כי מה שאני רוצה לעשות עכשיו זה לחזור אחורה, לנקות את הארדואינו ולהתחיל לכתוב קוד מאפס. </p>
+<p>אגב, עדיין לא חיברנו את המנוע סרוו, גם לשם נגיע.</p>
+<p>המשך יבוא...</p>
+
       </div>
     </div>
     <div class="related-posts">
       <div class="title">פוסטים נוספים</div>
-      <!-- mindwave-mobile-2-supercollider -->
-      <a class="card" href="mindwave-mobile-2-supercollider">
-        <img class="thumbnail" src="../images/thumbnails/mindwave-mobile-2-supercollider.png" />
-        <div class="content">
-          <div class="date">20 ביולי 2019</div>
-          <div class="title">נגינה בעזרת גלי המוח</div>
-          <div class="short">מה קורה כאשר מחברים מכשיר EEG - שקורא את גלי המוח בזמן אמת - לתיבת נגינה? נוצרת מוסיקה נעימה ומיוחדת. כלי נגינה שפועל באמצעות המחשבה בלבד...</div>
-        </div>
-      </a>
-      <!-- neurosky-brainwave-session-1 -->
-      <a class="card" href="neurosky-brainwave-session-1">
-        <img class="thumbnail" src="../images/thumbnails/neurosky-brainwave-session-1.jpeg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2</div>
-          <div class="short">קניתי לפני כמה ימים NeuroSky MindWave Mobile 2 והיום קיבלתי אותו. הרבה מאוד זמן רציתי מכשיר מהסוג הזה, יש לי הרבה רעיונות מה לעשות איתו...</div>
-        </div>
-      </a>
-      <!-- polargraph-neurosky-mindwave-mobile-2 -->
-      <a class="card" href="polargraph-neurosky-mindwave-mobile-2">
-        <img class="thumbnail" src="../images/thumbnails/polargraph-neurosky-mindwave-mobile-2.png" />
-        <div class="content">
-          <div class="date">14 ביולי 2019</div>
-          <div class="title">MindWave Mobile 2 + Polargraph</div>
-          <div class="short">בניתי Polargraph והצלחתי להתממשק ל-MindWave בעזרת הטרמינל ופייתון (NeuroPy). ל-Polargraph יש שני מנועים ומהסקריפט פייתון יש לי, בין היתר, נתונים של...</div>
-        </div>
-      </a>
-      <!-- polargraph -->
-      <a class="card" href="polargraph">
-        <img class="thumbnail" src="../images/thumbnails/polargraph.png" />
-        <div class="content">
-          <div class="date">8 ביוני 2019</div>
-          <div class="title">Polargraph - vSappe</div>
-          <div class="short">ב-2016 בניתי Polargraph ולא תיעדתי את שלבי הבנייה, התוכנה וכו' - לצערי. פירקתי אותו בעת מעבר ומאז לא בניתי שוב. אני מתכוון לבנות אחד בקרוב...</div>
-        </div>
-      </a>
-      <!-- supercollider -->
-      <a class="card" href="supercollider">
-        <img class="thumbnail" src="../images/thumbnails/supercollider.png" />
-        <div class="content">
-          <div class="date">12 ביולי 2019</div>
-          <div class="title">SuperCollider</div>
-          <div class="short">פלטפורמה לסינטזה של צליל והלחנה אלגוריתמית, נמצאת בשימוש אצל מוסיקאים, אומנים ואנשי מחקר בתחום הסאונד. זאת תוכנה חופשית...</div>
-        </div>
-      </a>
-      <!-- מופע-אור-קולי-עם-ה-mindwave -->
-      <a class="card" href="מופע-אור-קולי-עם-ה-mindwave">
-        <img class="thumbnail" src="../images/thumbnails/מופע-אור-קולי-עם-ה-mindwave.png" />
-        <div class="content">
-          <div class="date">7 באוג׳ 2019</div>
-          <div class="title">מופע אורקולי עם ה-MindWave</div>
-          <div class="short">המטרה היא לתכנן מופע שיכלול נגינה בעזרת ה-MindWave ושליטה בתאורה, וידאו-ארט, פירוטכניקה - וכל מה שיעלה על הדעת (וגם מה שלא). אני צריך פסי לדים...</div>
-        </div>
-      </a>
-      <!-- רעיונות-נוספים-עם-ה-MindWave -->
-      <a class="card" href="רעיונות-נוספים-עם-ה-MindWave">
-        <img class="thumbnail" src="../images/thumbnails/רעיונות-נוספים-עם-ה-MindWave.png" />
-        <div class="content">
-          <div class="date">27 ביולי 2019</div>
-          <div class="title">רעיונות נוספים עם ה-MindWave</div>
-          <div class="short">תערוכה אינטראקטיבית - אם תשימו לב, בפוסט הזה למשל, אני משתמש ב-MindWave בצורה כזאת שהיא מתערבת ביצירה בצורה כלשהי, אבל לא מוחלטת...</div>
-        </div>
-      </a>
-      <!-- תיבת-נגינה-multizamor -->
-      <a class="card" href="תיבת-נגינה-multizamor">
-        <img class="thumbnail" src="../images/thumbnails/תיבת-נגינה-multizamor.jpg" />
-        <div class="content">
-          <div class="date">11 ביולי 2019</div>
-          <div class="title">תיבת נגינה - Multizamor</div>
-          <div class="short">ב-2004 כתבתי תוכנה ב-Action Script (נראה לי 2) ל-flash, שמלחינה מנגינות לפי פרמטרים שהיא מקבלת. על המסך הוצגה...</div>
-        </div>
-      </a>
+      {{related-posts}}
     </div>
   </div>
+  <footer></footer>
   <script src="../js/main.js"></script>
 </body>
 </html>

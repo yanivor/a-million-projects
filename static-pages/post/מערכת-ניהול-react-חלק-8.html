@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>מערכת ניהול - React - חלק 8</title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">מערכת ניהול - React - חלק 8</h1>
+          <div class="author-date">יניב אור - 8 בינו׳ 2020</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>במערכת ניהול יש כרגע טבלה וטופס שעובדים מול שרת ה-API. יש עוד עבודה לעשות על כל אחד מהם. כרגע הטבלה פשוטה ומציגה את הנתונים כפי שהם מגיעים מבסיס הנתונים. הטופס הוא בעל שדות טקסט בלבד, אין וידוא תקינות של נתונים, חסר שימוש בפופאפים/מודאלים. מעבר לזה, אני מעוניין לכתוב פוסט בצורה כזאת שיהיה נוח להוסיף תמונות, סרטונים, קישורים וטקסט מעוצב. את זה לא ניתן לעשות בטופס פשוט כזה. לניהול המשתמשים, זה מספיק טוב.</p>
+<p>כתבתי רכיב חדש לעריכת פוסטים, הוא נקרא GridEditor. אפרט עליו בהמשך. לפני כן, כרגיל, עשיתי כמה תיקונים, צמצומים ושינויים בקוד. המערכת הרבה יותר מסודרת עכשיו.</p>
+<p>בפונקציות שהפעולה היחידה שלהם היא להחזיר ערך, ללא עבודה נוספת - הורדתי את ה-return וסוגריים מסולסלים נלווים.</p>
+<p>הפונקציה הזאת, למשל:</p>
+<p>src/services/api/token.js (מתוך הקובץ)</p>
+<p>הפכה להיות הצורה הבאה:</p>
+<p>בקבצי reducers התיקון הזה משמעותי יותר ומקנה לקובץ מראה נקי יותר. ניווכח בהמשך. למי שלא רגיל לכתוב בצורה הזאת, הדבר עלול להיראות טיפה מאיים או לא ברור אבל לאחר שמתרגלים - אין דרך חזרה. זה הרבה יותר מצומצם, נקי ומסודר.</p>
+<p>סדר נוסף שעשיתי בקוד היה ל-actions וה-reducers. נתחיל עם actions. פונקציות של רכיבים שונים היו מרוכזות בקבצים משותפים כך שהקבצים התחילו לתפוח ולהיות מבולגנים. כמו כן, בחלק הקודם עשיתי את התיקון של constants וריכזתי את כל הערכים הקבועים שהסתובבו במערכת במקום אחד. רוב הערכים הם ה-actions ולכן תיקיית constants היא לא המקום המתאים בשבילם. לכן, הוצאתי אותם מהתיקייה הזאת. השארתי ערכים קבועים מסוגים אחרים. דבר נוסף, הפונקציות שמשתמשות ב-actions creators נמצאות בצורה לא מסודרת יחד עם ה-creators.</p>
+<p>לאחר התיקון, מבנה תיקיית ה-actions נראה כך:</p>
+<p>עץ התיקיות מסודר לפי עץ ה-state ב-store. לכל רכיב שלושה קבצים:</p>
+<p>- הקובץ types.js מכיל את ה-constants של ה-actions.</p>
+<p>- הקובץ creators.js מכיל את ה-actions creators.</p>
+<p>- הקובץ index.js עושה שימוש ב-creators בעזרת dispatch.</p>
+<p>אני אתן כדוגמא את form:</p>
+<p>src/store/actions/entities/form/types.js</p>
+<p>src/store/actions/entities/form/creators.js</p>
+<p>src/store/actions/entities/form/index.js</p>
+<p>מבחינת ה-reducers, עשיתי תיקונים קוסמטיים במחיקת ה-return והסוגריים המסולסלים - כמו שהראיתי למעלה, בקובץ token.js. הקובץ reducers של form, למשל, נראה כך:</p>
+<p>src/store/reducers/entities/main/form.js</p>
+<p>המשך בחלק הבא:</p>
+<p>מערכת ניהול - React - חלק 9</p>
+<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-9">מערכת ניהול - React - חלק 9</a></p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

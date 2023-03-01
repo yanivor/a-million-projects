@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>העברת אותות בין ה-RPi ל-AVR - עם interrupts </title>
+</head>
+<body dir="rtl">
+  <header>
+    <h1>מיליון פרויקטים</h1>
+    <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
+  </header>
+  <div class="main">
+    <div class="post">
+      <div class="header">
+        <div class="right">
+          <h1 class="title">העברת אותות בין ה-RPi ל-AVR - עם interrupts </h1>
+          <div class="author-date">יניב אור - 7 ביוני 2019</div>
+        </div>
+        <a href="../" class="back">לדף הראשי</a>
+      </div>
+      <div class="content">
+        <p>הערה: לא מדובר פה על מדריך. אני רוצה לעשות בסדרת סשנים האלה ניסויים בהעברת אותות. ידוע לי על כל הפרוטוקלים וכו'.  המטרה היא לימודית. אני רוצה לחפור ולגלות את הדברים לבד. איך הגיעו לפרוטוקולים. נתחיל בדברים פשוטים, אני אנסה רעיונות אולי חסרי טעם - ודווקא שם עולים דברים מעניינים.</p>
+<p>בצד ה-AVR ב-main לא תהיה לולאה אינסופית (שעון). בכל ריצה של התוכנית, יועבר pulse אחד. בעזרת כפתור ה-reset אשלח את האות (מ-PB0).</p>
+<p>* אני תוהה אם יש בזה שימוש ואם זה מעשי - לחבר שעון ל-RESET של ה-AVR וככה ליצור לולאה אינסופית. אני צריך לבדוק את זה.</p>
+<p>הצד השני, ה-RPi, יחכה ל-interrupt על GPIO11 ויכתוב על המסך את המידע.</p>
+<p>* בהמשך אעשה handshake - ה-AVR ישלח אות, ה-RPi יקבל וישלח חזרה, ה-AVR יאשר ב-LED, נניח מ-PB1.</p>
+<p>ניסיתי להשתמש בקוד של ה-RPi מה-session של העברת אותות עם שעון.</p>
+<p>GPIO11 מחובר ל-PB0 - ברגע שאני מריץ את הפייתון, הנורה נדלקת באופן קבוע.</p>
+<p>אגב, עוד תופעה. ברגע ש-GPIO11 לא מחובר לכלום, אני רואה על המסך רק 1-ים.</p>
+<p>* לחקור את זה</p>
+<p>בקוד הזה אני משתמש ב-interrupt ב-RPi. גילוי edge (rising) בפורט הרצוי.</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/8LQGGWKzu-I" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>שיפרתי את הקוד מבחינת UI כדי שיהיה ברור יותר לראות על המסך מה קורה. עכשיו זה נראה קרוב יותר לאוסילוסקופ. הוספתי גם קוד שמגדיר את GPIO8 כ-OUTPUT וברגע שמתקבל אות, ה-RPi שולח אות חזרה.</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/NHk__ZGpexI" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>* לבדוק איך אפשר לכתוב קוד פייתון שמציג גל (משמאל לימין) ב-console.</p>
+<p>* </p>
+<p>לבדוק איך אפשר לכתוב קוד פייתון שמציג גל (משמאל לימין) ב-console.</p>
+<p>* לכתוב NodeJS שמקבל ב-input את ה-output של הסקריפט פייתון. ה-input יהיה 0 ו-1.</p>
+<p>שיניתי את ה-delay ב-AVR ל-100 מילישניות:</p>
+<p><iframe width="800" height="416" src="https://www.youtube.com/embed/i7Nmul6Z5Mw" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+<p>נמשיך הלאה.</p>
+<p>ה-RPi שולח אותות דרך GPIO8. אני אתפוס אותם ב-AVR.</p>
+<p>החלפתי את כיוון הפורטים. PB0 יהיה קלט ו-PB1 ו-2 יהיו פלט.</p>
+
+      </div>
+    </div>
+    <div class="related-posts">
+      <div class="title">פוסטים נוספים</div>
+      {{related-posts}}
+    </div>
+  </div>
+  <footer></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
