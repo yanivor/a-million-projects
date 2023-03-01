@@ -30,6 +30,7 @@ header h4 {
   content: "";
   background: url(../images/misc/bg.png);
   background-position: bottom;
+  background-size: contain;
   opacity: 0.1;
   top: 0;
   left: 0;
