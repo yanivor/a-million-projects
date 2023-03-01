@@ -296,6 +296,10 @@
     padding: 20px;
   }
 
+  .top-section .updates .card {
+    margin: 0px;
+  }
+
   .top-section .updates .title {
     margin-bottom: 10px;
     font-size: 1.3em;
