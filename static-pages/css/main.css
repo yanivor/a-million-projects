@@ -23,6 +23,9 @@ header h4 {
 
 .me {
   float: right;
+  background: url(../images/misc/me-purim-rounded.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .container {
