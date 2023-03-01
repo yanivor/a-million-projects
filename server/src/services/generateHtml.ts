@@ -73,7 +73,7 @@ export const generatePost = async (post: any) => {
       .replace(/{{author}}/g, 'יניב אור')
       .replace(/{{content}}/g, content);
 
-    await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/post-sandbox/${path}.html`), template ,{ encoding: 'utf8' });
+    await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/post/${path}.html`), template ,{ encoding: 'utf8' });
   } catch (err) {
     console.log(err);
   }
