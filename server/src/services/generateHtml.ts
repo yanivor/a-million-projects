@@ -145,7 +145,7 @@ export const generateIndex = async () => {
 };
 
 export const generatePost = async (postData: any) => {
-  const { path, title, date, content } = postData;
+  const { path, title, date, content, description } = postData;
 
   const post = new crudPost(modelPost);
   const dbResults = await post.findMany({
@@ -226,11 +226,11 @@ export const generatePost = async (postData: any) => {
   try {
     let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/post.html'), { encoding: 'utf8' });
     template = template
+      .replace(/{{description}}/g, description)
       .replace(/{{title}}/g, title)
       .replace(/{{date}}/g, date)
       .replace(/{{author}}/g, 'יניב אור')
-      .replace(/{{content}}/g, content)
-      .replace(/{{related-posts}}/g, cards);
+      .replace(/{{content}}/g, content);
 
     await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/post/${path}.html`), template ,{ encoding: 'utf8' });
   } catch (err) {

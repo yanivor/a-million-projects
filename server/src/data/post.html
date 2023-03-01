@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{description}}">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -15,22 +16,20 @@
     <h1>מיליון פרויקטים</h1>
     <h4>טכנולוגיה, מדע, אומנות וכל מה שביניהם ומסביבם</h4>
   </header>
-  <div class="main">
-    <div class="post">
-      <div class="header">
-        <div class="right">
-          <h1 class="title">{{title}}</h1>
-          <div class="author-date">{{author}} - {{date}}</div>
+  <div class="container">
+    <div class="main">
+      <div class="post">
+        <div class="header">
+          <div class="right">
+            <h1 class="title">{{title}}</h1>
+            <div class="author-date">{{author}} - {{date}}</div>
+          </div>
+          <a href="../" class="back">לדף הראשי</a>
         </div>
-        <a href="../" class="back">לדף הראשי</a>
+        <div class="content">
+          {{content}}
+        </div>
       </div>
-      <div class="content">
-        {{content}}
-      </div>
-    </div>
-    <div class="related-posts">
-      <div class="title">פוסטים נוספים</div>
-      {{related-posts}}
     </div>
   </div>
   <footer></footer>

@@ -20,8 +20,47 @@ header h4 {
   color: #928e72;
 }
 
-.main {
-  /*display: flex;*/
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.preface {
+  background: #c9c6b455;
+}
+
+.preface p {
+  color: #c9c6b4;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  display: block;
+  width: 272px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card .content .date {
+  color: #c9c6b4;
+  margin-bottom: 8px;
+}
+
+.card .content .title {
+  font-weight: bold;
+  color: #958a43;
+  margin-bottom: 5px;
+}
+
+.card .content .short {
+  color: #c9c6b4;
 }
 
 .post .header {
@@ -120,70 +159,7 @@ header h4 {
   cursor: pointer;
 }
 
-.related-posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.related-posts .title {
-  color: #c3c3c3;
-  font-size: 1.5em;
-}
-
-.cards {
-  margin-top: 20px;
-}
-
-.card {
-  display: block;
-  width: 272px;
-  height: 408px;
-  background: #00000055;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.card .content {
-  padding: 15px;
-}
-
-.card .content .date {
-  color: #c9c6b4;
-  margin-bottom: 8px;
-}
-
-.card .content .title {
-  font-weight: bold;
-  color: #958a43;
-  margin-bottom: 5px;
-}
-
-.card .content .short {
-  color: #c9c6b4;
-}
-
-.top-section .preface p {
-  color: #c9c6b4;
-}
-
-.top-section .updates {
-  display: flex;
-  flex-direction: column;
-  background: #c9c6b455;
-}
-
-.top-section .updates .title {
-  font-weight: bold;
-
-}
-
-.top-section .updates p {
-  color: #c9c6b4;
-}
-
 footer {
-  margin-top: 50px;
   background: #222222;
   height: 100px;
 }

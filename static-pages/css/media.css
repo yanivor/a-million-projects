@@ -1,20 +1,54 @@
-@media only screen and (max-width: 750px) {
+/* 1 item */
+@media only screen and (max-width: 570px) {
   header {
-    margin: 15px 0px 0px 0px;
+    margin: 0px 0px 10px 0px;
     padding: 20px 10px;
   }
 
   header h1 {
     font-size: 2.5em;
     margin-bottom: 7px;
+    text-align: center;
   }
 
   header h4 {
     font-size: 0.767em;
+    text-align: center;
   }
 
   .main {
-    flex-direction: column;
+    width: 272px;
+  }
+
+  .preface {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .preface p {
+    font-size: 0.9em;
+    line-height: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .card .content .date {
+    font-size: 0.7em;
+    line-height: 1.1em;
+    margin-top: 5px;
+  }
+  
+  .card .content .title {
+    font-size: 1.1em;
+    line-height: 1.3em;
+  }
+  
+  .card .content .short {
+    font-size: 0.9em;
+    line-height: 1.3em;
   }
 
   .post .header .author-date {
@@ -83,22 +117,37 @@
   .post .content .soundcloud-embed {
     width: 90%;
   }
+}
 
-  .related-posts > .title {
-    opacity: 1;
-    margin: 25px 0px;
-    padding-top: 20px;
-    font-size: 1.2em;
-    border-top: 1px solid #c9c6b455;
-    display: inline-block;
-    width: 80%;
-    text-align: center;
+/* 2 items */
+@media only screen and ((min-width: 571px) and (max-width: 860px)) {
+  header {
+    margin: 0px 0px 10px 0px;
+    padding: 20px 10px;
   }
 
-  .cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  header h1 {
+    font-size: 2.5em;
+    margin-bottom: 7px;
+  }
+
+  header h4 {
+    font-size: 0.767em;
+  }
+
+  .main {
+    width: 564px;
+  }
+
+  .preface {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .preface p {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin-bottom: 10px;
   }
 
   .card {
@@ -108,6 +157,7 @@
   .card .content .date {
     font-size: 0.7em;
     line-height: 1.1em;
+    margin-top: 5px;
   }
   
   .card .content .title {
@@ -119,38 +169,79 @@
     font-size: 0.9em;
     line-height: 1.3em;
   }
-
-  .top-section .preface {
-    padding: 10px;
+  
+  .post .header .author-date {
+    font-size: 0.7em;
+    line-height: 1.1em;
+    padding: 0px 10px;
+    margin-top: 0px;
   }
 
-  .top-section .preface p {
-    font-size: 1.1em;
+  .post .header .title {
+    padding: 20px 10px 5px 10px;
+    font-size: 1.2em;
+  }
+
+  .post .header .back {
+    padding-left: 10px;
+  }
+
+  .post img {
+    max-width: 100%;
+  }
+
+  .post iframe {
+    margin-right: 10px;
+    max-width: 95%;
+    max-height: 200px;
+  }
+
+  .post .content {
+    margin-top: 15px;
+  }
+
+  .post .content p {
+    padding: 0px 10px 10px 10px;
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .post .content ul li {
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .post .content div.pre-code {
+    width: 85%;
+    margin-right: 10px;
+  }
+
+  .post .content div.pre-code pre {
+    font-size: 0.8em;
     line-height: 1.2em;
-    margin-bottom: 10px;
   }
 
-  .top-section .updates {
-    margin: 10px;
-    padding: 10px;
+  .post .content div.code {
+    width: 85%;
+    margin-right: 10px;
+    font-size: 0.8em;
+    line-height: 1.2em;
   }
 
-  .top-section .updates .title {
-    margin-bottom: 10px;
+  .post .content h3 {
+    padding: 10px 10px 20px 0px;
     font-size: 1.1em;
-    line-height: 1.1em;
   }
 
-  .top-section .updates p {
-    margin-bottom: 10px;
-    font-size: 1em;
-    line-height: 1.1em;
+  .post .content .soundcloud-embed {
+    width: 90%;
   }
 }
 
-@media only screen and (min-width: 751px) {
+/* 3 items */
+@media only screen and ((min-width: 861px) and (max-width: 1200px)) {
   header {
-    margin: 20px 0px 0px 0px;
+    margin: 0px 0px 20px 0px;
     padding: 30px 20px;
   }
 
@@ -164,16 +255,41 @@
   }
 
   .main {
-    display: flex;
-    flex-direction: row;
+    width: 856px;
   }
 
-  .post {
-    flex: 80%;
+  .preface {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .preface p {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card .content .date {
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+  
+  .card .content .title {
+    font-size: 1.2em;
+  }
+  
+  .card .content .short {
+    font-size: 1.0em;
+    line-height: 1.2em;  
   }
 
   .post .header {
     padding: 20px 0px;
+    background: #00000055;
   }
 
   .post .header .author-date {
@@ -205,7 +321,7 @@
   }
 
   .post .content div.pre-code {
-    width: 50%;
+    width: 70%;
     margin-right: 20px;
   }
 
@@ -215,7 +331,7 @@
   }
 
   .post .content div.code {
-    width: 50%;
+    width: 70%;
     margin-right: 20px;
     font-size: 1.1em;
     line-height: 1.4em;
@@ -227,43 +343,48 @@
   }
 
   .post .content .soundcloud-embed {
-    width: 50%;
+    width: 70%;
+  }
+}
+
+/* 4 items */
+@media only screen and (min-width: 1201px) {
+  header {
+    margin: 0px 0px 20px 0px;
+    padding: 30px 20px;
   }
 
-  .related-posts {
-    flex: 20%;
-    padding-top: 20px;
+  header h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
   }
 
-  .main .related-posts {
-    padding-top: 35px;
+  header h4 {
+    font-size: 1.07em;
   }
 
-  .related-posts > .title {
-    opacity: 0;
-    margin-bottom: 30px;
-    font-size: 1.5em;
+  .main {
+    width: 1148px;
   }
 
-  .cards {
-    margin-top: 10px;
+  .preface {
+    padding: 20px;
+    margin-bottom: 20px;
   }
 
-  .cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    padding-left: 15px;
+  .preface p {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    margin-bottom: 20px;
   }
 
   .card {
-    margin: 0px 20px 20px 0px;
+    margin-bottom: 20px;
   }
 
   .card .content .date {
     font-size: 0.8em;
+    margin-top: 5px;
   }
   
   .card .content .title {
@@ -275,40 +396,62 @@
     line-height: 1.2em;  
   }
 
-  .top-section {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+  .post .header {
+    padding: 20px 0px;
+    background: #00000055;
   }
 
-  .top-section .preface {
-    padding: 20px;
+  .post .header .author-date {
+    font-size: 0.8em;
+    line-height: 1.1em;
+    padding: 0px 20px;
+    margin-top: 5px;
   }
 
-  .top-section .preface p {
-    font-size: 1.3em;
-    line-height: 1.2em;
-    margin-bottom: 20px;
+  .post .header .title {
+    padding: 0px 20px;
+    font-size: 1.8em;
   }
 
-  .top-section .updates {
-    margin: 20px;
-    padding: 20px;
+  .post .content {
+    background: #00000055;
+    padding: 10px 0px;
   }
 
-  .top-section .updates .card {
-    margin: 0px;
-  }
-
-  .top-section .updates .title {
-    margin-bottom: 10px;
+  .post .content p {
+    padding: 5px 20px 15px 20px;
     font-size: 1.3em;
     line-height: 1.3em;
   }
 
-  .top-section .updates p {
-    font-size: 1.2em;
-    line-height: 1.2em;
-    margin-bottom: 15px;
+  .post .content ul li {
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .post .content div.pre-code {
+    width: 70%;
+    margin-right: 20px;
+  }
+
+  .post .content div.pre-code pre {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  .post .content div.code {
+    width: 70%;
+    margin-right: 20px;
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  .post .content h3 {
+    padding: 20px 20px 20px 0px;
+    font-size: 1.5em;
+  }
+
+  .post .content .soundcloud-embed {
+    width: 70%;
   }
 }
