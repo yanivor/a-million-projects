@@ -58,7 +58,25 @@ router.get('/api/generateIndex', async (req: Request, res: Response) => {
       '63f8f44238470c86cefb7273',
       '63f8f45538470c86cefb7281',
       '63f8f46638470c86cefb728d',
-      '63f8f42938470c86cefb7263'
+      '63f8f42938470c86cefb7263',
+      '63f8f30f38470c86cefb71a1',
+      '63f8f31538470c86cefb71a5',
+      '63f8f31e38470c86cefb71ab',
+      '63f8f34538470c86cefb71c7',
+      '63f8f35138470c86cefb71cf',
+      '63f8f35338470c86cefb71d1',
+      '63f8f35938470c86cefb71d5',
+      '63f8f35c38470c86cefb71d7',
+      '63f8f35f38470c86cefb71d9',
+      '63f8f37338470c86cefb71e7',
+      '63f8f46f38470c86cefb7293',
+      '63f8f46c38470c86cefb7291',
+      '63f8f46338470c86cefb728b',
+      '63f8f45038470c86cefb727d',
+      '63f8f42d38470c86cefb7265',
+      '63f8f3da38470c86cefb722d',
+      '63f8f3bd38470c86cefb7219',
+      '63f8f3b138470c86cefb7211',
     ]}
   });
 

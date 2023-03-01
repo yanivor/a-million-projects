@@ -3,18 +3,20 @@ import * as sysPath from 'path';
 import { BASE_PATH } from '../index';
 
 const renderCard = ({
+  id,
   title,
   date,
   path,
   description,
 }:{
+  id: string;
   title: string;
   date: string;
   path: string;
   description: string;
 }) => `
   <!-- ${path} -->
-  <a class="card" href="post/${path}">
+  <a class="card" href="post/${path}" key=${id}>
     <img class="thumbnail" src="images/thumbnails/${path}.png" />
     <div class="content">
       <div class="date">${date}</div>
@@ -28,17 +30,20 @@ export const generateIndex = async (dbResults: any) => {
   let cards = '';
 
   dbResults.map(({
+    id,
     title,
     date,
     path,
     description,
   }:{
+    id: string;
     title: string;
     date: string;
     path: string;
     description: string;
   }) => {
     cards += renderCard({
+      id,
       title,
       date,
       path,
