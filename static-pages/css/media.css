@@ -254,6 +254,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around;
+    padding-left: 15px;
   }
 
   .card {
