@@ -9,7 +9,7 @@ body {
 }
 
 header {
-  background: #222222;
+  background: #222222aa;
 }
 
 header h1 {
@@ -24,6 +24,23 @@ header h4 {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.container::after {
+  content: "";
+  background: url(../images/misc/bg.png);
+  background-position: bottom;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;   
+}
+
+.main {
+  background: #111111aa;
 }
 
 .preface {
@@ -160,6 +177,6 @@ header h4 {
 }
 
 footer {
-  background: #222222;
+  background: #222222aa;
   height: 100px;
 }
