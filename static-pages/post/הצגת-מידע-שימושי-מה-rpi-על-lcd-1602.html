@@ -27,39 +27,7 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p><img src="https://static.wixstatic.com/media/17f292_286a526f6cc2448d841b8be9c3522f47~mv2_d_4160_3120_s_4_2.jpg" /></p>
-<p>ה-headless רספברי פיי (Raspbian Stretch Lite) מחובר לראוטר הביתי שלנו ולעיתים יש לי צורך לקבל מידע על המערכת, כמו למשל מה הכתובת איי פי. אחת הדרכים היא להריץ ממכונת לינוקס ברשת:</p>
-<p>* קודם כל, מעניין אותי לחקור את ענייני ה-ARP לעומק. איך זה עובד ולמה לפעמים המכשירים ברשת מתגלים ולפעמים לא. פוסט נפרד: פרוטוקול ARP - איך הוא עובד?
-
-</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%A4%D7%A8%D7%95%D7%98%D7%95%D7%A7%D7%95%D7%9C-arp-%D7%90%D7%99%D7%9A-%D7%94%D7%95%D7%90-%D7%A2%D7%95%D7%91%D7%93"><u class="_3zM-5">פרוטוקול ARP - איך הוא עובד?</u></a></p>
-<p>דרך נוספת, להציג את המידע על מסך. אז הצלחתי לחבר ל-RPi מסך LCD 1602 וזה בדיוק מה שאני צריך. כל מה שנשאר זה להציג את האיי-פי ואולי מידע שימושי נוסף.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A1%D7%9A-lcd-16x2-%D7%A2%D7%9D-%D7%9E%D7%95%D7%93%D7%95%D7%9C-i2c-%D7%91%D7%97%D7%99%D7%91%D7%95%D7%A8-%D7%9C-rpi"><u class="_3zM-5">מסך LCD 1602</u></a></p>
-<p><img src="https://static.wixstatic.com/media/17f292_8e9d03ff3d4e4a679ba8b1aa95cd2114~mv2_d_4160_3120_s_4_2.jpg" /></p>
-<p>חיברתי כפתור ל-GPIO 7 והמסך גם הוא מחובר. כתבתי קוד שברגע שלוחצים על הכפתור, הסקריפט פייתון מריץ פקודה לקבלת האיי-פי - ומדפיס את האיי-פי על המסך.</p>
-<p>הפקודה לקבלת האיי-פי:</p>
-<p>* לשים לב לצורה בה משתמשים ב-subprocess כשיש צורך ב-pipe:</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/J4VyVj6fNR0" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>נעבור להרצת הסקריפט הזה בזמן אתחול המערכת. </p>
-<p>מתוך ה-RPi, הורדתי template לסקריפט של init.d:</p>
-<p>הוספתי לו הרשאת ריצה:</p>
-<p>שיניתי את השם שלו ל-monitor, שזה השם של הסקריפט פייתון שהוזכר קודם לכן:</p>
-<p>ערכתי את הקובץ:</p>
-<p>ה-runlevels בהם הוא הוגדר לרוץ, לעת עתה, הם: 2, 3, 4, 5 ולא לרוץ ב: 0, 1 ו-6.
-בהמשך ארצה שירוץ בכל ה-runlevels. השאלה אם זה אפשרי. באיזה שלב ה-GPIO מאופשר ואולי יש גורמים נוספים וכולי. אם זה יתאפשר, אוכל להדפיס על המסך הקטן את שלבי הרציה השונים. בתור התחלה runlevel n.</p>
-<p>לבסוף, הרצתי:</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/R_e6ngs9wkY" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>
-* הסרטון המקורי קרוב ל-60 שניות. זה זמן ה-boot, בעצם. אולי הגיע הזמן לבדוק אם הכל נחוץ. אולי אפשר לקצר זמנים. זאת אחת הבעיות עם sys v init - איך שאני מבין - הוא מריץ את ה-process-ים בצורה טורית ולא מקבילית.
-
-</p>
-<p>בהמשך, מצאתי דרך יותר קצרה לקבל את הכתובת איי-פי:</p>
-<p>ובהתאם, הסקריפט פייתון התעדכן, התקצר ואין צורך ב-pipe. הוספתי גם את הטקסט (: hello.</p>
-<p>
-המשך יבוא...
-
-</p>
-
+          <p><img src="https://static.wixstatic.com/media/17f292_286a526f6cc2448d841b8be9c3522f47~mv2_d_4160_3120_s_4_2.jpg"></p><p>ה-headless רספברי פיי (Raspbian Stretch Lite) מחובר לראוטר הביתי שלנו ולעיתים יש לי צורך לקבל מידע על המערכת, כמו למשל מה הכתובת איי פי. אחת הדרכים היא להריץ ממכונת לינוקס ברשת:</p><p>* קודם כל, מעניין אותי לחקור את ענייני ה-ARP לעומק. איך זה עובד ולמה לפעמים המכשירים ברשת מתגלים ולפעמים לא. פוסט נפרד: פרוטוקול ARP - איך הוא עובד?</p><p><a href="https://www.a-million-projects.com/post/%D7%A4%D7%A8%D7%95%D7%98%D7%95%D7%A7%D7%95%D7%9C-arp-%D7%90%D7%99%D7%9A-%D7%94%D7%95%D7%90-%D7%A2%D7%95%D7%91%D7%93" rel="noopener noreferrer" target="_blank"><u>פרוטוקול ARP - איך הוא עובד?</u></a></p><p>דרך נוספת, להציג את המידע על מסך. אז הצלחתי לחבר ל-RPi מסך LCD 1602 וזה בדיוק מה שאני צריך. כל מה שנשאר זה להציג את האיי-פי ואולי מידע שימושי נוסף.</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A1%D7%9A-lcd-16x2-%D7%A2%D7%9D-%D7%9E%D7%95%D7%93%D7%95%D7%9C-i2c-%D7%91%D7%97%D7%99%D7%91%D7%95%D7%A8-%D7%9C-rpi" rel="noopener noreferrer" target="_blank"><u>מסך LCD 1602</u></a></p><p><img src="https://static.wixstatic.com/media/17f292_8e9d03ff3d4e4a679ba8b1aa95cd2114~mv2_d_4160_3120_s_4_2.jpg"></p><p>חיברתי כפתור ל-GPIO 7 והמסך גם הוא מחובר. כתבתי קוד שברגע שלוחצים על הכפתור, הסקריפט פייתון מריץ פקודה לקבלת האיי-פי - ומדפיס את האיי-פי על המסך.</p><p>הפקודה לקבלת האיי-פי:</p><p>* לשים לב לצורה בה משתמשים ב-subprocess כשיש צורך ב-pipe:</p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/J4VyVj6fNR0" height="416" width="800"></iframe><p><br></p><p>נעבור להרצת הסקריפט הזה בזמן אתחול המערכת.</p><p>מתוך ה-RPi, הורדתי template לסקריפט של init.d:</p><p>הוספתי לו הרשאת ריצה:</p><p>שיניתי את השם שלו ל-monitor, שזה השם של הסקריפט פייתון שהוזכר קודם לכן:</p><p>ערכתי את הקובץ:</p><p>ה-runlevels בהם הוא הוגדר לרוץ, לעת עתה, הם: 2, 3, 4, 5 ולא לרוץ ב: 0, 1 ו-6. בהמשך ארצה שירוץ בכל ה-runlevels. השאלה אם זה אפשרי. באיזה שלב ה-GPIO מאופשר ואולי יש גורמים נוספים וכולי. אם זה יתאפשר, אוכל להדפיס על המסך הקטן את שלבי הרציה השונים. בתור התחלה runlevel n.</p><p>לבסוף, הרצתי:</p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/R_e6ngs9wkY" height="416" width="800"></iframe><p><br></p><p>* הסרטון המקורי קרוב ל-60 שניות. זה זמן ה-boot, בעצם. אולי הגיע הזמן לבדוק אם הכל נחוץ. אולי אפשר לקצר זמנים. זאת אחת הבעיות עם sys v init - איך שאני מבין - הוא מריץ את ה-process-ים בצורה טורית ולא מקבילית.</p><p>בהמשך, מצאתי דרך יותר קצרה לקבל את הכתובת איי-פי:</p><p>ובהתאם, הסקריפט פייתון התעדכן, התקצר ואין צורך ב-pipe. הוספתי גם את הטקסט (: hello.</p><p>המשך יבוא...</p>
         </div>
       </div>
     </div>

@@ -13,9 +13,9 @@ class crudCategory {
     }
   }
 
-  async findMany(params: any, limit?: number) {
+  async findMany(params: any, limit?: number | null, sort?: any) {
     try {
-      return await this.model.find(params).limit(limit);
+      return await this.model.find(params).limit(limit).sort(sort);
     } catch (error) {
       console.log(error);
     }
