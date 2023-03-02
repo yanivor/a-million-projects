@@ -193,6 +193,8 @@ header h4 {
   font-size: 22px;
   font-weight: bold;
   margin: 30px 0px 20px 0px;
+  border-bottom: 1px solid #cccccc55;
+  padding-bottom: 8px;
 }
 
 footer {
