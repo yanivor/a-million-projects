@@ -8,6 +8,7 @@ interface IPost {
   description: string;
   content: string;
   authorId: Types.ObjectId;
+  categoryId: Types.ObjectId;
 }
 
 const postSchema = new Schema<IPost>({
@@ -18,6 +19,7 @@ const postSchema = new Schema<IPost>({
   content: { type: String, required: true },
   description: { type: String },
   authorId: { type: Schema.Types.ObjectId },
+  categoryId: { type: Schema.Types.ObjectId },
 }, { timestamps: true });
 
 const modelPost = model<IPost>('posts', postSchema);
