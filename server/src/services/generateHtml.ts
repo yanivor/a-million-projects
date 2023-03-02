@@ -42,7 +42,7 @@ const renderCard = ({
       <div class="short">${description}</div>
     </div>
   </a>
-  `;
+`;
 
 const renderCards = (data: any) => {
   let cards = '';
@@ -93,11 +93,10 @@ export const generateIndex = async () => {
       }:{
         categoryId: string;
       }) => categoryId == _id.toString());
-  
+      
+      const cards = renderCards(postsByCategory);  
+
       categoryBlock += renderCategory({ _id, title });
-
-      const cards = renderCards(postsByCategory);
-
       categoryBlock = categoryBlock
         .replace(`{{cards-${_id}}}`, cards);
   });
