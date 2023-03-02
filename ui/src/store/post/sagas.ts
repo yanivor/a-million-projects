@@ -10,14 +10,16 @@ const getPosts = () =>
 
 const setPost = ({
   _id,
+  categoryId,
   description,
   content
 }:{
   _id: string,
+  categoryId: string,
   description: string,
   content: string
 }) =>
-  axios.put<IPost>(`http://127.0.0.1:8000/api/post/${_id}`, { description, content });
+  axios.put<IPost>(`http://127.0.0.1:8000/api/post/${_id}`, { categoryId, description, content });
 
 function* fetchPostSaga(): any {
   try {
@@ -39,29 +41,23 @@ function* fetchPostSaga(): any {
 }
 
 function* savePostSaga({ payload: {
-  _id, description, content
+  _id, categoryId, description, content
 } }: any): any {
-
   try {
-    const response = yield call(setPost, { _id, description, content });
+    const response = yield call(setPost, { _id, categoryId, description, content });
 
-    /*
     yield put(
       fetchPostSuccess({
         posts: response.data,
       })
     );
-    */
   } catch (e) {
     if (e instanceof Error) {
-      console.log(e);
-      /*
       yield put(
         fetchPostFailure({
           error: e.message,
         })
       );
-      */
     }
   }
 }

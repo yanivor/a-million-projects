@@ -7,6 +7,7 @@ import {
 
 export interface IPost {
   _id: string;
+  categoryId: string;
   title: string;
   description: string;
   content: string;
@@ -44,6 +45,7 @@ export interface SavePostRequest {
   type: typeof SAVE_POST_REQUEST;
   payload: {
     _id: string;
+    categoryId: string;
     description: string;
     content: string;
   }

@@ -5,7 +5,7 @@ import {
 } from './actionTypes';
 
 export interface IImage {
-  _id: number;
+  _id: string;
   url: string;
   name: string;
   label: string;

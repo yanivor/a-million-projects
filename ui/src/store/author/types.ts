@@ -5,7 +5,7 @@ import {
 } from './actionTypes';
 
 export interface IAuthor {
-  _id: number;
+  _id: string;
   email: string;
   fname: string;
   lname: string;

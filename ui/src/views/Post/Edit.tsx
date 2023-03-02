@@ -16,6 +16,7 @@ const Edit = () => {
   const posts = useSelector(getPostsSelector);
   const categories = useSelector(getCategoriesSelector);
 
+  const [ categoryId, setCategoryId ] = useState('');
   const [ description, setDescription ] = useState('');
   const [ content, setContent ] = useState('');
 
@@ -43,26 +44,35 @@ const Edit = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    setCategoryId(currentPost.categoryId);
     setDescription(currentPost.description);
     setContent(currentPost.content);
   }, [currentPost]);
 
   const saveData = () => {
     if (id)
-      dispatch(savePostRequest({ _id: id, description, content }));
+      dispatch(savePostRequest({ _id: id, categoryId, description, content }));
   };
 
   return (
     <div className='Edit'>
       <h3>Category</h3>
-      <select>
+      <select
+        value={categoryId}
+        onChange={e => setCategoryId(e.target.value)}>
         <option></option>
         {categories.map(({_id, title}) => 
-          <option value={_id} key={_id}>{title}</option>
+          <option
+            value={_id}
+            key={_id}>
+            {title}
+          </option>
         )}
       </select>
       <h3>Title</h3>
-      <input type='text' defaultValue={currentPost.title} />
+      <input
+        type='text'
+        defaultValue={currentPost.title} />
       <h3>Description</h3>
       <textarea
         defaultValue={description}

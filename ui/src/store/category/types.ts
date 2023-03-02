@@ -5,7 +5,7 @@ import {
 } from './actionTypes';
 
 export interface ICategory {
-  _id: number;
+  _id: string;
   name: string;
   title: string;
 }
