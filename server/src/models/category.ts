@@ -10,6 +10,6 @@ const categorySchema = new Schema<ICategory>({
   title: { type: String, required: true, unique: true },
 }, { timestamps: true });
 
-const modelCategory = model<ICategory>('categorys', categorySchema);
+const modelCategory = model<ICategory>('categories', categorySchema);
 
 export default modelCategory;
