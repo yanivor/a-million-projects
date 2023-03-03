@@ -6,6 +6,14 @@ import modelPost from '../models/post';
 import crudCategory from '../crud/category';
 import modelCategory from '../models/category';
 
+const renderCode = (id: string) => `
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/${id}.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+`;
+
 const renderCategory = ({
   _id,
   title,
@@ -103,6 +111,7 @@ export const generateIndex = async () => {
 
   try {
     let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/index.html'), { encoding: 'utf8' });
+
     template = template
       .replace(/{{cards-container}}/g, categoryBlock);
 
@@ -117,12 +126,21 @@ export const generatePost = async (postData: any) => {
 
   try {
     let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/post.html'), { encoding: 'utf8' });
+
     template = template
       .replace(/{{description}}/g, description)
       .replace(/{{title}}/g, title)
       .replace(/{{date}}/g, date)
       .replace(/{{author}}/g, 'יניב אור')
       .replace(/{{content}}/g, content);
+
+    const codeRegex = new RegExp(/{{code:([a-z0-9]{24})}}/ig);
+    const codeMatch = template.matchAll(codeRegex);
+
+    for (const match of codeMatch) {
+      template = template
+      .replace(match[0], renderCode(match[1]));
+    }
 
     await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/post/${path}.html`), template ,{ encoding: 'utf8' });
   } catch (err) {
@@ -143,6 +161,7 @@ export const generateCode = async (codeData: any) => {
 
   try {
     let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/code.html'), { encoding: 'utf8' });
+
     template = template
       .replace(/{{name}}/g, name)
       .replace(/{{content}}/g, codeContent);
