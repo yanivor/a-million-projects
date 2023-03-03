@@ -1,4 +1,8 @@
 const calcModulo = (cardsInRow, numCards) => {
+  if (cardsInRow > numCards) {
+    return cardsInRow - numCards;
+  }
+
   let multiplier = 1;
   while (multiplier * cardsInRow < numCards) {
     multiplier++;
@@ -10,7 +14,7 @@ const calcModulo = (cardsInRow, numCards) => {
     return modulo;
   }
 
-  return false;
+  return 0;
 };
 
 const fillCards = () => {
