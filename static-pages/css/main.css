@@ -70,6 +70,10 @@ header h4 {
   justify-content: space-between;
 }
 
+.blank-card {
+  width: 272px;
+}
+
 .card {
   display: block;
   width: 272px;
