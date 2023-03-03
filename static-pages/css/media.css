@@ -94,10 +94,11 @@
 
   .post .content {
     margin-top: 15px;
+    padding: 0px 10px;
   }
 
   .post .content p {
-    padding: 0px 10px 10px 10px;
+    padding: 0px 0px 10px 0px;
     font-size: 0.9em;
     line-height: 1.3em;
   }
@@ -107,12 +108,7 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code {
-    width: 85%;
-    margin-right: 10px;
-  }
-
-  .post .content div.pre-code pre {
+  .post .content pre.ql-syntax {
     font-size: 0.8em;
     line-height: 1.2em;
   }
@@ -129,7 +125,7 @@
     font-size: 1.1em;
   }
 
-  .post .content .soundcloud-embed {
+  .post .content .ql-video {
     width: 90%;
   }
 }
@@ -230,10 +226,11 @@
 
   .post .content {
     margin-top: 15px;
+    padding: 0px 10px;
   }
 
   .post .content p {
-    padding: 0px 10px 10px 10px;
+    padding: 0px 0px 10px 0px;
     font-size: 0.9em;
     line-height: 1.3em;
   }
@@ -243,12 +240,7 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code {
-    width: 85%;
-    margin-right: 10px;
-  }
-
-  .post .content div.pre-code pre {
+  .post .content pre.ql-syntax {
     font-size: 0.8em;
     line-height: 1.2em;
   }
@@ -265,7 +257,7 @@
     font-size: 1.1em;
   }
 
-  .post .content .soundcloud-embed {
+  .post .content .ql-video {
     width: 90%;
   }
 }
@@ -355,11 +347,11 @@
 
   .post .content {
     background: #00000055;
-    padding: 10px 0px;
+    padding: 10px 20px;
   }
 
   .post .content p {
-    padding: 5px 20px 15px 20px;
+    padding: 5px 0px 15px 0px;
     font-size: 1.3em;
     line-height: 1.3em;
   }
@@ -369,12 +361,7 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code {
-    width: 70%;
-    margin-right: 20px;
-  }
-
-  .post .content div.pre-code pre {
+  .post .content pre.ql-syntax {
     font-size: 1.1em;
     line-height: 1.4em;
   }
@@ -391,7 +378,7 @@
     font-size: 1.5em;
   }
 
-  .post .content .soundcloud-embed {
+  .post .content .ql-video {
     width: 70%;
   }
 }
@@ -481,11 +468,11 @@
 
   .post .content {
     background: #00000055;
-    padding: 10px 0px;
+    padding: 10px 20px;
   }
 
   .post .content p {
-    padding: 5px 20px 15px 20px;
+    padding: 5px 0px 15px 0px;
     font-size: 1.3em;
     line-height: 1.3em;
   }
@@ -495,12 +482,7 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code {
-    width: 70%;
-    margin-right: 20px;
-  }
-
-  .post .content div.pre-code pre {
+  .post .content pre.ql-syntax{
     font-size: 1.1em;
     line-height: 1.4em;
   }
@@ -517,7 +499,7 @@
     font-size: 1.5em;
   }
 
-  .post .content .soundcloud-embed {
+  .post .content .ql-video {
     width: 70%;
   }
 }

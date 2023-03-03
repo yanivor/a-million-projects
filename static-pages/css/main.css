@@ -135,16 +135,12 @@ header h4 {
   padding-right: 50px;
 }
 
-.post .content div.pre-code {
-  overflow: auto;
-  padding: 10px;
-  border: 1px solid #333333;
-}
-
-.post .content div.pre-code pre {
+.post .content pre.ql-syntax {
   direction: ltr;
   white-space: pre-wrap;
   color:#cccccc;
+  padding: 10px;
+  border: 1px solid #333333;
 }
 
 .post .content div.code {
