@@ -135,29 +135,6 @@ header h4 {
   padding-right: 50px;
 }
 
-.post .content div.pre-code {
-  overflow: auto;
-  padding: 10px;
-  border: 1px solid #333333;
-}
-
-.post .content div.pre-code pre {
-  direction: ltr;
-  white-space: pre-wrap;
-  color:#cccccc;
-}
-
-.post .content div.code {
-  direction: ltr;
-  overflow: auto;
-  padding: 10px;
-  color:rgb(212,212,212);
-  background-color:rgb(30,30,30);
-  font-family: "Droid Sans Mono", "monospace", "Droid Sans Fallback";
-  font-weight: normal;
-  white-space: pre-wrap;
-}
-
 .post .content > p > img {
   width: 800px;
 }
@@ -198,6 +175,29 @@ header h4 {
   margin: 30px 0px 20px 0px;
   border-bottom: 1px solid #cccccc55;
   padding-bottom: 8px;
+}
+
+div.pre-code {
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid #333333;
+}
+
+div.pre-code pre {
+  direction: ltr;
+  white-space: pre-wrap;
+  color:#cccccc;
+}
+
+div.code {
+  direction: ltr;
+  overflow: auto;
+  padding: 10px;
+  color:rgb(212,212,212);
+  background-color:rgb(30,30,30);
+  font-family: "Droid Sans Mono", "monospace", "Droid Sans Fallback";
+  font-weight: normal;
+  white-space: pre-wrap;
 }
 
 footer {

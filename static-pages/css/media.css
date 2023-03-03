@@ -108,18 +108,6 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code pre {
-    font-size: 0.8em;
-    line-height: 1.2em;
-  }
-
-  .post .content div.code {
-    width: 85%;
-    margin-right: 10px;
-    font-size: 0.8em;
-    line-height: 1.2em;
-  }
-
   .post .content h3 {
     padding: 10px 10px 20px 0px;
     font-size: 1.1em;
@@ -127,6 +115,16 @@
 
   .post .content .ql-video {
     width: 90%;
+  }
+
+  div.pre-code pre {
+    font-size: 0.8em;
+    line-height: 1.2em;
+  }
+
+  div.code {
+    font-size: 0.8em;
+    line-height: 1.2em;
   }
 }
 
@@ -240,18 +238,6 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code pre {
-    font-size: 0.8em;
-    line-height: 1.2em;
-  }
-
-  .post .content div.code {
-    width: 85%;
-    margin-right: 10px;
-    font-size: 0.8em;
-    line-height: 1.2em;
-  }
-
   .post .content h3 {
     padding: 10px 10px 20px 0px;
     font-size: 1.1em;
@@ -259,6 +245,16 @@
 
   .post .content .ql-video {
     width: 90%;
+  }
+
+  div.pre-code pre {
+    font-size: 0.8em;
+    line-height: 1.2em;
+  }
+
+  div.code {
+    font-size: 0.8em;
+    line-height: 1.2em;
   }
 }
 
@@ -361,18 +357,6 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code pre {
-    font-size: 1.1em;
-    line-height: 1.4em;
-  }
-
-  .post .content div.code {
-    width: 70%;
-    margin-right: 20px;
-    font-size: 1.1em;
-    line-height: 1.4em;
-  }
-
   .post .content h3 {
     padding: 20px 20px 20px 0px;
     font-size: 1.5em;
@@ -380,6 +364,16 @@
 
   .post .content .ql-video {
     width: 70%;
+  }
+
+  div.pre-code pre {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  div.code {
+    font-size: 1.1em;
+    line-height: 1.4em;
   }
 }
 
@@ -482,18 +476,6 @@
     line-height: 1.3em;
   }
 
-  .post .content div.pre-code pre {
-    font-size: 1.1em;
-    line-height: 1.4em;
-  }
-
-  .post .content div.code {
-    width: 70%;
-    margin-right: 20px;
-    font-size: 1.1em;
-    line-height: 1.4em;
-  }
-
   .post .content h3 {
     padding: 20px 20px 20px 0px;
     font-size: 1.5em;
@@ -501,5 +483,15 @@
 
   .post .content .ql-video {
     width: 70%;
+  }
+
+  div.pre-code pre {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  div.code {
+    font-size: 1.1em;
+    line-height: 1.4em;
   }
 }
