@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>code - mindwave-mobile-2-supercollider_1</title>
+</head>
+<body>
+  <div class="pre-code"><pre class="code-content">(
+x = OSCFunc( { | msg, time, addr, port |
+	var prescaler = 0.14;
+	var size = round((100 - msg[1]) * prescaler);
+	var start = round((50 - msg[2]) * prescaler);
+
+	~degree.source = Pxrand(Array.series(size: size, start: start, step: 1), inf);
+}, '/neuro' );
+)
+
+(
+~degree = PatternProxy(Pn(Pxrand(Array.series(size: 1, start: 0, step: 1), inf), inf));
+
+a = Pbind(
+	\scale, Scale.prometheus,
+	\degree, ~degree,
+	\dur, 0.17,
+	\amp, Pxrand([0, 0, 0.3, 0.2, 0.2, 0.5], inf),
+	\legato, Pxrand([0.5, 0.3, 0.4, 1, 0.2], inf)
+);
+a.play;
+)
+
+Scale.directory;</pre></div>
+</body>
+</html>

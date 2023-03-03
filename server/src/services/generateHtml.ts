@@ -129,3 +129,26 @@ export const generatePost = async (postData: any) => {
     console.log(err);
   }
 };
+
+export const generateCode = async (codeData: any) => {
+  const { _id, content, name, type } = codeData;
+
+  let codeContent = '';
+
+  if (type === 'color') {
+    codeContent = `<div class="code"><div class="code-content">${content}</div></div>`;
+  } else if (type === 'monochrome') {
+    codeContent = `<div class="pre-code"><pre class="code-content">${content}</pre></div>`;
+  }
+
+  try {
+    let template = await fs.readFile(sysPath.join(BASE_PATH, 'data/code.html'), { encoding: 'utf8' });
+    template = template
+      .replace(/{{name}}/g, name)
+      .replace(/{{content}}/g, codeContent);
+
+    await fs.writeFile(sysPath.join(BASE_PATH, `../../static-pages/post/code/${_id}.html`), template ,{ encoding: 'utf8' });
+  } catch (err) {
+    console.log(err);
+  }
+};
