@@ -87,7 +87,7 @@ export const generateIndex = async () => {
   const allCategories = await category.findMany({}, null, { order: 1 });
 
   const post = new crudPost(modelPost);
-  const allPosts = await post.findMany({ categoryId: { $ne: null } });
+  const allPosts = await post.findMany({ categoryId: { $ne: null }, display: true });
 
   allCategories.map(({
     _id,
