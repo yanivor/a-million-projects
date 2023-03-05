@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,38 +27,67 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>החלק הזה הוא המשך ישיר של החלק  הקודם ויעסוק בעיקר בטפסים. הסיבה העיקרית לכך שאני מפרק את הפוסטים לחלקים היא שאם הדף ארוך מדי ועמוס - בעיקר בתמונות, סרטונים וקטעי קוד - יש בעיות בעריכה והעורך של וויקס קורס.</p>
-<p>תיקונים ועדכונים</p>
-<p>עשיתי עוד כמה שינויים ונקיונות. את כל קבצי ה-constants שהיו מפוזרים בתיקיות השונות במערכת ריכזתי בתיקיה אחת constants תחת src. דבר נוסף, את הקריאות API עם  axios, שהיו כתובות בקובץ actions עצמו העברתי לקובץ api.js תחת services. אם ארצה בעתיד להשתמש בספריה אחרת ולא ב-axios, כך יהיה קל יותר לעשות את השינוי. בכל מקרה, זה הרבה יותר נקי ומסודר בצורה הזאת.</p>
-<p>הפונקציה getItems לפני התיקון:</p>
-<p>הפונקציה getItems אחרי התיקון:</p>
-<p>הפונקציה apiRequest נמצאת, כאמור, בקובץ נפרד.</p>
-<p>src/services/api.js</p>
-<p>אני בוחר האם לשלוח קריאת GET להבאת הנתונים, POST לשמירה של רשומה חדשה או PUT לעדכון רשומה - בבדיקת האובייקט data. אם data לא קיים, סימן שזה get. אם קיים ויש id - זה put. אחרת post. לא יודע אם אהבתי עד הסוף את מה שעשיתי פה אבל בינתיים זה מספיק טוב. סך הכל זה קוד קטן, נפרד מכל שאר הקוד ואפשר בקלות לשנות אותו בלי לעשות מהפכות בשאר המערכת.</p>
-<p>טפסים</p>
-<p>נתחיל עם ה-UI. אני מזכיר את מבנה עץ הרכיבים. יש לנו, תחת התיקיה components, תיקיית  Views עם רכיבים שלרוב יהיו מקושרים ל-route מסוים. דף משתמשים (Accounts), למשל, או דף פוסטים (Posts). הרכיבים הללו משתמשים ברכיב כללי יותר שאחראי להציג כותרת, טבלה וטופס - כרגע. הרכיב הוא Entity. הוא נמצא בתיקיית Views  ובהמשך אעביר אותו למקום מתאים יותר. אולי ל-Layout. אנחנו מתעסקים כרגע עם הרכיב Form.</p>
-<p>src/components/Views/Entity.js</p>
-<p>באמצעות ה-useSelector אני משתמש בערכים fields ו-selectedRow מה-store - ב-Entity ומעביר אותם כמאפיינים לרכיב Form. הפרמטר fields מחזיק את ההגדרות לשדות בטופס, לייבלים וכן הלאה. selectedRow הוא האובייקט של הפריט הנוכחי עליו עובדים כרגע. אני לא מעוניין לשנות את הערכים ישירות ברשימת תוצאות. כך אוכל לשחזר את המידע (בעזרת הכפתור reset, למשל) במידה והמשתמש התחרט.</p>
-<p>מאפיינים נוספים אותם אני מעביר לטופס הם הפונקציות fieldChanged, submitForm, resetForm, clearForm - שקוראות ל-action creators בהתאם. </p>
-<p>רכיב ה-Form נראה כך:</p>
-<p>src/components/Common/Form/index.js</p>
-<p>אני רץ על רשימת השדות ומייצר לכל אחד Group שמכיל לייבל וכרגע שדה טקסט פשוט לכולם. בהמשך אשכלל. יש ספריות מוכנות - redux-form ואחרות. אני מעוניין, בפרויקט הזה, לבנות מאפס.</p>
-<p><img src="https://static.wixstatic.com/media/17f292_9a00e566227842d48867f9f7fa86e774~mv2.png" /></p>
-<p>בכל שינוי ערך באחד השדות, נשלחת קריאה - דרך Entity - לאקשן FIELD_CHANGED עם הפרמטרים field (שם השדה) ו-value (הערך).</p>
-<p>src/store/actions/entities/index.js (החלק הרלוונטי)</p>
-<p>אני מעדכן את selectedRow עם הערך החדש לשדה המתאים - ב-reducer שמטפל באקשן המדובר:</p>
-<p>src/store/reducers/entities/main.js (החלק הרלוונטי)</p>
-<p>נתייחס לכפתורים Reset ו-New והפונקציות resetForm ו-clearForm - בהתאמה - ונעבור ישר ל-reducers.</p>
-<p>הפונקציה resetRowId אוספת את המידע על ה-row הנוכחי מרשימת הרשומות המלאה ומעדכנת את  selectedRow. אם הטופס היה ריק - במצב של הוספה ולא עדכון - ה-selectedRow יקבל אובייקט ריק. הפונקציה clearRowId מאפסת את selectedRow גם היא עם אובייקט ריק.</p>
-<p>בלחיצה על כפתור Submit ברכיב Form - נשלחת קריאה לפונקציה submitForm וממנה קריאה ל-saveItem שנמצאת בקובץ actions.</p>
-<p> כמו בכל פעולה אסינכרונית מהסוג הזה, אני פותח action ל-started - לפני הפעולה. action נוסף ל-succeeded - במידה והפעולה הצליחה. ו-action נוסף ל-failed. בשני המקרים, גם ב-getItems וגם ב-saveItem - במידה והקריאה לשרת הצליחה - אני קורא לפונקציה getProcessedItems שמחשבת שוב ומחזירה את מספרי השורות אותן צריך להציג על המסך בטבלה.</p>
-<p>נעבור ל-reducers.</p>
-<p>בשלושת המצבים יש עדכון של ה-saveState הרלוונטי. מעבר לזה, ב-saveItemSucceeded יש עדכון ל-selectedRow מהמידע (row) שהתקבל מהשרת ויש עדכון ל-rows עם ה-row החדש. </p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/lSOEOkROIx8" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>המשך בחלק הבא:</p>
-<p>מערכת ניהול - React - חלק 8</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-8">מערכת ניהול - React - חלק 8</a></p>
-
+          <p>החלק הזה הוא המשך ישיר של החלק הקודם ויעסוק בעיקר בטפסים.</p><p><br></p><h3>תיקונים ועדכונים</h3><p>עשיתי עוד כמה שינויים ונקיונות. את כל קבצי ה-constants שהיו מפוזרים בתיקיות השונות במערכת ריכזתי בתיקיה אחת constants תחת src. דבר נוסף, את הקריאות API עם axios, שהיו כתובות בקובץ actions עצמו העברתי לקובץ api.js תחת services. אם ארצה בעתיד להשתמש בספריה אחרת ולא ב-axios, כך יהיה קל יותר לעשות את השינוי. בכל מקרה, זה הרבה יותר נקי ומסודר בצורה הזאת.</p><p><br></p><p>הפונקציה getItems לפני התיקון:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404a8b4a39177497b8315b3.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה getItems אחרי התיקון:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404a903a39177497b8315b4.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה apiRequest נמצאת, כאמור, בקובץ נפרד.</p><p>src/services/api.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404a94ba39177497b8315b5.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אני בוחר האם לשלוח קריאת GET להבאת הנתונים, POST לשמירה של רשומה חדשה או PUT לעדכון רשומה - בבדיקת האובייקט data. אם data לא קיים, סימן שזה get. אם קיים ויש id - זה put. אחרת post. לא יודע אם אהבתי עד הסוף את מה שעשיתי פה אבל בינתיים זה מספיק טוב. סך הכל זה קוד קטן, נפרד מכל שאר הקוד ואפשר בקלות לשנות אותו בלי לעשות מהפכות בשאר המערכת.</p><p><br></p><h3>טפסים</h3><p>נתחיל עם ה-UI. אני מזכיר את מבנה עץ הרכיבים. יש לנו, תחת התיקיה components, תיקיית Views עם רכיבים שלרוב יהיו מקושרים ל-route מסוים. דף משתמשים (Accounts), למשל, או דף פוסטים (Posts). הרכיבים הללו משתמשים ברכיב כללי יותר שאחראי להציג כותרת, טבלה וטופס - כרגע. הרכיב הוא Entity. הוא נמצא בתיקיית Views ובהמשך אעביר אותו למקום מתאים יותר. אולי ל-Layout. אנחנו מתעסקים כרגע עם הרכיב Form.</p><p><br></p><p>src/components/Views/Entity.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404a997a39177497b8315b6.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>באמצעות ה-useSelector אני משתמש בערכים fields ו-selectedRow מה-store - ב-Entity ומעביר אותם כמאפיינים לרכיב Form. הפרמטר fields מחזיק את ההגדרות לשדות בטופס, לייבלים וכן הלאה. selectedRow הוא האובייקט של הפריט הנוכחי עליו עובדים כרגע. אני לא מעוניין לשנות את הערכים ישירות ברשימת תוצאות. כך אוכל לשחזר את המידע (בעזרת הכפתור reset, למשל) במידה והמשתמש התחרט.</p><p><br></p><p>מאפיינים נוספים אותם אני מעביר לטופס הם הפונקציות fieldChanged, submitForm, resetForm, clearForm - שקוראות ל-action creators בהתאם.</p><p><br></p><p>רכיב ה-Form נראה כך:</p><p>src/components/Common/Form/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404aa05a39177497b8315b7.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אני רץ על רשימת השדות ומייצר לכל אחד Group שמכיל לייבל וכרגע שדה טקסט פשוט לכולם. בהמשך אשכלל. יש ספריות מוכנות - redux-form ואחרות. אני מעוניין, בפרויקט הזה, לבנות מאפס.</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_9a00e566227842d48867f9f7fa86e774~mv2.png"></p><p><br></p><p>בכל שינוי ערך באחד השדות, נשלחת קריאה - דרך Entity - לאקשן FIELD_CHANGED עם הפרמטרים field (שם השדה) ו-value (הערך).</p><p><br></p><p>src/store/actions/entities/index.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404aa67a39177497b8315b8.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אני מעדכן את selectedRow עם הערך החדש לשדה המתאים - ב-reducer שמטפל באקשן המדובר:</p><p>src/store/reducers/entities/main.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404aa95a39177497b8315b9.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נתייחס לכפתורים Reset ו-New והפונקציות resetForm ו-clearForm - בהתאמה - ונעבור ישר ל-reducers.</p><p>src/store/reducers/entities/main.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404ab04a39177497b8315ba.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה resetRowId אוספת את המידע על ה-row הנוכחי מרשימת הרשומות המלאה ומעדכנת את selectedRow. אם הטופס היה ריק - במצב של הוספה ולא עדכון - ה-selectedRow יקבל אובייקט ריק. הפונקציה clearRowId מאפסת את selectedRow גם היא עם אובייקט ריק.</p><p><br></p><p>בלחיצה על כפתור Submit ברכיב Form - נשלחת קריאה לפונקציה submitForm וממנה קריאה ל-saveItem שנמצאת בקובץ actions.</p><p>src/store/actions/entities/index.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404ab86a39177497b8315bb.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כמו בכל פעולה אסינכרונית מהסוג הזה, אני פותח action ל-started - לפני הפעולה. action נוסף ל-succeeded - במידה והפעולה הצליחה. ו-action נוסף ל-failed. בשני המקרים, גם ב-getItems וגם ב-saveItem - במידה והקריאה לשרת הצליחה - אני קורא לפונקציה getProcessedItems שמחשבת שוב ומחזירה את מספרי השורות אותן צריך להציג על המסך בטבלה.</p><p><br></p><p>נעבור ל-reducers.</p><p>src/store/reducers/entities/main.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404abfba39177497b8315bc.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>בשלושת המצבים יש עדכון של ה-saveState הרלוונטי. מעבר לזה, ב-saveItemSucceeded יש עדכון ל-selectedRow מהמידע (row) שהתקבל מהשרת ויש עדכון ל-rows עם ה-row החדש.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/lSOEOkROIx8" height="416" width="800"></iframe><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-8" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 8</a></p><p><br></p>
         </div>
       </div>
     </div>

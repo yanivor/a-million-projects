@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,35 +27,43 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>במהלך החלקים הקודמים בניתי את השלד של המערכת - לעיתים בצורה טיפה מלוכלכת ובהמשך ניקיתי. היו באגים ותיקנתי. אני מזכיר שמה שנכתב כאן הוא תיעוד של בניית מערכת כזאת מאפס וזהו לא מדריך. אני בכוונת תחילה משאיר את הלכלוך והבאגים משום שזו הצורה הטבעית שבה כתבתי את הקוד ובהמשך שיפרתי. התהליך הזה יכול ללמד המון. הוא מראה, בין היתר, למה ואיך כתבו ספריות, כלים או מתודות שונות שקשורות בנושא. דבר נוסף, המערכת - כרגע, עדיין בשלב שאפשר ללוש ולעצב אותה. לשנות שיטות עבודה וכו'.</p>
-<p>בחזרה למערכת עצמה. את המידע מהשרת - רשימת חשבונות (accounts), למשל - אני מקבל בצורת מערך של אובייקטים - ובחלקים הקודמים אפשר לראות שאני משתמש במערך האובייקטים הזה, כמו שהוא, גם ב-state. זהו המערך rows. ההעתק שלו - המערך המסונן - filteredRows גם הוא נשאר בצורת מערך ב-state. על שני המערכים הללו אני מבצע פעולות שונות, כמו למשל map, reduce, filter, sort, slice וכן הלאה.</p>
-<p>כמה בעיות בדרך הזאת. דבר ראשון, עצם השימוש במערך filteredRows - יש כאן כפילות של מידע, גם אם חלקית. לקחתי בחשבון שמשום שסביר להניח שאשתמש במערך הזה כדי להציג עמוד אחד בטבלה, זה לא יהיה כל כך נורא אם תהיה כפילות של 100 שורות, לצורך העניין - אבל זה לא מוצא חן בעיניי, בכל מקרה. בעיה נוספת, כשנגיע למילוי טופס ונרצה לעדכן אובייקט ספציפי במערך, לפי id, למשל - נצטרך לבצע איטרציה על כל המערך ולסנן לפי המזהה. האיטרציות הללו יכולות להיות מאוד יקרות מבחינה חישובית. ראיתי ועבדתי עם מערכות ריאקט שעובדות עם מערכים. זאת גם דרך - פחות מקובלת ויעילה, כנראה.</p>
-<p>לכן, עשיתי שינוי רציני בקוד. שיניתי את rows ממערך לאובייקט ואת שאר הפונקציונליות בהתאם. נעבור בהמשך על הקוד שקשור בעניין הזה ואסביר. דבר נוסף,  את כל נושא האותנטיקציה והניתוב, שהוזכרו ב-מערכת ניהול - React - חלק 1 העברתי לטיפול ה-Redux.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1">מערכת ניהול - React - חלק 1</a></p>
-<p>על מנת לעשות סדר בדברים, אעשה מעבר מהיר על המבנה והקוד של המערכת כולה.</p>
-<p>מבנה עץ התיקיות</p>
-<p>התיקיה src היא התיקיה הראשית ומתחתיה שאר האפליקציה, העץ נראה כך:</p>
-<p>הרכיב הראשי הוא App ולאחר נקיונות ושיפוצים הוא נראה כך:</p>
-<p>src/app/App.js</p>
-<p>הרכיב הבא הוא CustomRoute. אחראי על ניתוב הדפדפן לאחר כניסה למערכת או לאחר ריענון הדף על-פי תוצאות אימות המשתמש וההרשאות שלו. קודם לכן, כתבתי אותו בשימוש עם hooks והעברת פונקציות ומאפיינים לרכיבים. תיקנתי וכעת הוא מחובר ל-store.</p>
-<p>src/app/CustomRoute.js</p>
-<p>האובייקט ב-state שאחראי על הניתובים נקרא router ויש לו מאפיין שנקרא routeState אשר יכול להיות באחד משלושת המצבים - כפי שהרחבתי על הנושא בחלק: מערכת ניהול - React - חלק 1. </p>
-<p>1. מצב INIT: המצב ההתחלתי או במקרה שה-JWT token  לא תקין. במצב הזה הרכיב שירונדר יהיה ה-Loading.</p>
-<p>2. מצב REDIRECT: במקרה שה-JWT token תקין ו-redirect הוא true. הרכיב שירונדר יהיה רכיב Redirect שיעשה העברה ל-root (/). אני עושה redirect כשה-token מופיע ב-URL ואני רוצה "לנקות" את שורת הכתובת בדפדפן.</p>
-<p>3. מצב ROUTE: במקרה שה-JWT token תקין ואין העברה. הרכיב שירונדר יהיה רכיב Switch שיכיל Routes שונים לפי הדפים במערכת.</p>
-<p>הפונקציה handleAuth - שנקראת בזמן טעינת הרכיב CustomRoute  - היא action creator שנמצא בתיקיית האקשנים.</p>
-<p>src/store/actions/router/index.js</p>
-<p>אז דבר ראשון יש קריאה ל-fetchToken שמנסה לאסוף את ה-JWT Token מה-localStorage ומה-URL. אם היה ב-localStorage, מחזירה ROUTE. אם היה ב-URL, שומרת ב-localStorage ומחזירה REDIRECT. אם JWT לא נמצא, מחזירה INIT.</p>
-<p>אם fetchToken החזירה INIT, יש dispatch של verifyTokenFailure. אחרת, נקרא האקשן verifyTokenStarted. הן כרגע לא עושות הרבה חוץ מלהחזיר את ה-state. </p>
-<p>בשלב הבא, אני שולח קריאת verify לשרת auth כשה-JWT נמצא ב-header. אם האימות נכשל, יש קריאה ל-verifyTokenFailure, כמו קודם לכן. אם האימות עבר בהצלחה, יש קריאה לאקשן verifyTokenSuccess עם תוצאת ה-fetchToken במשתנה routeState. </p>
-<p>נעבור ל-reducers.</p>
-<p>src/store/reducers/router/index.js</p>
-<p>src/store/reducers/router/main.js</p>
-<p>ברגע שה-state שב-routeState משתנה, הדפדפן מנתב בהתאם. כל זה קורה ב-CustomRoute.</p>
-<p>המשך בחלק הבא:</p>
-<p>מערכת ניהול - React - חלק 6</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-6">מערכת ניהול - React - חלק 6</a></p>
-
+          <p>במהלך החלקים הקודמים בניתי את השלד של המערכת - לעיתים בצורה טיפה מלוכלכת ובהמשך ניקיתי. היו באגים ותיקנתי. אני מזכיר שמה שנכתב כאן הוא תיעוד של בניית מערכת כזאת מאפס וזהו לא מדריך. אני בכוונת תחילה משאיר את הלכלוך והבאגים משום שזו הצורה הטבעית שבה כתבתי את הקוד ובהמשך שיפרתי. התהליך הזה יכול ללמד המון. הוא מראה, בין היתר, למה ואיך כתבו ספריות, כלים או מתודות שונות שקשורות בנושא. דבר נוסף, המערכת - כרגע, עדיין בשלב שאפשר ללוש ולעצב אותה. לשנות שיטות עבודה וכו'.</p><p><br></p><p>בחזרה למערכת עצמה. את המידע מהשרת - רשימת חשבונות (accounts), למשל - אני מקבל בצורת מערך של אובייקטים - ובחלקים הקודמים אפשר לראות שאני משתמש במערך האובייקטים הזה, כמו שהוא, גם ב-state. זהו המערך rows. ההעתק שלו - המערך המסונן - filteredRows גם הוא נשאר בצורת מערך ב-state. על שני המערכים הללו אני מבצע פעולות שונות, כמו למשל map, reduce, filter, sort, slice וכן הלאה.</p><p><br></p><p>כמה בעיות בדרך הזאת. דבר ראשון, עצם השימוש במערך filteredRows - יש כאן כפילות של מידע, גם אם חלקית. לקחתי בחשבון שמשום שסביר להניח שאשתמש במערך הזה כדי להציג עמוד אחד בטבלה, זה לא יהיה כל כך נורא אם תהיה כפילות של 100 שורות, לצורך העניין - אבל זה לא מוצא חן בעיניי, בכל מקרה. בעיה נוספת, כשנגיע למילוי טופס ונרצה לעדכן אובייקט ספציפי במערך, לפי id, למשל - נצטרך לבצע איטרציה על כל המערך ולסנן לפי המזהה. האיטרציות הללו יכולות להיות מאוד יקרות מבחינה חישובית. ראיתי ועבדתי עם מערכות ריאקט שעובדות עם מערכים. זאת גם דרך - פחות מקובלת ויעילה, כנראה.</p><p><br></p><p>לכן, עשיתי שינוי רציני בקוד. שיניתי את rows ממערך לאובייקט ואת שאר הפונקציונליות בהתאם. נעבור בהמשך על הקוד שקשור בעניין הזה ואסביר. דבר נוסף, את כל נושא האותנטיקציה והניתוב, שהוזכרו ב-<a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 1</a> העברתי לטיפול ה-Redux.</p><p><br></p><p>על מנת לעשות סדר בדברים, אעשה מעבר מהיר על המבנה והקוד של המערכת כולה.</p><p><br></p><h3>מבנה עץ התיקיות</h3><p>התיקיה src היא התיקיה הראשית ומתחתיה שאר האפליקציה, העץ נראה כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048f59a39177497b8315a0.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הרכיב הראשי הוא App ולאחר נקיונות ושיפוצים הוא נראה כך:</p><p>src/app/App.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048faba39177497b8315a1.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הרכיב הבא הוא CustomRoute. אחראי על ניתוב הדפדפן לאחר כניסה למערכת או לאחר ריענון הדף על-פי תוצאות אימות המשתמש וההרשאות שלו. קודם לכן, כתבתי אותו בשימוש עם hooks והעברת פונקציות ומאפיינים לרכיבים. תיקנתי וכעת הוא מחובר ל-store.</p><p><br></p><p>src/app/CustomRoute.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64049060a39177497b8315a2.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>האובייקט ב-state שאחראי על הניתובים נקרא router ויש לו מאפיין שנקרא routeState אשר יכול להיות באחד משלושת המצבים - כפי שהרחבתי על הנושא בחלק: <a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 1</a>.</p><p><br></p><p>1. מצב INIT: המצב ההתחלתי או במקרה שה-JWT token לא תקין. במצב הזה הרכיב שירונדר יהיה ה-Loading.</p><p>2. מצב REDIRECT: במקרה שה-JWT token תקין ו-redirect הוא true. הרכיב שירונדר יהיה רכיב Redirect שיעשה העברה ל-root (/). אני עושה redirect כשה-token מופיע ב-URL ואני רוצה "לנקות" את שורת הכתובת בדפדפן.</p><p>3. מצב ROUTE: במקרה שה-JWT token תקין ואין העברה. הרכיב שירונדר יהיה רכיב Switch שיכיל Routes שונים לפי הדפים במערכת.</p><p><br></p><p>הפונקציה handleAuth - שנקראת בזמן טעינת הרכיב CustomRoute - היא action creator שנמצא בתיקיית האקשנים.</p><p><br></p><p>src/store/actions/router/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640490fba39177497b8315a3.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אז דבר ראשון יש קריאה ל-fetchToken שמנסה לאסוף את ה-JWT Token מה-localStorage ומה-URL. אם היה ב-localStorage, מחזירה ROUTE. אם היה ב-URL, שומרת ב-localStorage ומחזירה REDIRECT. אם JWT לא נמצא, מחזירה INIT.</p><p><br></p><p>אם fetchToken החזירה INIT, יש dispatch של verifyTokenFailure. אחרת, נקרא האקשן verifyTokenStarted. הן כרגע לא עושות הרבה חוץ מלהחזיר את ה-state.</p><p><br></p><p>בשלב הבא, אני שולח קריאת verify לשרת auth כשה-JWT נמצא ב-header. אם האימות נכשל, יש קריאה ל-verifyTokenFailure, כמו קודם לכן. אם האימות עבר בהצלחה, יש קריאה לאקשן verifyTokenSuccess עם תוצאת ה-fetchToken במשתנה routeState.</p><p><br></p><p>נעבור ל-reducers.</p><p>src/store/reducers/router/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64049175a39177497b8315a4.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/store/reducers/router/main.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640491c1a39177497b8315a5.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ברגע שה-state שב-routeState משתנה, הדפדפן מנתב בהתאם. כל זה קורה ב-CustomRoute.</p><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-6" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 6</a></p>
         </div>
       </div>
     </div>

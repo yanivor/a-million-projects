@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,29 +27,73 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>בחלק זה נמשיך עם הרכיב החדש שיצרתי, שמיועד לעריכת פוסטים ונקרא gridEditor. אגב, את ההשראה לקחתי מהעורך פוסטים  של וויקס, איתו אני משתמש כרגע. הרעיון הוא שהדף מחולק מראש לשורות וכשמקליקים על שורה נפתח toolbar עם אפשרויות עריכה שונות. אפשרות לכתוב טקסט, להוסיף תמונה, לשתף סרטון, קישורים וכן הלאה. ברגע שבוחרים בכתיבת טקטס, יפתח חלון לעריכת טקסט ובסיום העריכה הוא יופיע  בשורה. אם בחרנו תמונה, היא תופיע בשורה עליה הקלקנו וכן הלאה.</p>
-<p>בינתיים יש לנו כותרת, שורות אותן ניתן לבחור ו-toolbar. כמו כן, חיברתי את הקוד ל-Redux. נעבור על הקוד.</p>
-<p>src/components/Common/GridEditor/index.js</p>
-<p>src/components/Common/GridEditor/toolbar.js</p>
-<p>src/components/Layout/Entity.js (החלק הרלוונטי)</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/T13paqzyUQ4" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>עדכון 28/3/2020</p>
-<p>להזכירכם, את הבלוג ומערכת הניהול שמפורטטת כאן אני כותב בזמני הפנוי לכן לא נגעתי בקוד תקופה מסויימת. בכל אופן נמשיך.</p>
-<p>הוספתי רכיב, חלון עריכה - EditForm -  כרגע עם textarea פשוט וכתבתי את הפונקציונליות שקשורה בכך. עדיין אין שמירה של הנתונים.</p>
-<p>src/components/Common/GridEditor/editForm.js</p>
-<p>את הרכיב הוספתי ל-GridEditor.</p>
-<p>והחלק הרלוונטי ברכיב Entity. המאפיינים: editFormChanged, editFormSubmitted ו-editFormCanceled.</p>
-<p>editFormChanged, editFormSubmitted ו-editFormCanceled.</p>
-<p>src/components/Layout/Entity.js</p>
-<p>ה-actions שקשורים ל-gridEditor נראים כך:</p>
-<p>src/store/actions/entities/gridEditor/index.js</p>
-<p>src/store/actions/entities/gridEditor/creators.js</p>
-<p>מבחינת reducers, הקוד נראה כך. פירוט בהמשך.</p>
-<p>src/store/reducers/entities/index.js</p>
-<p>src/store/reducers/entities/initialState/common.js</p>
-<p>src/store/reducers/entities/main/gridEditor.js</p>
-<p>המשך יבוא...</p>
-
+          <p>בחלק זה נמשיך עם הרכיב החדש שיצרתי, שמיועד לעריכת פוסטים ונקרא gridEditor. אגב, את ההשראה לקחתי מהעורך פוסטים של וויקס, איתו אני משתמש כרגע. הרעיון הוא שהדף מחולק מראש לשורות וכשמקליקים על שורה נפתח toolbar עם אפשרויות עריכה שונות. אפשרות לכתוב טקסט, להוסיף תמונה, לשתף סרטון, קישורים וכן הלאה. ברגע שבוחרים בכתיבת טקטס, יפתח חלון לעריכת טקסט ובסיום העריכה הוא יופיע בשורה. אם בחרנו תמונה, היא תופיע בשורה עליה הקלקנו וכן הלאה.</p><p><br></p><p>בינתיים יש לנו כותרת, שורות אותן ניתן לבחור ו-toolbar. כמו כן, חיברתי את הקוד ל-Redux. נעבור על הקוד.</p><p><br></p><p>src/components/Common/GridEditor/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b03da39177497b8315c4.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/components/Common/GridEditor/toolbar.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b06ba39177497b8315c5.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/components/Layout/Entity.js (החלק הרלוונטי)</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b09da39177497b8315c6.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/T13paqzyUQ4" height="416" width="800"></iframe><p><br></p><p><u>עדכון 28/3/2020</u></p><p>להזכירכם, את הבלוג ומערכת הניהול שמפורטטת כאן אני כותב בזמני הפנוי לכן לא נגעתי בקוד תקופה מסויימת. בכל אופן נמשיך.</p><p><br></p><p>הוספתי רכיב, חלון עריכה - EditForm - כרגע עם textarea פשוט וכתבתי את הפונקציונליות שקשורה בכך. עדיין אין שמירה של הנתונים.</p><p><br></p><p>src/components/Common/GridEditor/editForm.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b0fea39177497b8315c7.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>את הרכיב הוספתי ל-GridEditor.</p><p>src/components/Common/GridEditor/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b153a39177497b8315c8.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>והחלק הרלוונטי ברכיב Entity. המאפיינים: editFormChanged, editFormSubmitted ו-editFormCanceled.</p><p><br></p><p>src/components/Layout/Entity.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b1b1a39177497b8315c9.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ה-actions שקשורים ל-gridEditor נראים כך:</p><p>src/store/actions/entities/gridEditor/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b22fa39177497b8315ca.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/store/actions/entities/gridEditor/creators.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b266a39177497b8315cb.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>מבחינת reducers, הקוד נראה כך. פירוט בהמשך.</p><p>src/store/reducers/entities/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b29ca39177497b8315cc.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/store/reducers/entities/initialState/common.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b2cca39177497b8315cd.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/store/reducers/entities/main/gridEditor.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404b319a39177497b8315ce.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p><br></p>
         </div>
       </div>
     </div>

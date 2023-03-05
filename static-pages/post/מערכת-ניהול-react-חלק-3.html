@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,45 +27,67 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>סיימתי עם הדפדוף, אסביר איך זה עובד. נתחיל מלמטה, מהרכיב לדפדוף שהוזכר קודם לכן.</p>
-<p>src/components/Common/Table/PagingBar.js</p>
-<p>הרכיב הזה לא משתמש ב-state ולא ב-store. בכל אירוע שמתרחש ברכיבים שמרכיבים אותו - נשלחת קריאה לפונקציה שהועברה אליו דרך Table ו-Entity - הפונקציה changePage. הפונקציה הזאת מקבלת ערכים משני סוגים:</p>
-<p>- או constant מהערכים: GO_TO_FIRST_PAGE,  GO_TO_PREV_PAGE וכן הלאה. </p>
-<p>- או ערך מספרי שמציין את מספר העמוד</p>
-<p>לסוג הראשון אחראים הכפתורים בדפדוף ולסוג השני אחראים שדה הטקסט וה-dropdown.</p>
-<p><img src="https://static.wixstatic.com/media/17f292_6eb6d8bfd3b441539bbd06c1a11ed38a~mv2.png" /></p>
-<p>יש תיקון קטן שארצה לעשות בהמשך וזה להעביר את יצירת המערך של ה-PageDropdown ל-store - ולהעביר ל-PagingBar מערך מוכן.</p>
-<p>את רכיב הטבלה ניקיתי.</p>
-<p>src/components/Common/Table/index.js</p>
-<p>ורכיב ה-Entity נראה כך:</p>
-<p>src/components/Views/Entity.js</p>
-<p>כשהרכיב נטען, נשלחת קריאה ל-getEntities ולאחר שרשרת של אירועים, ביניהם קריאה לשרת API והבאת הנתונים ממנו - ה-store מתמלא במידע. אני מביא מבסיס הנתונים את כל טבלת ה-accounts לדפדפן. חשוב לזכור.</p>
-<p>מהסיבה הזאת אני מעביר לטבלה רק את המידע של העמוד הנוכחי - ראה slice. יכול להיות שבהמשך אעביר את החישוב הזה ואת החישובים האחרים שמופיעים כאן ל-reducer ואז הקובץ הזה יהיה נקי ומסודר יותר.</p>
-<p>אני מעביר לטבלה פרמטרים נוספים, ביניהם הפונקציה changePage.</p>
-<p>ל-accounts ול-posts הוספתי action של CHANGE_PAGE שמעביר ל-reducer מחרוזת (דף הבא, דף קודם וכו') או מספר עמוד ספציפי.</p>
-<p>src/actions/accounts/index.js</p>
-<p>ואת ה-reducer עדכנתי בצורה כזאת:</p>
-<p>src/reducers/accounts/index.js</p>
-<p>הפונקציה getPage נמצאת בקובץ helper נפרד ומבצעת את החישובים.</p>
-<p>src/reducers/helpers.js</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/fy3kzzcY4dI" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>אז עשיתי צמצומים, נקיונות ושיפוצים - והעברתי קוד מפה לשם אבל יש משהו שלא מוצא חן בעיניי. העובדה שפתחתי תיקיות וקבצים נפרדים ל-accounts ול-posts - ב-actions וב-reducers. מדובר על שתי ישויות שיש לכל אחת בסיס נתונים, שרת API ומבחינת UI - שתיהן צריכות טבלה, וטופס להוספה ועדכון. סביר להניח שלכל אחת, בנוסף לדברים המשותפים, יהיו רכיבי UI שונים ופונקציונליות מעט שונה בהתאם. בכל מקרה, רוב הקוד הולך להיות זהה. כבר עכשיו, אם משווים את ה-reducer-ים של שתיהן, זה נראה כמו שכפול קוד. לא תקין.</p>
-<p>לכן, הדבר הבא שאעשה זה אפטר משכפולי הקוד האלה ואשתמש כמה שיותר ב-Entity הכללי. </p>
-<p>לאחר עבודה על המערכת, תיקנתי מה שרציתי. מחקתי את ה-accounts וה-posts מה-reducers וה-actions והעברתי את כל הקוד לטיפול ל-Entity. ה-initialsState כעת מורכב מהאובייקטים של שתי הישויות הללו. הוא נראה כך:</p>
-<p>src/reducers/entity/initialState.js</p>
-<p>הקובץ actions של Entity נראה כך:</p>
-<p>src/actions/entity/index.js</p>
-<p>הקובץ reducers של Entity נראה כך:</p>
-<p>src/reducers/entity/index.js</p>
-<p>האזכורים הנוספים של accounts ו-posts במערכת הם רכיבי Views (כפי שהחלטתי לקרוא להם) שמכילים רכיב Entity עם המאפיין entity שיכול להיות, כרגע, accounts או posts.</p>
-<p>רכיב ה-View של דף ה-Accounts, לדוגמא, נראה כך:</p>
-<p>src/components/Views/Accounts.js</p>
-<p>השימוש בשם המאפיין entity ברכיב שנקרא Entity - לא כל כך יפה, היה עדיף type או משהו אחר. type תפוס בהמשך. לא נורא, נתגבר על זה.</p>
-<p>אני רוצה להדגיש את העובדה שאין קשר ישיר בין הדף Accounts וה-routes שמובילים לדף - לבין הישות accounts. אני יכול להשתמש ברכיב Entity עם accounts ב-entity - בכל מקום במערכת.</p>
-<p>המשך בחלק הבא:</p>
-<p>מערכת ניהול - React - חלק 4</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-4">מערכת ניהול - React - חלק 4</a></p>
-
+          <p>סיימתי עם הדפדוף, אסביר איך זה עובד. נתחיל מלמטה, מהרכיב לדפדוף שהוזכר קודם לכן.</p><p><br></p><p>src/components/Common/Table/PagingBar.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640474c1a39177497b831581.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הרכיב הזה לא משתמש ב-state ולא ב-store. בכל אירוע שמתרחש ברכיבים שמרכיבים אותו - נשלחת קריאה לפונקציה שהועברה אליו דרך Table ו-Entity - הפונקציה changePage. הפונקציה הזאת מקבלת ערכים משני סוגים:</p><p>- או constant מהערכים: GO_TO_FIRST_PAGE, GO_TO_PREV_PAGE וכן הלאה.</p><p>- או ערך מספרי שמציין את מספר העמוד</p><p><br></p><p>לסוג הראשון אחראים הכפתורים בדפדוף ולסוג השני אחראים שדה הטקסט וה-dropdown.</p><p><img src="https://static.wixstatic.com/media/17f292_6eb6d8bfd3b441539bbd06c1a11ed38a~mv2.png"></p><p><br></p><p>יש תיקון קטן שארצה לעשות בהמשך וזה להעביר את יצירת המערך של ה-PageDropdown ל-store - ולהעביר ל-PagingBar מערך מוכן.</p><p><br></p><p>את רכיב הטבלה ניקיתי.</p><p>src/components/Common/Table/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640475eaa39177497b831584.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ורכיב ה-Entity נראה כך:</p><p>src/components/Views/Entity.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640482cca39177497b831585.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כשהרכיב נטען, נשלחת קריאה ל-getEntities ולאחר שרשרת של אירועים, ביניהם קריאה לשרת API והבאת הנתונים ממנו - ה-store מתמלא במידע. אני מביא מבסיס הנתונים את כל טבלת ה-accounts לדפדפן. חשוב לזכור.</p><p><br></p><p>מהסיבה הזאת אני מעביר לטבלה רק את המידע של העמוד הנוכחי - ראה slice. יכול להיות שבהמשך אעביר את החישוב הזה ואת החישובים האחרים שמופיעים כאן ל-reducer ואז הקובץ הזה יהיה נקי ומסודר יותר.</p><p><br></p><p>אני מעביר לטבלה פרמטרים נוספים, ביניהם הפונקציה changePage.</p><p><br></p><p>ל-accounts ול-posts הוספתי action של CHANGE_PAGE שמעביר ל-reducer מחרוזת (דף הבא, דף קודם וכו') או מספר עמוד ספציפי.</p><p><br></p><p>src/actions/accounts/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048320a39177497b831586.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ואת ה-reducer עדכנתי בצורה כזאת:</p><p>src/reducers/accounts/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048362a39177497b831587.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה getPage נמצאת בקובץ helper נפרד ומבצעת את החישובים.</p><p><br></p><p>src/reducers/helpers.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640483aca39177497b831588.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/fy3kzzcY4dI" height="416" width="800"></iframe><p><br></p><p>אז עשיתי צמצומים, נקיונות ושיפוצים - והעברתי קוד מפה לשם אבל יש משהו שלא מוצא חן בעיניי. העובדה שפתחתי תיקיות וקבצים נפרדים ל-accounts ול-posts - ב-actions וב-reducers. מדובר על שתי ישויות שיש לכל אחת בסיס נתונים, שרת API ומבחינת UI - שתיהן צריכות טבלה, וטופס להוספה ועדכון. סביר להניח שלכל אחת, בנוסף לדברים המשותפים, יהיו רכיבי UI שונים ופונקציונליות מעט שונה בהתאם. בכל מקרה, רוב הקוד הולך להיות זהה. כבר עכשיו, אם משווים את ה-reducer-ים של שתיהן, זה נראה כמו שכפול קוד. לא תקין.</p><p><br></p><p>לכן, הדבר הבא שאעשה זה אפטר משכפולי הקוד האלה ואשתמש כמה שיותר ב-Entity הכללי.</p><p><br></p><p>לאחר עבודה על המערכת, תיקנתי מה שרציתי. מחקתי את ה-accounts וה-posts מה-reducers וה-actions והעברתי את כל הקוד לטיפול ל-Entity. ה-initialsState כעת מורכב מהאובייקטים של שתי הישויות הללו. הוא נראה כך:</p><p>src/reducers/entity/initialState.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048416a39177497b831589.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הקובץ actions של Entity נראה כך:</p><p>src/actions/entity/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048459a39177497b83158a.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הקובץ reducers של Entity נראה כך:</p><p>src/reducers/entity/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640484a1a39177497b83158b.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>האזכורים הנוספים של accounts ו-posts במערכת הם רכיבי Views (כפי שהחלטתי לקרוא להם) שמכילים רכיב Entity עם המאפיין entity שיכול להיות, כרגע, accounts או posts.</p><p><br></p><p>רכיב ה-View של דף ה-Accounts, לדוגמא, נראה כך:</p><p>src/components/Views/Accounts.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640484e2a39177497b83158c.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>השימוש בשם המאפיין entity ברכיב שנקרא Entity - לא כל כך יפה, היה עדיף type או משהו אחר. type תפוס בהמשך. לא נורא, נתגבר על זה.</p><p><br></p><p>אני רוצה להדגיש את העובדה שאין קשר ישיר בין הדף Accounts וה-routes שמובילים לדף - לבין הישות accounts. אני יכול להשתמש ברכיב Entity עם accounts ב-entity - בכל מקום במערכת.</p><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-4" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 4</a></p><p><br></p>
         </div>
       </div>
     </div>

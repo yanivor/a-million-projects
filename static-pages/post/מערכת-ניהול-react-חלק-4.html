@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,69 +27,121 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>בחלק זה אטפל, בין היתר, במיונים שאפשר לבצע בטבלה - בעת לחיצה על כותרות העמודות.</p>
-<p>לפני כן, עשיתי כמה תיקונים שקשורים ל-reducers. אפרט על התיקון ונחזור למיונים.</p>
-<p>מיון</p>
-<p>לצורך תזכורת, כך נראה קובץ ה-initialState:</p>
-<p>src/reducers/entity/initialState.js</p>
-<p>קובץ ה-reducers של Entity - לפני התיקון ולפני שהוספתי טיפול באקשן SORT_TABLE - נראה כך:</p>
-<p>src/reducers/entity/index.js</p>
-<p>יש פה בעיית scope. לכל case יש את הפונקציונליות שלו עם המשתנים שלו וכן הלאה אך מכיוון שכולם נמצאים באותו scope שהוא הפונקציה entity - יש אפשרות מאוד סבירה שיהיו הגדרות כפולות של משתנים וכדומה, לכן כל בלוק כזה צריך לוודא את העניינים האלה. בכל אופן, זה קוד לא מסודר.</p>
-<p>הקובץ המסודר והחדש נראה כך:</p>
-<p>כל מקרה (case) קורא לפונקציה - גם אם הפונקציה מחזירה את ה-state כמו שהוא ולא מבצעת שום פעולה נוספת.</p>
-<p>קובץ הפונקציות נקרא main.js והוא נראה כך:</p>
-<p>src/reducers/entity/main.js</p>
-<p>נחזור לעניין המיון. כפי שציינתי ב-מערכת ניהול - React - חלק 2 - ה-API שהמערכת עובדת מולו מאפשר שליחה של מספר פרמטרים, לעבודה עם querymen - לצורך חיפוש, דפדוף, מיון, סינון וכן הלאה. כרגע, אני לא שולח את הפרמטרים הללו לשרת אלא אוסף את כל המידע ומבצע את הפעולות ב-reducer. בכל מקרה, אני משתמש באותם שמות ובאותה צורה כמו עם ה-querymen כדי שבהמשך יהיה נוח לשלב פעולות בשרת.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%A4%D7%A8%D7%A7-1">מערכת ניהול - React - חלק 2</a></p>
-<p><a href="https://github.com/diegohaz/querymen"><u class="_3zM-5">querymen</u></a></p>
-<p>על-פי ה-querymen, אני בונה את הסינון בצורה כזאת. שדה ה-sort ב-store יהיה אובייקט שיכיל מפתח וערך. המפתח הוא שם של אחד השדות והערך יכול להיות 1 ל-ASC או מינוס 1 ל-DESC.</p>
-<p>   sort: {
-      username: 1,
-      createdAt: -1
-    }</p>
-<p>נעבור על הפונקציה sortTable בקובץ main.js. דבר ראשון אני אוסף את ה-state של sort ושל rows. את ה-sort אני מעדכן בהתאם ל-field שקיבלתי. אם השדה לא קיים באובייקט של המיון, אני מוסיף אותו עם הערך 1 - אחרת, אם הערך שלו היה 1 אני משנה למינוס 1 - אחרת, אני מוחק אותו מהאובייקט.</p>
-<p>את rows - המידע עצמו שהוא מערך של אובייקטים - אני מעביר בפונקציה sort שבתורה מפעילה פונקציית השוואה. כדי להסביר את פונקציית ההשוואה - אתן דוגמא פשוטה יותר.</p>
-<p>ניקח לדוגמא את מערך העצמים הבא:</p>
-<p>אם נדפיס את rows ל-console נקבל:</p>
-<p>כדי למיין לפי username, למשל, נשתמש בפונקציית sort וב-localeCompare - בצורה הבאה:</p>
-<p>אם נדפיס את rows נקבל:</p>
-<p>כדי למיין לפי username ובנוסף בהמשך לפי email, נכתוב זאת כך:</p>
-<p>התוצאה תהיה:</p>
-<p>מה שנשאר זה לבנות את השורות הללו של ההשוואה בצורה דינאמית לפי השדות שמתעדכנים באובייקט sort. דבר נוסף זה להוסיף טיפול ב-DESC או מינוס 1 - כיוון הפוך של המיון. את זה אני עושה בהיפוך a ו-b. וזה נראה כך:</p>
-<p>נעבור לחלק של ה-UI, לרכיב Head של הטבלה שמסומן באדום ונראה כך:</p>
-<p><img src="https://static.wixstatic.com/media/17f292_ae175a138b9e42548faa72d4f54fa9f9~mv2.png" /></p>
-<p>הקוד של רכיב ה-Head:</p>
-<p>src/components/Common/Table/Head.js</p>
-<p>בעת לחיצה על אחד מראשי השדות, שם השדה עובר דרך הפונקציה sortTable דרך Table ו-Entity עד לטיפול ה-reducer. דבר נוסף שקורה זה שינוי בחץ השחור הקטן שנמצא לצד כל שדה, במידה והוא פעיל. ב-CSS ברכיב שקיבל את השם Arrow - אני משנה את ה-transform בהתאם ל-status שמגיע בסופו של דבר מה-store - באובייקט sort. הכיוון הרגיל - ללא transformation - הוא חץ למטה. ה-status הוא 1- (מינוס אחת) וה-transform שלו הוא rotate(0deg) כלומר, להשאר במצב הנוכחי שלו. אם ה-status הוא 1 - אני רוצה שהחץ יופיע עם כיוון כלפי מעלה ולכן מגדיר לו rotate(180deg). אם הסטטוס שלו null - אני מגדיר לו scale(0) שלמעשה מעלים את החץ מהמסך.</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/-T7Sc54fSq8" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>סינון</p>
-<p>הוספתי שדה טקסט לחיפוש, לרכיב ה-View של Entity וחיברתי אותו ל-action שנקרא searchTable - שמתבצע בכל אירוע שינוי בשדה הטקסט - ומשם ל-reducer ל-פונקציה שנקראת searchTable גם היא. נתקן את עניין השמות הללו בהמשך ונסביר עיקרון חשוב בנושא.</p>
-<p>מכיוון שאנחנו עובדים מול מידע (rows) שנאסף מהשרת בזמן טעינת הדף ומאותו רגע כל הפעולות מתבצעות על המערך רק בדפדפן - ב-reducers - כל פעולת סינון על rows, תמחק מידע ממנו ולא תהיה אפשרות לשחזר את המידע - אלא אם כן ניגש שוב לשרת. מה שאומר שכל פעולת סינון כזאת, כל הקשת תו בשדה החיפוש - תגרום לשליחת בקשה לשרת. לא תקין. כל העיקרון היה להביא את המידע פעם אחת ולעשות את כל הפעולות בדפדפן. מבחינת מה עושים כשמידע התעדכן בשרת, זה כבר נושא אחר וגם הוא יטופל.</p>
-<p>מה שעשיתי בסופו של דבר היה להגדיר שני מערכים ב-initialState, לטובת המידע שמגיע מהשרת: rows ו-filteredRows. שניהם ימולאו במידע מהשרת. filteredRows יהיה המערך האקטיבי. הוא יכיל את המידע המסונן, הממוין וכו'. rows יכיל תמיד את המידע המקורי.</p>
-<p>ה-reducer נראה כעת כך:</p>
-<p>ב-getItemsSuccess, כשהמידע התקבל מהשרת, ה-state מתעדכן בצורה כזאת ש-rows ו-filteredRows - שניהם נטענים במידע המלא - rows. </p>
-<p>ב-sortTable - המיון של המידע מתבצע על filteredRows.</p>
-<p>ב-searchTable - תוצאות החיפוש - פעולת הסינון - מתבצעת על rows כשהתוצאה מתעדכנת ב-filteredRows.</p>
-<p>הרכיב View של Entity:</p>
-<p>src/components/Views/Entity.js</p>
-<p><img src="https://static.wixstatic.com/media/17f292_7272bbf888104b31944605cebacdec54~mv2.png" /></p>
-<p>הוספתי שדה טקסט לחיפוש ועטפתי אותו ואת הכותרת הראשית ברכיב שקראתי לו TopBar. שדה טקסט פשוט שב-onChange מעביר את המחרוזת לאקשן searchTable.</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/JzZJsXXuK7w" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>עדכון שמות פונקציות</p>
-<p>שיניתי שמות של שתי פונקציות ב-reducers של Entity. את sortTable ל-sortData ואת searchTable ל-searchData. התיקון הזה מדגיש שלא חייב להיות קשר בין הטבלה כרכיב UI לבין המידע עצמו שנמצא ב-store - והפעולה sortTable מובילה ל-sortTable כשהאחרונה יכולה להיקרא ע"י פעולות אחרות, לצורך העניין.</p>
-<p>תיקונים נוספים ל-reducers</p>
-<p>קודם לכן עשיתי סדר בקוד שקשור ל-reducers. השארתי בקובץ src/reducers/entity/index.js רק את ה-switch שבורר בין ה-actions וקורא לפונקציה המתאימה מתוך קובץ של פונקציות. הקובץ הוא src/reducers/entity/main.js. </p>
-<p>אם נסתכל על הקובץ הזה (מופיע למעלה), גם הוא לא כל כך מסודר. רוב הקובץ מורכב מהפונקציות שמתאימות באופן ישיר ל-actions. חלקן קטנות ופשוטות ומעדכנות את ה-state ללא חישובים או פעולות נוספות. אחת מהן (changePage) משתמשת בפונקציית עזר (getPage) למשל, שמופיעה בתחתית הדף תחת הכותרת /* Private */. אחרות מתחילות להיות מורכבות יותר והקובץ מתחיל להיות מבולגן. אפשר לראות לפי הצבעים והצורה, בין היתר.</p>
-<p>פתחתי קובץ חדש בשם process.js ובו יתבצעו כל החישובים. הנה הקבצים המעודכנים.</p>
-<p>src/reducers/entity/process.js</p>
-<p>תיקון באג</p>
-<p>מספר העמודים המופיע בתחתית הטבלה לא מתעדכן כשמבצעים סינון למרות שמספר הפריטים קטן. הסיבה היא שלא עדכנתי את השדה count כשביצעתי חיפוש. תיקנתי ובנוסף עדכנתי את ה-page הנוכחי ל-1. </p>
-<p>החלק הרלוונטי מתוך src/reducers/entity/main.js</p>
-<p>החלק הרלוונטי מתוך src/reducers/entity/process.js</p>
-<p>המשך בחלק הבא:</p>
-<p>מערכת ניהול - React - חלק 5</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-5">מערכת ניהול - React - חלק 5</a></p>
-
+          <p>בחלק זה אטפל, בין היתר, במיונים שאפשר לבצע בטבלה - בעת לחיצה על כותרות העמודות. לפני כן, עשיתי כמה תיקונים שקשורים ל-reducers. אפרט על התיקון ונחזור למיונים.</p><p><br></p><h3>מיון</h3><p>לצורך תזכורת, כך נראה קובץ ה-initialState:</p><p>src/reducers/entity/initialState.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640485f8a39177497b83158d.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>קובץ ה-reducers של Entity - לפני התיקון ולפני שהוספתי טיפול באקשן SORT_TABLE - נראה כך:</p><p>src/reducers/entity/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048671a39177497b83158e.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>יש פה בעיית scope. לכל case יש את הפונקציונליות שלו עם המשתנים שלו וכן הלאה אך מכיוון שכולם נמצאים באותו scope שהוא הפונקציה entity - יש אפשרות מאוד סבירה שיהיו הגדרות כפולות של משתנים וכדומה, לכן כל בלוק כזה צריך לוודא את העניינים האלה. בכל אופן, זה קוד לא מסודר.</p><p><br></p><p>הקובץ המסודר והחדש נראה כך:</p><p>src/reducers/entity/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640486eba39177497b83158f.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כל מקרה (case) קורא לפונקציה - גם אם הפונקציה מחזירה את ה-state כמו שהוא ולא מבצעת שום פעולה נוספת.</p><p><br></p><p>קובץ הפונקציות נקרא main.js והוא נראה כך:</p><p>src/reducers/entity/main.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048755a39177497b831590.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נחזור לעניין המיון. כפי שציינתי ב-<a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%A4%D7%A8%D7%A7-1" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 2</a>-API שהמערכת עובדת מולו מאפשר שליחה של מספר פרמטרים, לעבודה עם querymen - לצורך חיפוש, דפדוף, מיון, סינון וכן הלאה. כרגע, אני לא שולח את הפרמטרים הללו לשרת אלא אוסף את</p><p><br></p><p>כל המידע ומבצע את הפעולות ב-reducer. בכל מקרה, אני משתמש באותם שמות ובאותה צורה כמו עם ה-<a href="https://github.com/diegohaz/querymen" rel="noopener noreferrer" target="_blank">querymen</a> כדי שבהמשך יהיה נוח לשלב פעולות בשרת.</p><p><br></p><p>על-פי ה-querymen, אני בונה את הסינון בצורה כזאת. שדה ה-sort ב-store יהיה אובייקט שיכיל מפתח וערך. המפתח הוא שם של אחד השדות והערך יכול להיות 1 ל-ASC או מינוס 1 ל-DESC.</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404881ea39177497b831591.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נעבור על הפונקציה sortTable בקובץ main.js. דבר ראשון אני אוסף את ה-state של sort ושל rows. את ה-sort אני מעדכן בהתאם ל-field שקיבלתי. אם השדה לא קיים באובייקט של המיון, אני מוסיף אותו עם הערך 1 - אחרת, אם הערך שלו היה 1 אני משנה למינוס 1 - אחרת, אני מוחק אותו מהאובייקט.</p><p><br></p><p>את rows - המידע עצמו שהוא מערך של אובייקטים - אני מעביר בפונקציה sort שבתורה מפעילה פונקציית השוואה. כדי להסביר את פונקציית ההשוואה - אתן דוגמא פשוטה יותר.</p><p><br></p><p>ניקח לדוגמא את מערך העצמים הבא:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048893a39177497b831592.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אם נדפיס את rows ל-console נקבל:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048907a39177497b831593.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כדי למיין לפי username, למשל, נשתמש בפונקציית sort וב-localeCompare - בצורה הבאה:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404896fa39177497b831594.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אם נדפיס את rows נקבל:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048a01a39177497b831595.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כדי למיין לפי username ובנוסף בהמשך לפי email, נכתוב זאת כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048a57a39177497b831596.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>התוצאה תהיה:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048ab7a39177497b831597.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>מה שנשאר זה לבנות את השורות הללו של ההשוואה בצורה דינאמית לפי השדות שמתעדכנים באובייקט sort. דבר נוסף זה להוסיף טיפול ב-DESC או מינוס 1 - כיוון הפוך של המיון. את זה אני עושה בהיפוך a ו-b. וזה נראה כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048b08a39177497b831598.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נעבור לחלק של ה-UI, לרכיב Head של הטבלה שמסומן באדום ונראה כך:</p><p><img src="https://static.wixstatic.com/media/17f292_ae175a138b9e42548faa72d4f54fa9f9~mv2.png"></p><p><br></p><p>הקוד של רכיב ה-Head:</p><p>src/components/Common/Table/Head.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048b49a39177497b831599.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>בעת לחיצה על אחד מראשי השדות, שם השדה עובר דרך הפונקציה sortTable דרך Table ו-Entity עד לטיפול ה-reducer. דבר נוסף שקורה זה שינוי בחץ השחור הקטן שנמצא לצד כל שדה, במידה והוא פעיל. ב-CSS ברכיב שקיבל את השם Arrow - אני משנה את ה-transform בהתאם ל-status שמגיע בסופו של דבר מה-store - באובייקט sort. הכיוון הרגיל - ללא transformation - הוא חץ למטה. ה-status הוא 1- (מינוס אחת) וה-transform שלו הוא rotate(0deg) כלומר, להשאר במצב הנוכחי שלו. אם ה-status הוא 1 - אני רוצה שהחץ יופיע עם כיוון כלפי מעלה ולכן מגדיר לו rotate(180deg). אם הסטטוס שלו null - אני מגדיר לו scale(0) שלמעשה מעלים את החץ מהמסך.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/-T7Sc54fSq8" height="416" width="800"></iframe><p><br></p><h3>סינון</h3><p>הוספתי שדה טקסט לחיפוש, לרכיב ה-View של Entity וחיברתי אותו ל-action שנקרא searchTable - שמתבצע בכל אירוע שינוי בשדה הטקסט - ומשם ל-reducer ל-פונקציה שנקראת searchTable גם היא. נתקן את עניין השמות הללו בהמשך ונסביר עיקרון חשוב בנושא.</p><p><br></p><p>מכיוון שאנחנו עובדים מול מידע (rows) שנאסף מהשרת בזמן טעינת הדף ומאותו רגע כל הפעולות מתבצעות על המערך רק בדפדפן - ב-reducers - כל פעולת סינון על rows, תמחק מידע ממנו ולא תהיה אפשרות לשחזר את המידע - אלא אם כן ניגש שוב לשרת. מה שאומר שכל פעולת סינון כזאת, כל הקשת תו בשדה החיפוש - תגרום לשליחת בקשה לשרת. לא תקין. כל העיקרון היה להביא את המידע פעם אחת ולעשות את כל הפעולות בדפדפן. מבחינת מה עושים כשמידע התעדכן בשרת, זה כבר נושא אחר וגם הוא יטופל.</p><p><br></p><p>מה שעשיתי בסופו של דבר היה להגדיר שני מערכים ב-initialState, לטובת המידע שמגיע מהשרת: rows ו-filteredRows. שניהם ימולאו במידע מהשרת. filteredRows יהיה המערך האקטיבי. הוא יכיל את המידע המסונן, הממוין וכו'. rows יכיל תמיד את המידע המקורי.</p><p><br></p><p>ה-reducer נראה כעת כך:</p><p>src/reducers/entity/main.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048bd3a39177497b83159a.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ב-getItemsSuccess, כשהמידע התקבל מהשרת, ה-state מתעדכן בצורה כזאת ש-rows ו-filteredRows - שניהם נטענים במידע המלא - rows.</p><p><br></p><p>ב-sortTable - המיון של המידע מתבצע על filteredRows.</p><p><br></p><p>ב-searchTable - תוצאות החיפוש - פעולת הסינון - מתבצעת על rows כשהתוצאה מתעדכנת ב-filteredRows.</p><p><br></p><p>הרכיב View של Entity:</p><p>src/components/Views/Entity.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048c22a39177497b83159b.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_7272bbf888104b31944605cebacdec54~mv2.png"></p><p><br></p><p>הוספתי שדה טקסט לחיפוש ועטפתי אותו ואת הכותרת הראשית ברכיב שקראתי לו TopBar. שדה טקסט פשוט שב-onChange מעביר את המחרוזת לאקשן searchTable.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/JzZJsXXuK7w" height="416" width="800"></iframe><p><br></p><h3>עדכון שמות פונקציות</h3><p>שיניתי שמות של שתי פונקציות ב-reducers של Entity. את sortTable ל-sortData ואת searchTable ל-searchData. התיקון הזה מדגיש שלא חייב להיות קשר בין הטבלה כרכיב UI לבין המידע עצמו שנמצא ב-store - והפעולה sortTable מובילה ל-sortTable כשהאחרונה יכולה להיקרא ע"י פעולות אחרות, לצורך העניין.</p><p><br></p><h3>תיקונים נוספים ל-reducers</h3><p>קודם לכן עשיתי סדר בקוד שקשור ל-reducers. השארתי בקובץ src/reducers/entity/index.js רק את ה-switch שבורר בין ה-actions וקורא לפונקציה המתאימה מתוך קובץ של פונקציות. הקובץ הוא src/reducers/entity/main.js.</p><p><br></p><p>אם נסתכל על הקובץ הזה (מופיע למעלה), גם הוא לא כל כך מסודר. רוב הקובץ מורכב מהפונקציות שמתאימות באופן ישיר ל-actions. חלקן קטנות ופשוטות ומעדכנות את ה-state ללא חישובים או פעולות נוספות. אחת מהן (changePage) משתמשת בפונקציית עזר (getPage) למשל, שמופיעה בתחתית הדף תחת הכותרת /* Private */. אחרות מתחילות להיות מורכבות יותר והקובץ מתחיל להיות מבולגן. אפשר לראות לפי הצבעים והצורה, בין היתר.</p><p><br></p><p>פתחתי קובץ חדש בשם process.js ובו יתבצעו כל החישובים. הנה הקבצים המעודכנים.</p><p>src/reducers/entity/main.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048d17a39177497b83159c.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>src/reducers/entity/process.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048d50a39177497b83159d.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><h3>תיקון באג</h3><p>מספר העמודים המופיע בתחתית הטבלה לא מתעדכן כשמבצעים סינון למרות שמספר הפריטים קטן. הסיבה היא שלא עדכנתי את השדה count כשביצעתי חיפוש. תיקנתי ובנוסף עדכנתי את ה-page הנוכחי ל-1.</p><p>החלק הרלוונטי מתוך src/reducers/entity/main.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048e27a39177497b83159e.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>החלק הרלוונטי מתוך src/reducers/entity/process.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64048e7ca39177497b83159f.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-5" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 5</a></p><p><br></p>
         </div>
       </div>
     </div>

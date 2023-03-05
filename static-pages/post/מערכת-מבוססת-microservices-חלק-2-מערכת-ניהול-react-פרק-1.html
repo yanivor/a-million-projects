@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,46 +27,73 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>עשיתי תיקון קטן, קצת ניקיון. קודם לכן הצגתי את הקוד של הקובץ: src/actions/accounts/index.js. הקובץ actions של posts די דומה. יש שם את הקטע בו אני אוסף את ה-token מה-localStorage ומצרף אותו כ-Authorization header לקריאת API. הוצאתי את קטע הקוד הזה משם ופיצלתי אותו לשני מקומות. ל-service נפרד שנקרא storage ומטפל בכל מה שקשור ל-localStorage ולפונקציות מתאימות ב-service ה-auth.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1"><u class="_3zM-5">קודם לכן</u></a></p>
-<p>את קטע הקוד הזה:</p>
-<p>שיניתי לקריאה לפונקציה authHeader:</p>
-<p>וב-service ה-auth הפונקציה  authHeader אוספת את ה-token מה-service של ה-storage בעזרת הפונקציה storageGet. מעבר לזה, שיניתי בקובץ הזה את כל הקריאות ל-localStorage לשימוש בפונקציות storageSet ו-storageGet.</p>
-<p>src/services/auth.js</p>
-<p>השירות של ה-storage נראה כך:</p>
-<p>פשוט. אם ארצה לעדכן ולשפר, יהיה נוח יותר עכשיו.</p>
-<p>הדבר הבא שאותו אמשיך לפתח זה את ה-reducer של כל אחת מהישויות -  וה-state ההתחלתי. בקובץ src/reducers/accounts/index.js שצירפתי למעלה (וכנ"ל לגבי posts), אפשר לראות שה-state מקבל כערך התחלתי מערך ריק.  מעבר לזה, התשובה מהשרת API היא אובייקט JSON שמכיל שני שדות: count שזה מספר התוצאות הכולל, ללא שימוש בסינון ו-rows שזה המידע הראשי שהוא מערך של אובייקטים. כרגע, אני לא עושה שימוש ב-count ואת המערך הריק של ה-state מחליף המערך של המידע, rows. </p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/ujJUisBOiLs" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>שרת ה-API יכול לקבל בשורת הכתובת מספר פרמטרים:</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-3-%D7%A9%D7%A8%D7%AA%D7%99-api"><u class="_3zM-5">שרת ה-API</u></a></p>
-<p>node-api-accounts/src/api/index.js</p>
-<p>* אגב, אלו פרמטרים מובנים מהספריה querymen שה-generator-rest עושה בה שימוש.</p>
-<p><a href="https://github.com/diegohaz/querymen"><u class="_3zM-5">querymen</u></a></p>
-<p><a href="https://www.npmjs.com/package/generator-rest"><u class="_3zM-5">generator-rest</u></a></p>
-<p>אני רוצה לבנות את ה-state כך שיכיל, בין היתר, את הפרמטרים הללו. הם ישתנו בפועל בעת שימוש בטבלה - במעבר בין הדפים, חיפוש, סינון, מיון וכו'. את הפעולות האחרונות שהוזכרו אעשה בדפדפן, ב-reducer. כמו כן, אאפשר שליחה של הפרמטרים הללו גם לשרת כך שהשרת יבצע את הפעולות האלה, לפי הצורך.</p>
-<p>למבנה של ה-state אני רוצה להוסיף הגדרות נוספות: ה-schema שהוזכרה למעלה ונמצאת בתיקיית reducer של כל ישות - ומידע נוסף לתצוגה, כמו כותרת ראשית וכדומה.</p>
-<p>אז כתבתי initialState נפרד לכל ישות ומחקתי את הקובץ schema.js הזמני שהכיל את המידע על השדות (fields). ה-initialState נראה כך:</p>
-<p>src/reducers/accounts/initialState.js</p>
-<p>החלק ב-reducer שאוסף את המידע מהשרת נראה כך:</p>
-<p>בינתיים אני מעדכן את count ואת rows.</p>
-<p>את ניהול ה-store שנעשה בכל דף ישות (Views/Accounts, למשל) העברתי ל-Entity. כך אני נמנע משכפולי קוד מיותרים ומאפשר יותר מודולריות.</p>
-<p>לאחר הנקיונות, דף ה-Accounts נראה כך:</p>
-<p>src/components/Views/Accounts.js</p>
-<p>ודף ה-Entity נראה כך:</p>
-<p>src/components/Views/Entity.js</p>
-<p>אני מעביר מ-Accounts ל-Entity כ-type את שם הישות כפי שהיא מופיעה ב-store. במקרה שלנו accounts או posts. כמו כן, אני מעביר את הפונקציה שאוספת מה-API את מערך האובייקטים - במקרה של accounts, הפונקציה getAccounts. יש מיפוי של הפונקציה הזאת ל-getEntities ב-Entity.</p>
-<p>ל-state אני מתחבר באמצעות useSelector ומשתמש ב-type כדי לבחור את ה-state של הישות הרלוונטית. ברגע ש-Entity נטען עם ה-props שקיבל מ-Accounts, הוא קורא ל-getEntities שקוראת ל-getAccounts. מכאן מתבצע התהליך של הבאת מידע מהשרת, עדכון ה-state, רנדור מחדש של Entity שמרנדר שוב את הטבלה (Table) עם המידע (rows) שמועבר למאפיין data.</p>
-<p>מעבר לכל זה, הוספתי רכיבי ממשק משתמש לדפדוף - לטבלה. לחיצה עליהם, לאחר מעבר בין ילד להורה, מפעילה את הפונקציה pagingBtnClicked ב-Entity. כרגע, יש הדפסה של הפעולה הרצויה ל-console. בהמשך, אחבר ל-store.</p>
-<p>הקובץ של הטבלה נראה כך:</p>
-<p>src/components/Common/Table/index.js</p>
-<p>החלק הרלוונטי הוא כל מה שקשור ל-pagingBtnClicked.</p>
-<p>הרכיב לדפדוף כתוב בקובץ נפרד.</p>
-<p>src/components/Common/Table/PagingBar.js</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/altDgdZLnHM" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>המשך בחלק הבא:</p>
-<p>מערכת ניהול - React - חלק 3</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-3">מערכת ניהול - React - חלק 3</a></p>
-
+          <p>עשיתי תיקון קטן, קצת ניקיון. <a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1" rel="noopener noreferrer" target="_blank">קודם לכן</a> הצגתי את הקוד של הקובץ: src/actions/accounts/index.js. הקובץ actions של posts די דומה. יש שם את הקטע בו אני אוסף את ה-token מה-localStorage ומצרף אותו כ-Authorization header לקריאת API. הוצאתי את קטע הקוד הזה משם ופיצלתי אותו לשני מקומות. ל-service נפרד שנקרא storage ומטפל בכל מה שקשור ל-localStorage ולפונקציות מתאימות ב-service ה-auth.</p><p><br></p><p>את קטע הקוד הזה:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64046f73a39177497b831576.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>שיניתי לקריאה לפונקציה authHeader:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64047005a39177497b831577.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>וב-service ה-auth הפונקציה authHeader אוספת את ה-token מה-service של ה-storage בעזרת הפונקציה storageGet. מעבר לזה, שיניתי בקובץ הזה את כל הקריאות ל-localStorage לשימוש בפונקציות storageSet ו-storageGet.</p><p><br></p><p>src/services/auth.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404707fa39177497b831578.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>השירות של ה-storage נראה כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640470bda39177497b831579.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>פשוט. אם ארצה לעדכן ולשפר, יהיה נוח יותר עכשיו.</p><p><br></p><p>הדבר הבא שאותו אמשיך לפתח זה את ה-reducer של כל אחת מהישויות - וה-state ההתחלתי. בקובץ src/reducers/accounts/index.js שצירפתי למעלה (וכנ"ל לגבי posts), אפשר לראות שה-state מקבל כערך התחלתי מערך ריק. מעבר לזה, התשובה מהשרת API היא אובייקט JSON שמכיל שני שדות: count שזה מספר התוצאות הכולל, ללא שימוש בסינון ו-rows שזה המידע הראשי שהוא מערך של אובייקטים. כרגע, אני לא עושה שימוש ב-count ואת המערך הריק של ה-state מחליף המערך של המידע, rows.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/ujJUisBOiLs" height="416" width="800"></iframe><p><br></p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-3-%D7%A9%D7%A8%D7%AA%D7%99-api" rel="noopener noreferrer" target="_blank">שרת ה-API</a> יכול לקבל בשורת הכתובת מספר פרמטרים:</p><p>node-api-accounts/src/api/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404716da39177497b83157a.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>* אגב, אלו פרמטרים מובנים מהספריה <a href="https://github.com/diegohaz/querymen" rel="noopener noreferrer" target="_blank">querymen</a> שה-<a href="https://www.npmjs.com/package/generator-rest" rel="noopener noreferrer" target="_blank">generator-rest</a> עושה בה שימוש.</p><p><br></p><p>אני רוצה לבנות את ה-state כך שיכיל, בין היתר, את הפרמטרים הללו. הם ישתנו בפועל בעת שימוש בטבלה - במעבר בין הדפים, חיפוש, סינון, מיון וכו'. את הפעולות האחרונות שהוזכרו אעשה בדפדפן, ב-reducer. כמו כן, אאפשר שליחה של הפרמטרים הללו גם לשרת כך שהשרת יבצע את הפעולות האלה, לפי הצורך.</p><p><br></p><p>למבנה של ה-state אני רוצה להוסיף הגדרות נוספות: ה-schema שהוזכרה למעלה ונמצאת בתיקיית reducer של כל ישות - ומידע נוסף לתצוגה, כמו כותרת ראשית וכדומה.</p><p><br></p><p>אז כתבתי initialState נפרד לכל ישות ומחקתי את הקובץ schema.js הזמני שהכיל את המידע על השדות (fields). ה-initialState נראה כך:</p><p><br></p><p>src/reducers/accounts/initialState.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640471f5a39177497b83157b.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>החלק ב-reducer שאוסף את המידע מהשרת נראה כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64047241a39177497b83157c.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>בינתיים אני מעדכן את count ואת rows.</p><p><br></p><p>את ניהול ה-store שנעשה בכל דף ישות (Views/Accounts, למשל) העברתי ל-Entity. כך אני נמנע משכפולי קוד מיותרים ומאפשר יותר מודולריות.</p><p><br></p><p>לאחר הנקיונות, דף ה-Accounts נראה כך:</p><p>src/components/Views/Accounts.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64047296a39177497b83157d.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ודף ה-Entity נראה כך:</p><p>src/components/Views/Entity.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640472d6a39177497b83157e.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>אני מעביר מ-Accounts ל-Entity כ-type את שם הישות כפי שהיא מופיעה ב-store. במקרה שלנו accounts או posts. כמו כן, אני מעביר את הפונקציה שאוספת מה-API את מערך האובייקטים - במקרה של accounts, הפונקציה getAccounts. יש מיפוי של הפונקציה הזאת ל-getEntities ב-Entity.</p><p><br></p><p>ל-state אני מתחבר באמצעות useSelector ומשתמש ב-type כדי לבחור את ה-state של הישות הרלוונטית. ברגע ש-Entity נטען עם ה-props שקיבל מ-Accounts, הוא קורא ל-getEntities שקוראת ל-getAccounts. מכאן מתבצע התהליך של הבאת מידע מהשרת, עדכון ה-state, רנדור מחדש של Entity שמרנדר שוב את הטבלה (Table) עם המידע (rows) שמועבר למאפיין data.</p><p><br></p><p>מעבר לכל זה, הוספתי רכיבי ממשק משתמש לדפדוף - לטבלה. לחיצה עליהם, לאחר מעבר בין ילד להורה, מפעילה את הפונקציה pagingBtnClicked ב-Entity. כרגע, יש הדפסה של הפעולה הרצויה ל-console. בהמשך, אחבר ל-store.</p><p><br></p><p>הקובץ של הטבלה נראה כך:</p><p>src/components/Common/Table/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404733da39177497b83157f.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>החלק הרלוונטי הוא כל מה שקשור ל-pagingBtnClicked.</p><p><br></p><p>הרכיב לדפדוף כתוב בקובץ נפרד.</p><p>src/components/Common/Table/PagingBar.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64047391a39177497b831580.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/altDgdZLnHM" height="416" width="800"></iframe><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-3" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 3</a></p><p><br></p>
         </div>
       </div>
     </div>
