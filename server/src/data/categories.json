@@ -4,47 +4,54 @@
   },
   "name": "electronics",
   "title": "אלקטרוניקה, מיקרו-קונטרולרים, ארדואינו, רספברי-פאי",
-  "order": "4000"
+  "order": "4000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002c06cc025569fbac583e"
   },
   "name": "cyber",
   "title": "סייבר, אבטחת-מידע, האקינג",
-  "order": "3000"
+  "order": "3000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002c62cc025569fbac583f"
   },
   "name": "life-sciences",
   "title": "ביולוגיה, כימיה, מדעי-החיים",
-  "order": "5000"
+  "order": "5000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002d22cc025569fbac5840"
   },
   "name": "neurofeedback",
   "title": "נוירופידבק, EEG",
-  "order": "1000"
+  "order": "1000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002e67cc025569fbac5841"
   },
   "name": "art",
   "title": "אמנות, יצירה",
-  "order": "6000"
+  "order": "6000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002ee0cc025569fbac5842"
   },
   "name": "web-development",
   "title": "פיתוח WEB",
-  "order": "2000"
+  "order": "2000",
+  "display": true
 },{
   "_id": {
     "$oid": "64002f3acc025569fbac5843"
   },
   "name": "general",
   "title": "פוסטים נוספים",
-  "order": "7000"
+  "order": "7000",
+  "display": true
 }]
