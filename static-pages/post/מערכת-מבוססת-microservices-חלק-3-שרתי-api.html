@@ -31,7 +31,7 @@
 <p>התוכנה generator-rest</p>
 <p>נחזור לגנרטור שמצאתי, מדובר על generator-rest - מייצר שרתי API מבוססי node שעובדים מול mongo עם mongoose. יש אפשרות להוסיף ניהול משתמשים ואותנטיקציה. הכל במילוי פרטים באמצעות שורת הפקודה (CLI). הוא מבוסס על yeoman-generator - מחולל אפליקציות node.  מקום 40 (בזמן כתיבת הפוסט) בספריות npm הנפוצות עליהן מתבססות ספריות ותוכנות אחרות.</p>
 <p><a href="https://www.npmjs.com/package/generator-rest"><u class="_3zM-5">generator-rest</u></a></p>
-<p><a href="https://www.a-million-projects.com/post/yeoman-generator"><u class="_3zM-5">yeoman-</u>generator</a></p>
+<p><a href="https://a-million-projects.com/post/yeoman-generator"><u class="_3zM-5">yeoman-</u>generator</a></p>
 <p><a href="https://www.npmjs.com/browse/depended"><u class="_3zM-5">מקום 40</u></a></p>
 <p>* ניסיתי להריץ את הפקודות בזמן כתיבת הפוסט ולחולל שרת חדש. מסיבה כלשהי (שקשורה ל-mongoose) השרת קורס לאחר npm start. בהמשך אבדוק את העניין.</p>
 <p>השרתים node-api-accounts ו-node-api-posts</p>
@@ -42,7 +42,7 @@
 <p>https://github.com/YanivOr/node-api-posts</p>
 <p><a href="https://github.com/YanivOr/node-api-posts"><u class="_3zM-5">https://github.com/YanivOr/node-api-posts</u></a></p>
 <p>לא היה שום צורך לגעת בקוד כדי שכל פעולות ה-CRUD יעבדו כמו שצריך. מה שכן כתבתי והוספתי למערכת הקיימת זה קוד שמטפל ב-JWT token שמגיע עם הבקשות (ב-Authorization header) ועובד מול שרת ה-auth. אגב, אני שוב מזכיר שברגע שמייצרים את השרת, יש אפשרות להוסיף תמיכה ב-auth. החלטתי לכתוב את זה from scratch.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">שרת ה-auth</u></a></p>
+<p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">שרת ה-auth</u></a></p>
 <p>הוספתי תיקיה בשם auth מתחת ל-services ולצד express, mongoose, response. וכתבתי שני קבצים: index.js ו-jwt-handler.js.</p>
 <p>src/services/auth/index.js</p>
 <p>הפונקציה verifyAuth חותכת את ה-JWT מה-header ומעבירה אותו לאימות בפונקציה verifyJWT. במידה והאימות עבר בהצלחה, היא  מחזירה next. מי שעושה שימוש בפונקציה הזאת, בכל בקשה לשרת, היא הספריה express באמצעות use.</p>
@@ -53,7 +53,7 @@
 <p>הפונקציה verify מאמתת את ה-secret  מול ה-publicKey ובודקת תפוגת תוקף ואת שאר הפרמטרים ב-claim מול ה-verifyOptions.</p>
 <p>אני צריך לכתוב error handler טוב יותר לפי השגיאות השונות.</p>
 <p>ראה והשווה עם: מערכת מבוססת microservices - חלק 1 - אימות משתמשים.</p>
-<p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">מערכת מבוססת microservices - חלק 1 - אימות משתמשים</u></a></p>
+<p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">מערכת מבוססת microservices - חלק 1 - אימות משתמשים</u></a></p>
 <p>נעבור ל-Dockerfile ול-docker-compose.yml.</p>
 <p>Dockerfile</p>
 <p>docker-compose.yml</p>

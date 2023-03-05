@@ -27,7 +27,7 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>עשיתי תיקון קטן, קצת ניקיון. <a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1" rel="noopener noreferrer" target="_blank">קודם לכן</a> הצגתי את הקוד של הקובץ: src/actions/accounts/index.js. הקובץ actions של posts די דומה. יש שם את הקטע בו אני אוסף את ה-token מה-localStorage ומצרף אותו כ-Authorization header לקריאת API. הוצאתי את קטע הקוד הזה משם ופיצלתי אותו לשני מקומות. ל-service נפרד שנקרא storage ומטפל בכל מה שקשור ל-localStorage ולפונקציות מתאימות ב-service ה-auth.</p><p><br></p><p>את קטע הקוד הזה:</p><p>
+          <p>עשיתי תיקון קטן, קצת ניקיון. <a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react-%D7%97%D7%9C%D7%A7-1" rel="noopener noreferrer" target="_blank">קודם לכן</a> הצגתי את הקוד של הקובץ: src/actions/accounts/index.js. הקובץ actions של posts די דומה. יש שם את הקטע בו אני אוסף את ה-token מה-localStorage ומצרף אותו כ-Authorization header לקריאת API. הוצאתי את קטע הקוד הזה משם ופיצלתי אותו לשני מקומות. ל-service נפרד שנקרא storage ומטפל בכל מה שקשור ל-localStorage ולפונקציות מתאימות ב-service ה-auth.</p><p><br></p><p>את קטע הקוד הזה:</p><p>
   <iframe
     class="code-iframe"
     src="https://a-million-projects.com/post/code/64046f73a39177497b831576.html"
@@ -51,7 +51,7 @@
     src="https://a-million-projects.com/post/code/640470bda39177497b831579.html"
     onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
   </iframe>
-</p><p><br></p><p>פשוט. אם ארצה לעדכן ולשפר, יהיה נוח יותר עכשיו.</p><p><br></p><p>הדבר הבא שאותו אמשיך לפתח זה את ה-reducer של כל אחת מהישויות - וה-state ההתחלתי. בקובץ src/reducers/accounts/index.js שצירפתי למעלה (וכנ"ל לגבי posts), אפשר לראות שה-state מקבל כערך התחלתי מערך ריק. מעבר לזה, התשובה מהשרת API היא אובייקט JSON שמכיל שני שדות: count שזה מספר התוצאות הכולל, ללא שימוש בסינון ו-rows שזה המידע הראשי שהוא מערך של אובייקטים. כרגע, אני לא עושה שימוש ב-count ואת המערך הריק של ה-state מחליף המערך של המידע, rows.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/ujJUisBOiLs" height="416" width="800"></iframe><p><br></p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-3-%D7%A9%D7%A8%D7%AA%D7%99-api" rel="noopener noreferrer" target="_blank">שרת ה-API</a> יכול לקבל בשורת הכתובת מספר פרמטרים:</p><p>node-api-accounts/src/api/index.js</p><p>
+</p><p><br></p><p>פשוט. אם ארצה לעדכן ולשפר, יהיה נוח יותר עכשיו.</p><p><br></p><p>הדבר הבא שאותו אמשיך לפתח זה את ה-reducer של כל אחת מהישויות - וה-state ההתחלתי. בקובץ src/reducers/accounts/index.js שצירפתי למעלה (וכנ"ל לגבי posts), אפשר לראות שה-state מקבל כערך התחלתי מערך ריק. מעבר לזה, התשובה מהשרת API היא אובייקט JSON שמכיל שני שדות: count שזה מספר התוצאות הכולל, ללא שימוש בסינון ו-rows שזה המידע הראשי שהוא מערך של אובייקטים. כרגע, אני לא עושה שימוש ב-count ואת המערך הריק של ה-state מחליף המערך של המידע, rows.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/ujJUisBOiLs" height="416" width="800"></iframe><p><br></p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-3-%D7%A9%D7%A8%D7%AA%D7%99-api" rel="noopener noreferrer" target="_blank">שרת ה-API</a> יכול לקבל בשורת הכתובת מספר פרמטרים:</p><p>node-api-accounts/src/api/index.js</p><p>
   <iframe
     class="code-iframe"
     src="https://a-million-projects.com/post/code/6404716da39177497b83157a.html"
@@ -93,7 +93,7 @@
     src="https://a-million-projects.com/post/code/64047391a39177497b831580.html"
     onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
   </iframe>
-</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/altDgdZLnHM" height="416" width="800"></iframe><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://www.a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-3" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 3</a></p><p><br></p>
+</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/altDgdZLnHM" height="416" width="800"></iframe><p><br></p><p>המשך בחלק הבא:</p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-react-%D7%97%D7%9C%D7%A7-3" rel="noopener noreferrer" target="_blank">מערכת ניהול - React - חלק 3</a></p><p><br></p>
         </div>
       </div>
     </div>
