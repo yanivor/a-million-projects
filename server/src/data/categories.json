@@ -28,7 +28,7 @@
   },
   "name": "neurofeedback",
   "title": "נוירופידבק, EEG",
-  "order": "1000",
+  "order": "2000",
   "display": true
 },{
   "_id": {
@@ -43,8 +43,8 @@
     "$oid": "64002ee0cc025569fbac5842"
   },
   "name": "web-development",
-  "title": "Javascript, פיתוח WEB ונושאים קשורים נוספים",
-  "order": "2000",
+  "title": "Javascript, פיתוח WEB ועוד",
+  "order": "1000",
   "display": true
 },{
   "_id": {

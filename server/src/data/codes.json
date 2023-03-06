@@ -1087,7 +1087,14 @@
   "_id": {
     "$oid": "64059a3f961cb626538895c7"
   },
-  "content": "<pre>\nCreate vector - example: v1 = [2 5]\n\nDelete vector - example: del v1\n\nVectors addition - example: v3 = v1 + v2\n\nVectors subtraction - example: v3 = v1 - v2\n\nVectors multiplication - example: v3 = v1 .* v2\n\nVectors scaling - new vector - example: v3 = v1 * 2\n\nVectors scaling - same vector - example: v1 * 2\n\nDot product - example: v1 * v2 '\n\nVector length. norm - example: norm(v1)\n</pre>",
+  "content": "<pre>\nCreate vector - example: v1 = [2 5]\nDelete vector - example: del v1\nVectors addition - example: v3 = v1 + v2\nVectors subtraction - example: v3 = v1 - v2\nVectors multiplication - example: v3 = v1 .* v2\nVectors scaling - new vector - example: v3 = v1 * 2\nVectors scaling - same vector - example: v1 * 2\nDot product - example: v1 * v2 '\nVector length. norm - example: norm(v1)\n</pre>",
   "name": "linear-algebra_1",
   "type": "color"
+},{
+  "_id": {
+    "$oid": "6405be8b961cb626538895cc"
+  },
+  "content": "<pre>\n# Clone this repository\ngit clone https://github.com/electron/electron-quick-start\n\n# Go into the repository\ncd electron-quick-start\n\n# Install dependencies\nnpm install\n\n# Run the app\nnpm start\n</pre>",
+  "name": "electron_1",
+  "type": "monochrome"
 }]
