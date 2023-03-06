@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>code - מערכת-מבוססת-microservices_15</title>
+</head>
+<body>
+  <div class="code-content">
+    <div class="code"><div class="code-content"><div><div><span style="color: rgb(86, 156, 214);">version</span><span style="color: rgb(212, 212, 212);">: </span><span style="color: rgb(206, 145, 120);">"3.3"</span></div><div><span style="color: rgb(86, 156, 214);">services</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">  </span><span style="color: rgb(86, 156, 214);">mongo</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">image</span><span style="color: rgb(212, 212, 212);">: </span><span style="color: rgb(206, 145, 120);">mongo</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">ports</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">      - </span><span style="color: rgb(206, 145, 120);">"27017:27017"</span></div><div><span style="color: rgb(212, 212, 212);">  </span><span style="color: rgb(86, 156, 214);">node-auth</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">build</span><span style="color: rgb(212, 212, 212);">: </span><span style="color: rgb(206, 145, 120);">../node-auth/</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">volumes</span><span style="color: rgb(212, 212, 212);">: </span></div><div><span style="color: rgb(212, 212, 212);">      - </span><span style="color: rgb(206, 145, 120);">/home/yaniv/.ssh/:/tmp/.ssh/</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">ports</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">      - </span><span style="color: rgb(206, 145, 120);">"3000:3000"</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">depends_on</span><span style="color: rgb(212, 212, 212);">: </span></div><div><span style="color: rgb(212, 212, 212);">      - </span><span style="color: rgb(206, 145, 120);">mongo</span></div><div><span style="color: rgb(212, 212, 212);">  </span><span style="color: rgb(86, 156, 214);">auth-pages</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">build</span><span style="color: rgb(212, 212, 212);">: </span><span style="color: rgb(206, 145, 120);">../auth-pages/</span></div><div><span style="color: rgb(212, 212, 212);">    </span><span style="color: rgb(86, 156, 214);">ports</span><span style="color: rgb(212, 212, 212);">:</span></div><div><span style="color: rgb(212, 212, 212);">      - </span><span style="color: rgb(206, 145, 120);">"8080:80"</span></div></div></div></div>
+  </div>
+  <script src="../../js/code.js"></script>
+</body>
+</html>

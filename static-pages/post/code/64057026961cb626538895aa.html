@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>code - מערכת-מבוססת-microservices_22</title>
+</head>
+<body>
+  <div class="code-content">
+    <div class="code"><div class="code-content"><div><div><span style="color: rgb(86, 156, 214);">FROM</span><span style="color: rgb(212, 212, 212);"> node:11.1.0-alpine</span></div><br><div><span style="color: rgb(106, 153, 85);"># Create app directory</span></div><div><span style="color: rgb(86, 156, 214);">WORKDIR</span><span style="color: rgb(212, 212, 212);"> /usr/src/app</span></div><br><div><span style="color: rgb(106, 153, 85);"># Install app dependencies</span></div><div><span style="color: rgb(106, 153, 85);"># A wildcard is used to ensure both package.json AND package-lock.json are copied</span></div><div><span style="color: rgb(106, 153, 85);"># where available (npm@5+)</span></div><div><span style="color: rgb(86, 156, 214);">COPY</span><span style="color: rgb(212, 212, 212);"> package*.json ./</span></div><br><div><span style="color: rgb(106, 153, 85);">#RUN npm install</span></div><div><span style="color: rgb(106, 153, 85);"># If you are building your code for production</span></div><div><span style="color: rgb(106, 153, 85);">#ENV NODE_ENV production</span></div><div><span style="color: rgb(86, 156, 214);">RUN</span><span style="color: rgb(212, 212, 212);"> npm ci --only=production</span></div><br><div><span style="color: rgb(106, 153, 85);"># Bundle app source</span></div><div><span style="color: rgb(86, 156, 214);">COPY</span><span style="color: rgb(212, 212, 212);"> . .</span></div><br><div><span style="color: rgb(106, 153, 85);"># env</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> PUBLIC_KEY /tmp/.ssh/node-auth-public.key</span></div><br><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> ISSUER a-million-projects</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> SUBJECT some@user.com</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> AUDIENCE http://admin.a-million-projects.com</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> EXPIRESIN 12h</span></div><br><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> NODE_ENV production</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> MONGODB_URI </span><span style="color: rgb(206, 145, 120);">"mongodb://mongo:27017/a-million-projects"</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> PORT 3001</span></div><div><span style="color: rgb(86, 156, 214);">ENV</span><span style="color: rgb(212, 212, 212);"> MASTER_KEY 123456</span></div><br><div><span style="color: rgb(106, 153, 85);">#expose</span></div><div><span style="color: rgb(86, 156, 214);">EXPOSE</span><span style="color: rgb(212, 212, 212);"> 3001</span></div><br><div><span style="color: rgb(86, 156, 214);">CMD</span><span style="color: rgb(212, 212, 212);"> [ </span><span style="color: rgb(206, 145, 120);">"node"</span><span style="color: rgb(212, 212, 212);">, </span><span style="color: rgb(206, 145, 120);">"./src/index"</span><span style="color: rgb(212, 212, 212);"> ]</span></div><br><br></div></div></div>
+  </div>
+  <script src="../../js/code.js"></script>
+</body>
+</html>

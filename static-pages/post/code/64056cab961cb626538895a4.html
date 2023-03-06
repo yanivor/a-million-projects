@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/media.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>code - מערכת-מבוססת-microservices_16</title>
+</head>
+<body>
+  <div class="code-content">
+    <div class="code"><div class="code-content"><div><div><span style="color: rgb(86, 156, 214);">FROM</span><span style="color: rgb(212, 212, 212);"> tiangolo/node-frontend:10 </span><span style="color: rgb(86, 156, 214);">as</span><span style="color: rgb(212, 212, 212);"> build-stage</span></div><div><span style="color: rgb(86, 156, 214);">WORKDIR</span><span style="color: rgb(212, 212, 212);"> /app</span></div><div><span style="color: rgb(86, 156, 214);">COPY</span><span style="color: rgb(212, 212, 212);"> package*.json /app/</span></div><div><span style="color: rgb(86, 156, 214);">RUN</span><span style="color: rgb(212, 212, 212);"> npm install</span></div><div><span style="color: rgb(86, 156, 214);">COPY</span><span style="color: rgb(212, 212, 212);"> ./ /app/</span></div><div><span style="color: rgb(86, 156, 214);">RUN</span><span style="color: rgb(212, 212, 212);"> npm run build</span></div><br><div><span style="color: rgb(86, 156, 214);">FROM</span><span style="color: rgb(212, 212, 212);"> nginx</span></div><div><span style="color: rgb(86, 156, 214);">COPY</span><span style="color: rgb(212, 212, 212);"> --from=build-stage /app/build/ /usr/share/nginx/html</span></div></div></div></div>
+  </div>
+  <script src="../../js/code.js"></script>
+</body>
+</html>

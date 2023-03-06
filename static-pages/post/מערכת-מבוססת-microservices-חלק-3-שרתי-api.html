@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,43 +27,49 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>חיפשתי boilerplate קליל של שרת API מבוסס NodeJS - לפעולות CRUD - שעובד מול mongo, בלי ניהול משתמשים ואותנטיקציה. מצאתי אחד והוא לא בויילרפלייט אלא גנרטור (generator) שזה אפילו טוב יותר. פרטים בהמשך. לפני כן, למה node? כי זאת הסביבה שאני מכיר אז באופן טבעי פניתי לכיוון הזה. אנחנו עוסקים כאן במיקרו-שירותים, אחד העקרונות הוא שאפשר לבחור שירותים שנכתבו בטננולוגיות שונות משום שלא מדובר על תוכנה מונוליטית שכתובה בשפה אחת. האם זה כל כך מסובך ללמוד קוד או להכיר שרתי API מוכנים - לפי הדרישות שלי - שנכתבו בטכנולוגיות שלא עבדתי איתן או לפחות לא עבדתי איתן בשוטף? לא מסובך. הכל עניין של זמן. האם הדרישות שלי יכולות להיות גמישות יותר? למשל, לוא דווקא mongo אלא SQL - לפי הצורך, כמובן. בהמשך אכנס לזה, אכיר סביבות חדשות ואחזור לסביבות ישנות כמו PHP איתו עבדתי במשך 12 שנה ברצף ובשנים האחרונות זנחתי לטובת node.</p>
-<p>התוכנה generator-rest</p>
-<p>נחזור לגנרטור שמצאתי, מדובר על generator-rest - מייצר שרתי API מבוססי node שעובדים מול mongo עם mongoose. יש אפשרות להוסיף ניהול משתמשים ואותנטיקציה. הכל במילוי פרטים באמצעות שורת הפקודה (CLI). הוא מבוסס על yeoman-generator - מחולל אפליקציות node.  מקום 40 (בזמן כתיבת הפוסט) בספריות npm הנפוצות עליהן מתבססות ספריות ותוכנות אחרות.</p>
-<p><a href="https://www.npmjs.com/package/generator-rest"><u class="_3zM-5">generator-rest</u></a></p>
-<p><a href="https://a-million-projects.com/post/yeoman-generator"><u class="_3zM-5">yeoman-</u>generator</a></p>
-<p><a href="https://www.npmjs.com/browse/depended"><u class="_3zM-5">מקום 40</u></a></p>
-<p>* ניסיתי להריץ את הפקודות בזמן כתיבת הפוסט ולחולל שרת חדש. מסיבה כלשהי (שקשורה ל-mongoose) השרת קורס לאחר npm start. בהמשך אבדוק את העניין.</p>
-<p>השרתים node-api-accounts ו-node-api-posts</p>
-<p>בניתי לפני זמן מה - בעזרת המחולל הזה - שני שרתים, אחד ל-accounts והשני ל-posts - ואיתם אני משתמש כרגע.</p>
-<p>ה-repos כאן:</p>
-<p>https://github.com/YanivOr/node-api-accounts</p>
-<p><a href="https://github.com/YanivOr/node-api-accounts"><u class="_3zM-5">https://github.com/YanivOr/node-api-accounts</u></a></p>
-<p>https://github.com/YanivOr/node-api-posts</p>
-<p><a href="https://github.com/YanivOr/node-api-posts"><u class="_3zM-5">https://github.com/YanivOr/node-api-posts</u></a></p>
-<p>לא היה שום צורך לגעת בקוד כדי שכל פעולות ה-CRUD יעבדו כמו שצריך. מה שכן כתבתי והוספתי למערכת הקיימת זה קוד שמטפל ב-JWT token שמגיע עם הבקשות (ב-Authorization header) ועובד מול שרת ה-auth. אגב, אני שוב מזכיר שברגע שמייצרים את השרת, יש אפשרות להוסיף תמיכה ב-auth. החלטתי לכתוב את זה from scratch.</p>
-<p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">שרת ה-auth</u></a></p>
-<p>הוספתי תיקיה בשם auth מתחת ל-services ולצד express, mongoose, response. וכתבתי שני קבצים: index.js ו-jwt-handler.js.</p>
-<p>src/services/auth/index.js</p>
-<p>הפונקציה verifyAuth חותכת את ה-JWT מה-header ומעבירה אותו לאימות בפונקציה verifyJWT. במידה והאימות עבר בהצלחה, היא  מחזירה next. מי שעושה שימוש בפונקציה הזאת, בכל בקשה לשרת, היא הספריה express באמצעות use.</p>
-<p>את הגדרות לשימוש בפונקציה הזאת ע"י express הוספתי לקובץ הבא שכבר היה קיים והכיל שימוש בפונקציות נוספות. אגב, יש חשיבות לסדר של ה-app.use. לשים לב לזה. וכאן נכנס ה-next שהוזכר קודם לכן.</p>
-<p>src/services/express/index.js</p>
-<p>נעבור לפונקציה verifyJWT שנמצאת ב-jwt-handler.js.</p>
-<p>src/services/auth/jwt-handler.js</p>
-<p>הפונקציה verify מאמתת את ה-secret  מול ה-publicKey ובודקת תפוגת תוקף ואת שאר הפרמטרים ב-claim מול ה-verifyOptions.</p>
-<p>אני צריך לכתוב error handler טוב יותר לפי השגיאות השונות.</p>
-<p>ראה והשווה עם: מערכת מבוססת microservices - חלק 1 - אימות משתמשים.</p>
-<p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D"><u class="_3zM-5">מערכת מבוססת microservices - חלק 1 - אימות משתמשים</u></a></p>
-<p>נעבור ל-Dockerfile ול-docker-compose.yml.</p>
-<p>Dockerfile</p>
-<p>docker-compose.yml</p>
-<p>ה-docker-compose.yml מכיל, כמובן, מכונות נוספות שהופיעו בסדרת המאמרים.</p>
-<p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p>
-<p>השרת, אגב, מקבל מספר פרמטרים לסינון, מיון וכדומה - פרמטרים מובנים מהספריה querymen:</p>
-<p><a href="https://github.com/diegohaz/querymen"><u class="_3zM-5">querymen</u></a></p>
-<p>הפרמטר q - לחיפוש טקסט - רלוונטי רק במידה והפלאגין mongoose-keywords מותקן ואז נעשה חיפוש בשדה keywords.</p>
-<p><a href="https://github.com/diegohaz/mongoose-keywords">mongoose-keywords</a></p>
-
+          <p>חיפשתי boilerplate קליל של שרת API מבוסס NodeJS - לפעולות CRUD - שעובד מול mongo, בלי ניהול משתמשים ואותנטיקציה. מצאתי אחד והוא לא בויילרפלייט אלא גנרטור (generator) שזה אפילו טוב יותר. פרטים בהמשך. לפני כן, למה node? כי זאת הסביבה שאני מכיר אז באופן טבעי פניתי לכיוון הזה. אנחנו עוסקים כאן במיקרו-שירותים, אחד העקרונות הוא שאפשר לבחור שירותים שנכתבו בטננולוגיות שונות משום שלא מדובר על תוכנה מונוליטית שכתובה בשפה אחת. האם זה כל כך מסובך ללמוד קוד או להכיר שרתי API מוכנים - לפי הדרישות שלי - שנכתבו בטכנולוגיות שלא עבדתי איתן או לפחות לא עבדתי איתן בשוטף? לא מסובך. הכל עניין של זמן. האם הדרישות שלי יכולות להיות גמישות יותר? למשל, לוא דווקא mongo אלא SQL - לפי הצורך, כמובן. בהמשך אכנס לזה, אכיר סביבות חדשות ואחזור לסביבות ישנות כמו PHP איתו עבדתי במשך 12 שנה ברצף ובשנים האחרונות זנחתי לטובת node.</p><p><br></p><h3>התוכנה generator-rest</h3><p>נחזור לגנרטור שמצאתי, מדובר על <a href="https://www.npmjs.com/package/generator-rest" rel="noopener noreferrer" target="_blank">generator-rest</a> - מייצר שרתי API מבוססי node שעובדים מול mongo עם mongoose. יש אפשרות להוסיף ניהול משתמשים ואותנטיקציה. הכל במילוי פרטים באמצעות שורת הפקודה (CLI). הוא מבוסס על <a href="https://a-million-projects.com/post/yeoman-generator" rel="noopener noreferrer" target="_blank"><u>yeoman-</u>generator</a> - מחולל אפליקציות node. <a href="https://www.npmjs.com/browse/depended" rel="noopener noreferrer" target="_blank">מקום 40</a> (בזמן כתיבת הפוסט) בספריות npm הנפוצות עליהן מתבססות ספריות ותוכנות אחרות.</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056eb2961cb626538895a6.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>* ניסיתי להריץ את הפקודות בזמן כתיבת הפוסט ולחולל שרת חדש. מסיבה כלשהי (שקשורה ל-mongoose) השרת קורס לאחר npm start. בהמשך אבדוק את העניין.</p><p><br></p><h3>השרתים node-api-accounts ו-node-api-posts</h3><p>בניתי לפני זמן מה - בעזרת המחולל הזה - שני שרתים, אחד ל-accounts והשני ל-posts - ואיתם אני משתמש כרגע.</p><p><br></p><p>ה-repos כאן:</p><p><a href="https://github.com/YanivOr/node-api-accounts" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/node-api-accounts</a></p><p><a href="https://github.com/YanivOr/node-api-posts" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/node-api-posts</a></p><p><br></p><p>לא היה שום צורך לגעת בקוד כדי שכל פעולות ה-CRUD יעבדו כמו שצריך. מה שכן כתבתי והוספתי למערכת הקיימת זה קוד שמטפל ב-JWT token שמגיע עם הבקשות (ב-Authorization header) ועובד מול <a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D" rel="noopener noreferrer" target="_blank">שרת ה-auth</a>. אגב, אני שוב מזכיר שברגע שמייצרים את השרת, יש אפשרות להוסיף תמיכה ב-auth. החלטתי לכתוב את זה from scratch.</p><p><br></p><p>הוספתי תיקיה בשם auth מתחת ל-services ולצד express, mongoose, response. וכתבתי שני קבצים: index.js ו-jwt-handler.js.</p><p><br></p><p>src/services/auth/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056f47961cb626538895a7.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה verifyAuth חותכת את ה-JWT מה-header ומעבירה אותו לאימות בפונקציה verifyJWT. במידה והאימות עבר בהצלחה, היא מחזירה next. מי שעושה שימוש בפונקציה הזאת, בכל בקשה לשרת, היא הספריה express באמצעות use.</p><p><br></p><p>את הגדרות לשימוש בפונקציה הזאת ע"י express הוספתי לקובץ הבא שכבר היה קיים והכיל שימוש בפונקציות נוספות. אגב, יש חשיבות לסדר של ה-app.use. לשים לב לזה. וכאן נכנס ה-next שהוזכר קודם לכן.</p><p><br></p><p>src/services/express/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056f86961cb626538895a8.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נעבור לפונקציה verifyJWT שנמצאת ב-jwt-handler.js.</p><p><br></p><p>src/services/auth/jwt-handler.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056fc2961cb626538895a9.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפונקציה verify מאמתת את ה-secret מול ה-publicKey ובודקת תפוגת תוקף ואת שאר הפרמטרים ב-claim מול ה-verifyOptions.</p><p><br></p><p>אני צריך לכתוב error handler טוב יותר לפי השגיאות השונות.</p><p><br></p><p>ראה והשווה עם: <a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%90%D7%99%D7%9E%D7%95%D7%AA-%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9%D7%99%D7%9D" rel="noopener noreferrer" target="_blank">מערכת מבוססת microservices - חלק 1 - אימות משתמשים</a>.</p><p><br></p><p>נעבור ל-Dockerfile ול-docker-compose.yml.</p><p>Dockerfile</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64057026961cb626538895aa.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>docker-compose.yml</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64057054961cb626538895ab.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ה-docker-compose.yml מכיל, כמובן, מכונות נוספות שהופיעו בסדרת המאמרים.</p><p><br></p><p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p><p><br></p><p>השרת, אגב, מקבל מספר פרמטרים לסינון, מיון וכדומה - פרמטרים מובנים מהספריה <a href="https://github.com/diegohaz/querymen" rel="noopener noreferrer" target="_blank">querymen</a>:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640570b2961cb626538895ac.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הפרמטר q - לחיפוש טקסט - רלוונטי רק במידה והפלאגין <a href="https://github.com/diegohaz/mongoose-keywords" rel="noopener noreferrer" target="_blank">mongoose-keywords</a> מותקן ואז נעשה חיפוש בשדה keywords.</p><p><br></p><p><br></p><p><br></p>
         </div>
       </div>
     </div>

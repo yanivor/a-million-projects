@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -27,72 +27,97 @@
           <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
-          <p>כתבתי שרת Auth (קונטיינר נפרד, כמובן) שיאפשר רישום וכניסה למערכת (Authentication) כמשתמשים מסוגים שונים (Roles) וביצוע פעולות במערכת לפי הרשאות (Authorization).</p>
-<p>שרת ה-auth הוא שרת Node - express שיצרתי בעזרת הפקודה:</p>
-<p>$ npx express-generator node-auth</p>
-<p>ה-repo נמצא כאן: https://github.com/YanivOr/node-auth</p>
-<p><a href="https://github.com/YanivOr/node-auth"><u class="_3zM-5">https://github.com/YanivOr/node-auth</u></a></p>
-<p>כניסה למערכת</p>
-<p>בעת בקשת כניסה למערכת (login), נשלחים לשרת אימייל וסיסמא ובמידה והפרטים נכונים - השרת שולח כתגובה קישור URL למערכת המתאימה אליה הדפדפן יעשה העברה. ב-URL נמצא JWT שישמר בדפדפן (localStorage) בהתאם למערכת אליה יועבר המשתמש. מהשלב הזה ואילך, יועבר ה-JWT ב-Authorization header בכל בקשה לשרתי ה-API השונים.</p>
-<p>נעבור על הקוד של השרת. נתחיל מנקודת הכניסה ל-API, ב-routes.</p>
-<p>/routes/index.js</p>
-<p>בקשה מסוג POST לנתיב login, בה מועברים אימייל וסיסמא. בהמשך נעשה אימות מול בסיס הנתונים (הפונקציה login), קבלת תפקיד (manageRoles) וקבלת JWT token  (הפונקציה sign).</p>
-<p>במידה והכל תקין, השרת מחזיר כתובת URL עם token.</p>
-<p>* נא לא להתייחס ל-URL-ים שרשומים בצורה כזאת hard-coded, בהמשך אני אוסיף אותם כמשתני מערכת או בצורה אחרת. נגיע לזה.</p>
-<p>אימות מול בסיס הנתונים:</p>
-<p>/process/db-handler.js</p>
-<p>נעשה שימוש ב-mongoose לתקשורת עם שרת המונגו. אני מבקש מבסיס הנתונים שיחזיר לי תוצאה אחת שתכיל מזהה, סיסמא (מעורבלת) ורשימת תפקידים - לפי אימייל.</p>
-<p>בהמשך נעשה שימוש ב-Bcrypt לצורך השוואה בין הסיסמא שנשלחה לסיסמא מבסיס הנתונים ואימות המשתמש.</p>
-<p>קבלת תפקיד:</p>
-<p>/process/roles-handler.js</p>
-<p>לעת עתה ניהול התפקידים הוא מאוד פשוט ובסיסי. לכל משתמש יש רשימת תפקידים כשכרגע יש שניים: root או user. בהמשך אפתח את העניין.</p>
-<p>קבלת token:</p>
-<p>/process/jwt-handler.js</p>
-<p>כאן אני עושה שימוש בספריה jsonwebtoken לצורך יצירת ה-token. יצרתי זוג מפתחות SSL מסוג RSA. בעזרת המפתח הפרטי - בשילוב עם ה-payload ופרמטרים נוספים - אני יוצר את ה-JWT token. בשרת אחר שמבצע אימות של ה-JWT שנוצר כאן, נשתמש במפתח הציבורי לשם כך.</p>
-<p>דבר חשוב מאוד, שימו לב לפונקציה readFileSync של fs. היא סנכרונית, חוסמת את הריצה ונקראת פעם אחת כשהשרת עולה. נא לא לשים אותה בטעות בתוך ה-sign או כל מקום אחר.</p>
-<p>את מפתחות ה-SSL יצרתי כך:</p>
-<p>$ openssl rsa -in node-auth-private.key -pubout -outform PEM -out node-auth-public.key</p>
-<p>נעבור ל-Dockerfile:</p>
-<p>שימו לב שהגדרתי את המפתח הפרטי כקובץ בתיקיית tmp בקונטיינר שעתיד להיווצר. בהמשך - ב-compose - אני עושה מיפוי בין הנתיב של המפתח במכונה המארחת לבין הנתיב שהוגדר בקונטיינר. המשתנים: ISSUER, SUBJECT, AUDIENCE, EXPIRESIN הם פרמטרים שיתווספו ל-JWT, לצורך אימות נוסף, זיהוי וניתוב. </p>
-<p>נעבור ל-docker-compose.yml:</p>
-<p>ב-setup הנוכחי אני משתמש ב-container פשוט של mongo ולא בשירות כלשהו בענן.</p>
-<p>שימו לב למשתנה הבא שנמצא ב-Dockerfile:</p>
-<p>הערך mongo בכתובת הוא שם ה-service שב-docker-compose ואותו ערך שנמצא תחת depends_on. זה חשוב על מנת להימנע בשימוש בכתובות IP וכו'.</p>
-<p>בשירות node-auth, ה-docker image נבנה (שדה build) על-פי ההגדרות מה-Dockerfile שנמצא בתיקיה node-auth. השדה volumes מציין את המיפוי לקבצי ה-SSL. השדה ports חושף את השירות לעולם באמצעות מיפוי הפורט של הקונטיינר לפורט של המכונה המארחת. אותו פורט במקרה שלנו. מעבר לזה, כפי שהוזכר, השירות שלנו מותנה בריצה של השירות mongo (השדה depends_on).</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/U4ZrBrQBKYw" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>מעבר למערכת המתאימה ובדיקת תקינות ה-token</p>
-<p>בעת מעבר למערכת המתאימה לאחר ה-login או בעת ריענון הדפדפן של המערכת הזאת - נעשית בדיקה אם קיים JWT ב-URL או ב-localStorage (לאחר שנעשה חיבור בעבר). אם קיים, מתבצעת שליחה של בקשת verify לשרת auth כשה-JWT Token ב-Authorization header.</p>
-<p>הקוד שצירפתי למעלה השתנה בצורה הבאה.</p>
-<p>הוספתי קריאת GET ל-verify. אני גוזר את ה-JWT מה-header, מעביר לבדיקה בפונקציה verify שב-jwt-handler ומחזיר תשובה בהתאם. הוספתי גם status(500) במקרה של error.</p>
-<p>בדיקה מול הפונקציה verify של jsonwebtoken. שימו לב שהפעם אני משתמש במפתח הציבורי.</p>
-<p>הוספתי ל-DockerFile את ההגדרה המתאימה למפתח הציבורי.</p>
-<p>צד-לקוח (frontend)</p>
-<p>מכיל דפי הרשמה, כניסה, שחזור סיסמא וכולי. החלטתי לכתוב אותו ב-Vanilla Javascript בשימוש עם Web Components, כרגע ללא bundler. בינתיים, בזמן כתיבת הפוסט, יש רק דף כניסה.</p>
-<p>פוסט נוסף בנושא: כתיבת Web Components</p>
-<p><a href="https://a-million-projects.com/post/%D7%9B%D7%AA%D7%99%D7%91%D7%AA-web-components"><u class="_3zM-5">כתיבת Web Components</u></a></p>
-<p>ה-repo נמצא כאן: https://github.com/YanivOr/auth-pages</p>
-<p><a href="https://github.com/YanivOr/auth-pages"><u class="_3zM-5">https://github.com/YanivOr/auth-pages</u></a></p>
-<p>index.html</p>
-<p>לפני שנמשיך, אני רוצה להתעכב כאן על איזה עניין קטן. הקובץ environment.js. זה קובץ הקונפיגורציה של dev. הקובץ של production נקרא: environment.prod.js. יש כאן בעיה עם העובדה שכתבתי hard-coded בצורה כזאת. והנה סיבה מספיק טובה להכניס שימוש ב-bundler כלשהו. בהמשך.</p>
-<p>נעבור לשימוש ב-Web Components. שימו לב לתגית:</p>
-<p><login-component></p>
-<p>ולקובץ Javascript שמגדיר אותה:</p>
-<p>login-component.js</p>
-<p>הסבר כללי קצר. בעולם ה-Web Components ישנו מושג חשוב מאוד שנקרא Shadow DOM שיוצר מעטפת, תחום, scope ל-DOM ששייך לקומפוננט שאנחנו יוצרים. יוצר מעין עץ DOM פרטי כך שהגדרות CSS והגדרות אחרות חיצוניות לא ישפיעו עליו. </p>
-<p>כתבתי CSS ו-HTML שמגדירים את העיצוב של הרכיב. טופס כניסה עם השדות אימייל וסיסמא. כפתור לשליחת הנתונים. לכל אחד מהם מוצמד addEventLitener. לשדות טקסט, אירוע בזמן שינוי הטקסט. לכפתור, אירוע הקלקה.</p>
-<p>אני משתמש בפונקציה fetch לצורך שליחת בקשות לשרת API. שימו לב שאני עובד גם עם async ו-await ב-Vanilla Javascript ללא פוליפיל וכולי. לא כל כך אכפת לי אם זה יעבוד או לא בכל הדפדפנים למרות שעושה רושם שיש כבר תמיכה בכולם.</p>
-<p>במידה וחזרה תשובה תקינה מהשרת בצורת URL עם JWT token, הדפדפן יעשה העברה (redirect) למערכת המתאימה. </p>
-<p>ל-docker-compose.yml התווספו ההגדרות ל-auth-pages והוא נראה כך:</p>
-<p>ה-docker image נבנה על-פי ההגדרות שב-Dockerfile בתיקיית auth-pages. פורט 80 של הקונטיינר ממופה ל-8080 של המארח ודרכו נעשית התקשורת עם העולם החיצון.</p>
-<p><iframe width="800" height="416" src="https://www.youtube.com/embed/QOk7PB5pc_8" title="Tiamat The Scarred People 2012 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
-<p>בסוף הסרטון ניתן לראות שהדפדפן אכן עושה redirect לכתובת:</p>
-<p>http://127.0.0.1:8081/?token=eyJhbGciOiJ...</p>
-<p>למערכת שמיועדת למשתמש מהסוג root.</p>
-<p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p>
-<p>זה הזמן לעבור למערכת הזאת:</p>
-<p>מערכת מבוססת microservices - חלק 2- מערכת ניהול - React</p>
-<p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react">מערכת מבוססת microservices - חלק 2- מערכת ניהול - React</a></p>
-
+          <p>כתבתי שרת Auth (קונטיינר נפרד, כמובן) שיאפשר רישום וכניסה למערכת (Authentication) כמשתמשים מסוגים שונים (Roles) וביצוע פעולות במערכת לפי הרשאות (Authorization).</p><p><br></p><p>שרת ה-auth הוא שרת Node - express שיצרתי בעזרת הפקודה:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6404d0eba39177497b8315df.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/node-auth" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/node-auth</a></p><p><br></p><h3>כניסה למערכת</h3><p>בעת בקשת כניסה למערכת (login), נשלחים לשרת אימייל וסיסמא ובמידה והפרטים נכונים - השרת שולח כתגובה קישור URL למערכת המתאימה אליה הדפדפן יעשה העברה. ב-URL נמצא JWT שישמר בדפדפן (localStorage) בהתאם למערכת אליה יועבר המשתמש. מהשלב הזה ואילך, יועבר ה-JWT ב-Authorization header בכל בקשה לשרתי ה-API השונים.</p><p><br></p><p>נעבור על הקוד של השרת. נתחיל מנקודת הכניסה ל-API, ב-routes.</p><p>/routes/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056665961cb62653889596.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>בקשה מסוג POST לנתיב login, בה מועברים אימייל וסיסמא. בהמשך נעשה אימות מול בסיס הנתונים (הפונקציה login), קבלת תפקיד (manageRoles) וקבלת JWT token (הפונקציה sign).</p><p><br></p><p>במידה והכל תקין, השרת מחזיר כתובת URL עם token.</p><p><br></p><p>* נא לא להתייחס ל-URL-ים שרשומים בצורה כזאת hard-coded, בהמשך אני אוסיף אותם כמשתני מערכת או בצורה אחרת. נגיע לזה.</p><p><br></p><p>אימות מול בסיס הנתונים:</p><p>/process/db-handler.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640566e4961cb62653889597.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נעשה שימוש ב-mongoose לתקשורת עם שרת המונגו. אני מבקש מבסיס הנתונים שיחזיר לי תוצאה אחת שתכיל מזהה, סיסמא (מעורבלת) ורשימת תפקידים - לפי אימייל. בהמשך נעשה שימוש ב-Bcrypt לצורך השוואה בין הסיסמא שנשלחה לסיסמא מבסיס הנתונים ואימות המשתמש.</p><p><br></p><p>קבלת תפקיד:</p><p>/process/roles-handler.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640567e2961cb62653889598.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>לעת עתה ניהול התפקידים הוא מאוד פשוט ובסיסי. לכל משתמש יש רשימת תפקידים כשכרגע יש שניים: root או user. בהמשך אפתח את העניין.</p><p><br></p><p>קבלת token:</p><p>/process/jwt-handler.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6405681c961cb62653889599.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>כאן אני עושה שימוש בספריה jsonwebtoken לצורך יצירת ה-token. יצרתי זוג מפתחות SSL מסוג RSA. בעזרת המפתח הפרטי - בשילוב עם ה-payload ופרמטרים נוספים - אני יוצר את ה-JWT token. בשרת אחר שמבצע אימות של ה-JWT שנוצר כאן, נשתמש במפתח הציבורי לשם כך.</p><p><br></p><p>דבר חשוב מאוד, שימו לב לפונקציה readFileSync של fs. היא סנכרונית, חוסמת את הריצה ונקראת פעם אחת כשהשרת עולה. נא לא לשים אותה בטעות בתוך ה-sign או כל מקום אחר.</p><p><br></p><p>את מפתחות ה-SSL יצרתי כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6405686d961cb6265388959a.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>נעבור ל-Dockerfile:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640568b8961cb6265388959b.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>שימו לב שהגדרתי את המפתח הפרטי כקובץ בתיקיית tmp בקונטיינר שעתיד להיווצר. בהמשך - ב-compose - אני עושה מיפוי בין הנתיב של המפתח במכונה המארחת לבין הנתיב שהוגדר בקונטיינר. המשתנים: ISSUER, SUBJECT, AUDIENCE, EXPIRESIN הם פרמטרים שיתווספו ל-JWT, לצורך אימות נוסף, זיהוי וניתוב.</p><p><br></p><p>נעבור ל-docker-compose.yml:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640568fa961cb6265388959c.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ב-setup הנוכחי אני משתמש ב-container פשוט של mongo ולא בשירות כלשהו בענן. שימו לב למשתנה הבא שנמצא ב-Dockerfile:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/6405694a961cb6265388959d.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הערך mongo בכתובת הוא שם ה-service שב-docker-compose ואותו ערך שנמצא תחת depends_on. זה חשוב על מנת להימנע בשימוש בכתובות IP וכו'.</p><p><br></p><p>בשירות node-auth, ה-docker image נבנה (שדה build) על-פי ההגדרות מה-Dockerfile שנמצא בתיקיה node-auth. השדה volumes מציין את המיפוי לקבצי ה-SSL. השדה ports חושף את השירות לעולם באמצעות מיפוי הפורט של הקונטיינר לפורט של המכונה המארחת. אותו פורט במקרה שלנו. מעבר לזה, כפי שהוזכר, השירות שלנו מותנה בריצה של השירות mongo (השדה depends_on).</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/U4ZrBrQBKYw" height="416" width="800"></iframe><p><br></p><p><br></p><h3>מעבר למערכת המתאימה ובדיקת תקינות ה-token</h3><p>בעת מעבר למערכת המתאימה לאחר ה-login או בעת ריענון הדפדפן של המערכת הזאת - נעשית בדיקה אם קיים JWT ב-URL או ב-localStorage (לאחר שנעשה חיבור בעבר). אם קיים, מתבצעת שליחה של בקשת verify לשרת auth כשה-JWT Token ב-Authorization header.</p><p><br></p><p>הקוד שצירפתי למעלה השתנה בצורה הבאה.</p><p>/routes/index.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/640569d2961cb6265388959e.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הוספתי קריאת GET ל-verify. אני גוזר את ה-JWT מה-header, מעביר לבדיקה בפונקציה verify שב-jwt-handler ומחזיר תשובה בהתאם. הוספתי גם status(500) במקרה של error.</p><p>/process/jwt-handler.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056a2f961cb6265388959f.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>בדיקה מול הפונקציה verify של jsonwebtoken. שימו לב שהפעם אני משתמש במפתח הציבורי.</p><p><br></p><p>הוספתי ל-DockerFile את ההגדרה המתאימה למפתח הציבורי.</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056a68961cb626538895a0.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><h3>צד-לקוח (frontend)</h3><p>מכיל דפי הרשמה, כניסה, שחזור סיסמא וכולי. החלטתי לכתוב אותו ב-Vanilla Javascript בשימוש עם Web Components, כרגע ללא bundler. בינתיים, בזמן כתיבת הפוסט, יש רק דף כניסה.</p><p><br></p><p>פוסט נוסף בנושא: <a href="https://a-million-projects.com/post/%D7%9B%D7%AA%D7%99%D7%91%D7%AA-web-components" rel="noopener noreferrer" target="_blank">כתיבת Web Components</a></p><p><br></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/auth-pages" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/auth-pages</a></p><p><br></p><p>index.html</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056b24961cb626538895a1.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>לפני שנמשיך, אני רוצה להתעכב כאן על איזה עניין קטן. הקובץ environment.js. זה קובץ הקונפיגורציה של dev. הקובץ של production נקרא: environment.prod.js. יש כאן בעיה עם העובדה שכתבתי hard-coded בצורה כזאת. והנה סיבה מספיק טובה להכניס שימוש ב-bundler כלשהו. בהמשך.</p><p><br></p><p>נעבור לשימוש ב-Web Components. שימו לב לתגית: &lt;login-component&gt;</p><p><br></p><p>ולקובץ Javascript שמגדיר אותה:</p><p>login-component.js</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056bac961cb626538895a2.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>הסבר כללי קצר. בעולם ה-Web Components ישנו מושג חשוב מאוד שנקרא Shadow DOM שיוצר מעטפת, תחום, scope ל-DOM ששייך לקומפוננט שאנחנו יוצרים. יוצר מעין עץ DOM פרטי כך שהגדרות CSS והגדרות אחרות חיצוניות לא ישפיעו עליו.</p><p><br></p><p>כתבתי CSS ו-HTML שמגדירים את העיצוב של הרכיב. טופס כניסה עם השדות אימייל וסיסמא. כפתור לשליחת הנתונים. לכל אחד מהם מוצמד addEventLitener. לשדות טקסט, אירוע בזמן שינוי הטקסט. לכפתור, אירוע הקלקה.</p><p><br></p><p>אני משתמש בפונקציה fetch לצורך שליחת בקשות לשרת API. שימו לב שאני עובד גם עם async ו-await ב-Vanilla Javascript ללא פוליפיל וכולי. לא כל כך אכפת לי אם זה יעבוד או לא בכל הדפדפנים למרות שעושה רושם שיש כבר תמיכה בכולם.</p><p><br></p><p>במידה וחזרה תשובה תקינה מהשרת בצורת URL עם JWT token, הדפדפן יעשה העברה (redirect) למערכת המתאימה.</p><p><br></p><p>ל-docker-compose.yml התווספו ההגדרות ל-auth-pages והוא נראה כך:</p><p>
+  <iframe
+    class="code-iframe"
+    src="https://a-million-projects.com/post/code/64056c26961cb626538895a3.html"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
+  </iframe>
+</p><p><br></p><p>ה-docker image נבנה על-פי ההגדרות שב-Dockerfile בתיקיית auth-pages. פורט 80 של הקונטיינר ממופה ל-8080 של המארח ודרכו נעשית התקשורת עם העולם החיצון.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/QOk7PB5pc_8" height="416" width="800"></iframe><p><br></p><p>בסוף הסרטון ניתן לראות שהדפדפן אכן עושה redirect לכתובת:</p><p>http://127.0.0.1:8081/?token=eyJhbGciOiJ...</p><p>למערכת שמיועדת למשתמש מהסוג root.</p><p><br></p><p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p><p><br></p><p>זה הזמן לעבור למערכת הזאת:</p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react" rel="noopener noreferrer" target="_blank">מערכת מבוססת microservices - חלק 2- מערכת ניהול - React</a></p><p><br></p><p><br></p>
         </div>
       </div>
     </div>
