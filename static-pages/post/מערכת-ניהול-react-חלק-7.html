@@ -20,11 +20,13 @@
     <div class="main">
       <div class="post">
         <div class="header">
+          <div class="left">
+            <a href="../" class="back">לדף הראשי</a>
+          </div>
           <div class="right">
             <h1 class="title">מערכת ניהול - React - חלק 7</h1>
             <div class="author-date">יניב אור - 1 בינו׳ 2020</div>
           </div>
-          <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
           <p>החלק הזה הוא המשך ישיר של החלק הקודם ויעסוק בעיקר בטפסים.</p><p><br></p><h3>תיקונים ועדכונים</h3><p>עשיתי עוד כמה שינויים ונקיונות. את כל קבצי ה-constants שהיו מפוזרים בתיקיות השונות במערכת ריכזתי בתיקיה אחת constants תחת src. דבר נוסף, את הקריאות API עם axios, שהיו כתובות בקובץ actions עצמו העברתי לקובץ api.js תחת services. אם ארצה בעתיד להשתמש בספריה אחרת ולא ב-axios, כך יהיה קל יותר לעשות את השינוי. בכל מקרה, זה הרבה יותר נקי ומסודר בצורה הזאת.</p><p><br></p><p>הפונקציה getItems לפני התיקון:</p><p>

@@ -20,11 +20,13 @@
     <div class="main">
       <div class="post">
         <div class="header">
+          <div class="left">
+            <a href="../" class="back">לדף הראשי</a>
+          </div>
           <div class="right">
             <h1 class="title">מערכת מבוססת microservices - חלק 3 - שרתי API</h1>
             <div class="author-date">יניב אור - 18 בדצמ׳ 2019</div>
           </div>
-          <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
           <p>חיפשתי boilerplate קליל של שרת API מבוסס NodeJS - לפעולות CRUD - שעובד מול mongo, בלי ניהול משתמשים ואותנטיקציה. מצאתי אחד והוא לא בויילרפלייט אלא גנרטור (generator) שזה אפילו טוב יותר. פרטים בהמשך. לפני כן, למה node? כי זאת הסביבה שאני מכיר אז באופן טבעי פניתי לכיוון הזה. אנחנו עוסקים כאן במיקרו-שירותים, אחד העקרונות הוא שאפשר לבחור שירותים שנכתבו בטננולוגיות שונות משום שלא מדובר על תוכנה מונוליטית שכתובה בשפה אחת. האם זה כל כך מסובך ללמוד קוד או להכיר שרתי API מוכנים - לפי הדרישות שלי - שנכתבו בטכנולוגיות שלא עבדתי איתן או לפחות לא עבדתי איתן בשוטף? לא מסובך. הכל עניין של זמן. האם הדרישות שלי יכולות להיות גמישות יותר? למשל, לוא דווקא mongo אלא SQL - לפי הצורך, כמובן. בהמשך אכנס לזה, אכיר סביבות חדשות ואחזור לסביבות ישנות כמו PHP איתו עבדתי במשך 12 שנה ברצף ובשנים האחרונות זנחתי לטובת node.</p><p><br></p><h3>התוכנה generator-rest</h3><p>נחזור לגנרטור שמצאתי, מדובר על <a href="https://www.npmjs.com/package/generator-rest" rel="noopener noreferrer" target="_top">generator-rest</a> - מייצר שרתי API מבוססי node שעובדים מול mongo עם mongoose. יש אפשרות להוסיף ניהול משתמשים ואותנטיקציה. הכל במילוי פרטים באמצעות שורת הפקודה (CLI). הוא מבוסס על <a href="https://a-million-projects.com/post/yeoman-generator" rel="noopener noreferrer" target="_top">yeoman-generator</a> - מחולל אפליקציות node. <a href="https://www.npmjs.com/browse/depended" rel="noopener noreferrer" target="_top">מקום 40</a> (בזמן כתיבת הפוסט) בספריות npm הנפוצות עליהן מתבססות ספריות ותוכנות אחרות.</p><p>

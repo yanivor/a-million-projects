@@ -20,11 +20,13 @@
     <div class="main">
       <div class="post">
         <div class="header">
+          <div class="left">
+            <a href="../" class="back">לדף הראשי</a>
+          </div>
           <div class="right">
             <h1 class="title">מערכת ניהול - React</h1>
             <div class="author-date">יניב אור - 26 בדצמ׳ 2019</div>
           </div>
-          <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
           <p>בחלק זה אני בונה מערכת ניהול ב-React. אני עושה שימוש ב-Redux וב-React Hooks וכמו כן ב-styled-components לעבודה נוחה עם ה-CSS ובניית רכיבים. הסברים מפורטים בהמשך.</p><p>מערכת הניהול הזאת היא חלק מפרויקט גדול יותר:</p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A7%D7%9E%D7%AA-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-%D7%9E%D7%99%D7%A7%D7%A8%D7%95-%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D-microservices" rel="noopener noreferrer" target="_top">מערכת מבוססת microservices</a></p><p><br></p><p>כשהחלק שעוסק במערכת הניהול הוא:</p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react" rel="noopener noreferrer" target="_top">מערכת מבוססת microservices - חלק 2 - מערכת ניהול - React</a></p><p><br></p><p>אני לא משתמש ברכיבי UI מוכנים או ספריות שמיועדות לכך - בפרויקט הזה. אני רוצה לכתוב את רוב הקוד from-scratch.</p><p>האייקונים ממטריאל: <a href="https://material.io/resources/icons/?style=baseline" rel="noopener noreferrer" target="_top">https://material.io/resources/icons/?style=baseline</a></p><p><br></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/admin-system-react" rel="noopener noreferrer" target="_top">https://github.com/YanivOr/admin-system-react</a></p><p><br></p><p>בינתיים יש דף ראשי dashboard - כרגע ריק. יש דף לכל אחת מהישויות: accounts ו-posts. בכל דף כזה מוצגת טבלה עם הנתונים. יש עוד הרבה עבודה, אעדכן בהמשך. ה-theme, אגב, נקרא: אפור כהה וצל בהגזמה.</p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/kMInw0pLEbk" height="416" width="800"></iframe><p><br></p><p>את השלד של האפליקצית ריאקט חוללתי באמצעות הפקודה:</p><p>$ ngx create-react-app admin-system-react</p><p><br></p><h3>הרכיב הראשי וניתוב</h3><p>יצרתי מתחת ל-src תיקיה חדשה בשם: app וכך נראה הרכיב הראשי - App - שיכיל את שאר הרכיבים:</p><p>src/app/App.js</p><p>

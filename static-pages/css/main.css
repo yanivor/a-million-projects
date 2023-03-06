@@ -96,10 +96,8 @@ header h4 {
   color: #c9c6b4;
 }
 
-.post .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.post .header .left {
+  text-align: left;
 }
 
 .post .header .author-date {

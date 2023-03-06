@@ -20,11 +20,13 @@
     <div class="main">
       <div class="post">
         <div class="header">
+          <div class="left">
+            <a href="../" class="back">לדף הראשי</a>
+          </div>
           <div class="right">
             <h1 class="title">הרצת מערכת Android ב-VirtualBox</h1>
             <div class="author-date">יניב אור - 22 באפר׳ 2020</div>
           </div>
-          <a href="../" class="back">לדף הראשי</a>
         </div>
         <div class="content">
           <p>החלטתי לנסות להריץ מערכת Android כ-VM. אחת מהסיבות לכך היא העובדה שאני מעוניין לקנות טלפון חכם שמריץ לינוקס. יש את Pine64, למשל - או את Plasma. תהיתי, אם אקנה טלפון כזה וארצה להשתמש בו כך שהוא יהיה בסופו של דבר הסמארטפון הראשי שלי - איך אריץ אפלקציות Android. אז כנראה ש-VirtualBox יכול להיות פיתרון טוב לזה. אני אצטרך לבדוק את העניין.</p><p><a href="https://www.pine64.org/pinephone/" rel="noopener noreferrer" target="_top"><u>Pine64</u></a></p><p><a href="https://www.plasma-mobile.org/" rel="noopener noreferrer" target="_top"><u>Plasma</u></a></p><p>יש סיבות נוספות להריץ Android בצורה וירטואלית - לצורך פיתוח אפליקציות, למשל. בדיקות, וכן האלה. אדגים כאן איך עושים זאת.</p><p>נכנסתי לאתר osboxes שמכיל images מוכנים של מערכות הפעלה שונות - לתוכנות VirtualBox ול-VMware.</p><p><a href="https://www.osboxes.org/" rel="noopener noreferrer" target="_top"><u>osboxes</u></a></p><p><img src="https://static.wixstatic.com/media/17f292_89f8c188af064e989fe56ceddb035922~mv2.png"></p><p>מצאתי image לאנדואיד - גירסה אחרונה, Pie - והורדתי את הקובץ ל-VirtualBox 64bit.</p><p><img src="https://static.wixstatic.com/media/17f292_1020e3d413c54d3696e869bb657f9632~mv2.png"></p><p>בדקתי שהקובץ שירד הוא תקין ע"י שימוש ב-sha256sum.</p><p><img src="https://static.wixstatic.com/media/17f292_730faf72773945fd8383ecfbfd5da599~mv2.png"></p><p>חילצתי את הקובץ vdi מתוך ה-7z.</p><p><img src="https://static.wixstatic.com/media/17f292_d36b3e9c06e640bbb3269e431e51e62a~mv2.png"></p><p>הרצתי את VirtualBox והתחלתי בהתקנה של מערכת חדשה.</p><p><img src="https://static.wixstatic.com/media/17f292_f504e0d3060f48ea880d0e9042b0dd20~mv2.png"></p><p>הגדרתי - בצורה די שרירותית - RAM של 4 ג'יגה. אם יהיה צורך, אגדיל בהמשך.</p><p><img src="https://static.wixstatic.com/media/17f292_ef4a50b9c54545e6b579b95a71a2ef83~mv2.png"></p><p>בהגדרה של הכונן קשיח צירפתי את הקובץ vdi שהורדתי קודם לכן.</p><p><img src="https://static.wixstatic.com/media/17f292_8ac6da4aaaab47e2ba7fa5ba2d87f052~mv2.png"></p><p>הרצתי את המכונה.</p><p><img src="https://static.wixstatic.com/media/17f292_2de03b669792484cb823189c6ec53a33~mv2.png"></p><p><img src="https://static.wixstatic.com/media/17f292_71904fb4e6e64282b3ad8e7790f1f0f4~mv2.png"></p><p>עושה רושם שהכל עובד טוב.</p><p>פרטים נוספים בהמשך...</p>
