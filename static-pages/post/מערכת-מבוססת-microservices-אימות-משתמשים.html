@@ -33,7 +33,7 @@
     src="https://a-million-projects.com/post/code/6404d0eba39177497b8315df.html"
     onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
   </iframe>
-</p><p><br></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/node-auth" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/node-auth</a></p><p><br></p><h3>כניסה למערכת</h3><p>בעת בקשת כניסה למערכת (login), נשלחים לשרת אימייל וסיסמא ובמידה והפרטים נכונים - השרת שולח כתגובה קישור URL למערכת המתאימה אליה הדפדפן יעשה העברה. ב-URL נמצא JWT שישמר בדפדפן (localStorage) בהתאם למערכת אליה יועבר המשתמש. מהשלב הזה ואילך, יועבר ה-JWT ב-Authorization header בכל בקשה לשרתי ה-API השונים.</p><p><br></p><p>נעבור על הקוד של השרת. נתחיל מנקודת הכניסה ל-API, ב-routes.</p><p><br></p><p>/routes/index.js</p><p>
+</p><p><br></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/node-auth" rel="noopener noreferrer" target="_top">https://github.com/YanivOr/node-auth</a></p><p><br></p><h3>כניסה למערכת</h3><p>בעת בקשת כניסה למערכת (login), נשלחים לשרת אימייל וסיסמא ובמידה והפרטים נכונים - השרת שולח כתגובה קישור URL למערכת המתאימה אליה הדפדפן יעשה העברה. ב-URL נמצא JWT שישמר בדפדפן (localStorage) בהתאם למערכת אליה יועבר המשתמש. מהשלב הזה ואילך, יועבר ה-JWT ב-Authorization header בכל בקשה לשרתי ה-API השונים.</p><p><br></p><p>נעבור על הקוד של השרת. נתחיל מנקודת הכניסה ל-API, ב-routes.</p><p><br></p><p>/routes/index.js</p><p>
   <iframe
     class="code-iframe"
     src="https://a-million-projects.com/post/code/64056665961cb62653889596.html"
@@ -99,7 +99,7 @@
     src="https://a-million-projects.com/post/code/64056a68961cb626538895a0.html"
     onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
   </iframe>
-</p><p><br></p><h3>צד-לקוח (frontend)</h3><p>מכיל דפי הרשמה, כניסה, שחזור סיסמא וכולי. החלטתי לכתוב אותו ב-Vanilla Javascript בשימוש עם Web Components, כרגע ללא bundler. בינתיים, בזמן כתיבת הפוסט, יש רק דף כניסה.</p><p><br></p><p>פוסט נוסף בנושא: <a href="https://a-million-projects.com/post/%D7%9B%D7%AA%D7%99%D7%91%D7%AA-web-components" rel="noopener noreferrer" target="_blank">כתיבת Web Components</a></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/auth-pages" rel="noopener noreferrer" target="_blank">https://github.com/YanivOr/auth-pages</a></p><p><br></p><p>index.html</p><p>
+</p><p><br></p><h3>צד-לקוח (frontend)</h3><p>מכיל דפי הרשמה, כניסה, שחזור סיסמא וכולי. החלטתי לכתוב אותו ב-Vanilla Javascript בשימוש עם Web Components, כרגע ללא bundler. בינתיים, בזמן כתיבת הפוסט, יש רק דף כניסה.</p><p><br></p><p>פוסט נוסף בנושא: <a href="https://a-million-projects.com/post/%D7%9B%D7%AA%D7%99%D7%91%D7%AA-web-components" rel="noopener noreferrer" target="_top">כתיבת Web Components</a></p><p>ה-repo נמצא כאן: <a href="https://github.com/YanivOr/auth-pages" rel="noopener noreferrer" target="_top">https://github.com/YanivOr/auth-pages</a></p><p><br></p><p>index.html</p><p>
   <iframe
     class="code-iframe"
     src="https://a-million-projects.com/post/code/64056b24961cb626538895a1.html"
@@ -117,7 +117,7 @@
     src="https://a-million-projects.com/post/code/64056c26961cb626538895a3.html"
     onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';">
   </iframe>
-</p><p><br></p><p>ה-docker image נבנה על-פי ההגדרות שב-Dockerfile בתיקיית auth-pages. פורט 80 של הקונטיינר ממופה ל-8080 של המארח ודרכו נעשית התקשורת עם העולם החיצון.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/QOk7PB5pc_8" height="416" width="800"></iframe><p><br></p><p>בסוף הסרטון ניתן לראות שהדפדפן אכן עושה redirect לכתובת:</p><p>http://127.0.0.1:8081/?token=eyJhbGciOiJ...</p><p>למערכת שמיועדת למשתמש מהסוג root.</p><p><br></p><p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p><p><br></p><p>זה הזמן לעבור למערכת הזאת:</p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react" rel="noopener noreferrer" target="_blank">מערכת מבוססת microservices - חלק 2- מערכת ניהול - React</a></p><p><br></p><p><br></p>
+</p><p><br></p><p>ה-docker image נבנה על-פי ההגדרות שב-Dockerfile בתיקיית auth-pages. פורט 80 של הקונטיינר ממופה ל-8080 של המארח ודרכו נעשית התקשורת עם העולם החיצון.</p><p><br></p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/QOk7PB5pc_8" height="416" width="800"></iframe><p><br></p><p>בסוף הסרטון ניתן לראות שהדפדפן אכן עושה redirect לכתובת:</p><p>http://127.0.0.1:8081/?token=eyJhbGciOiJ...</p><p>למערכת שמיועדת למשתמש מהסוג root.</p><p><br></p><p>בהמשך נוסיף תמיכה ב-HTTPS ו-SSL.</p><p><br></p><p>זה הזמן לעבור למערכת הזאת:</p><p><a href="https://a-million-projects.com/post/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-microservices-%D7%97%D7%9C%D7%A7-2-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%91%D7%95%D7%A1%D7%A1%D7%AA-react" rel="noopener noreferrer" target="_top">מערכת מבוססת microservices - חלק 2- מערכת ניהול - React</a></p><p><br></p><p><br></p>
         </div>
       </div>
     </div>
