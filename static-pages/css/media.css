@@ -42,6 +42,12 @@
     margin-bottom: 10px;
   }
 
+  .comment {
+    font-size: 0.9em;
+    line-height: 1.1em;
+    padding: 10px;
+  }
+
   .category-title {
     font-size: 18px;
   }
@@ -171,6 +177,12 @@
     font-size: 1.1em;
     line-height: 1.2em;
     margin-bottom: 10px;
+  }
+
+  .comment {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    padding: 10px;
   }
 
   .category-title {
@@ -304,6 +316,12 @@
     margin-bottom: 20px;
   }
 
+  .comment {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    padding: 20px;
+  }
+
   .category-title {
     font-size: 22px;
   }
@@ -424,6 +442,12 @@
     font-size: 1.3em;
     line-height: 1.2em;
     margin-bottom: 20px;
+  }
+
+  .comment {
+    font-size: 1.3em;
+    line-height: 1.2em;
+    padding: 20px;
   }
 
   .category-title {

@@ -63,6 +63,16 @@ header h4 {
   color: #c9c6b4;
 }
 
+.comment {
+  background: #cccccc;
+  color: #222222;
+}
+
+.comment .title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .cards {
   display: flex;
   flex-direction: row;
