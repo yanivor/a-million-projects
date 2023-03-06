@@ -74,12 +74,14 @@
   }
 
   .post .header .title {
-    padding: 20px 10px 5px 10px;
+    padding: 30px 10px 5px 10px;
     font-size: 1.2em;
   }
 
   .post .header .back {
-    padding-left: 10px;
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
   }
 
   .post img {
@@ -203,12 +205,14 @@
   }
 
   .post .header .title {
-    padding: 20px 10px 5px 10px;
+    padding: 30px 10px 5px 10px;
     font-size: 1.2em;
   }
 
   .post .header .back {
-    padding-left: 10px;
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
   }
 
   .post img {
@@ -339,6 +343,10 @@
     font-size: 1.8em;
   }
 
+  .post .header .back {
+    font-size: 15px;
+  }
+
   .post .content {
     background: #00000055;
     padding: 10px 20px;
@@ -455,6 +463,10 @@
   .post .header .title {
     padding: 0px 20px;
     font-size: 1.8em;
+  }
+
+  .post .header .back {
+    font-size: 15px;
   }
 
   .post .content {
