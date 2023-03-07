@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="undefined">
+  <meta name="description" content="null">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/media.css">
@@ -29,73 +29,7 @@
           </div>
         </div>
         <div class="content">
-          <p>בפרק הזה ביומן שלי אכתוב על מסעותיי ברחבי רשת I2P. הכתבה הזאת היא חלק מסדרת כתבות בנושא ה-deep web. ההקדמה נמצאת בקישור הבא:
-הצד האחר של הרשת - הקדמה
-
-</p>
-<p><a href="https://geti2p.net/en/"><u class="_3zM-5">I2P</u></a></p>
-<p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%94%D7%A7%D7%93%D7%9E%D7%94">הצד האחר של הרשת - הקדמה</a></p>
-<p>את ה-I2P אני מריץ על docker. הנה התמונה שמצאתי ב-Docker Hub:</p>
-<p><a href="https://hub.docker.com/"><u class="_3zM-5">Docker Hub</u></a></p>
-<p>https://hub.docker.com/r/ksey/i2pd </p>
-<p><a href="https://hub.docker.com/r/ksey/i2pd"><u class="_3zM-5">https://hub.docker.com/r/ksey/i2pd</u></a></p>
-<p>משכתי את התמונה:</p>
-<p>$ docker pull ksey/i2pd</p>
-<p>יצרתי תיקיה חדשה למידע שעתיד לרדת מהרשת ונכנסתי לתיקיה:</p>
-<p>$ mkdir i2pd && cd i2pd</p>
-<p>יצרתי שני קבצי קונפיגורציה, אחד כללי ואחד ל-tunnels:</p>
-<p>$ touch i2pd.conf
-$ touch tunnels.conf</p>
-<p>ערכתי אותם לפי הדוגמאות האלה:</p>
-<p>https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/i2pd.conf  https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/tunnels.conf </p>
-<p><a href="https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/i2pd.conf"><u class="_3zM-5">https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/i2pd.conf</u></a></p>
-<p><a href="https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/tunnels.conf"><u class="_3zM-5"> https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/tunnels.conf</u></a></p>
-<p>
-
-</p>
-<p>הרצתי קונטיינר שירוץ ברקע ויימחק ברגע שיעצור. קישרתי את קבצי הקונפיגורציה לתיקיה המיועדת לכך בקונטיינר ופתחתי את הפורטים הרצויים (על-פי ההוראות באתר):</p>
-<p>$ docker run -d --rm --name i2pd -d -p 7070:7070 -p 4444:4444 -p 4447:4447 -p 7656:7656 -v /$PWD:/var/lib/i2pd ksey/i2pd</p>
-<p>נכנסתי ל-localhost פורט 7070 בדפדפן (Firefox ב-incognito):</p>
-<p><img src="https://static.wixstatic.com/media/17f292_40618316a32544f68e0d3d6440d70655~mv2.png" /></p>
-<p>לאחר מכן הורדתי chromium, אותו קינפגתי וכיביתי כמעט כל אפשרות שקיימת בדפדפן. אני מריץ אותו בצורה הבאה:</p>
-<p>$ chromium-browser --proxy-server="http://127.0.0.1:4444" --incognito</p>
-<p>בהמשך חזרתי ל-Firefox מוקשח. </p>
-<p>חיפשתי הסברים ברשת והגעתי לכתובת הבאה אותה הזנתי בדפדפן:</p>
-<p>http://identiguy.i2p/ </p>
-<p><a href="http://identiguy.i2p/"><u class="_3zM-5">http://identiguy.i2p/</u></a></p>
-<p>ואני בדף הבא:</p>
-<p><img src="https://static.wixstatic.com/media/17f292_3608e8d48022464380f300ffb0eb3c12~mv2.png" /></p>
-<p>למען האמת אני לא כל כך יודע מה אני עושה. לא קראתי מספיק ואני פשוט מנסה להגיע לאתרים. לחצתי על כמה קישורים, רובם מובילים לדף הבא:</p>
-<p><img src="https://static.wixstatic.com/media/17f292_f4848af8f8274a7bae96a46ea8b64238~mv2.png" /></p>
-<p>מבחר אתרים מעניינים שמצאתי. אגב, במושגים של I2P אתרים נקראים eepsites.</p>
-<p><img src="https://static.wixstatic.com/media/17f292_1332bb354b5a459abd5d4f71e8ad1dee~mv2.png" /></p>
-<p>שער כניסה ל-Telegram על גבי I2P</p>
-<p><img src="https://static.wixstatic.com/media/17f292_ee28ec1a1dbf4bb5bbed0a0535fc58ae~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_8e2c02e58d7a48e0868fc524cb5f639f~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_cf70bdc4567041db981ebd1401b73a28~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_6e61a246ff5148bb9a89fb3489b4f19d~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_0474bdadff1c423f8fce1d7d737a66a1~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_d8c268849fa145e8acb562468afc7c71~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_bb1a9e0b58294cc58277a4ee9c8ef37a~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_6c6aab352e0c449abff34af126d02670~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_0d5d3263672241c2833da343ce1ee61a~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_1aee710994a54e5e81c3415fa03b5a22~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_9c7d46b7fa0140299f89e0fdc4c246ab~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_0a314c6f914343cd8fce8ebd3d0ef170~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_3b577dca33a042e89dda8290726ab074~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_e7f688de10844868b406ef80c95922bc~mv2.png" /></p>
-<p><img src="https://static.wixstatic.com/media/17f292_a96ae506044540809c3ee1177d26e52b~mv2.png" /></p>
-<p>ללא קשר לאתרים (eepsites) שקיימים ב-I2P  - הוא פרוטוקול שמשמש לתעבורה נוספת מלבד http, כמו למשל IRC או FTP וכן הלאה. אחקור אותם בהמשך.</p>
-<p>הצד האחר של הרשת - הקדמה</p>
-<p>הצד האחר של הרשת - גלישה בטוחה</p>
-<p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%92%D7%9C%D7%99%D7%A9%D7%94-%D7%91%D7%98%D7%95%D7%97%D7%94"><span style="color:#5e8f86">הצד האחר של הרשת - גלישה בטוחה</span></a></p>
-<p>הצד האחר של הרשת - Tor</p>
-<p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-tor"><span style="color:#ffffff">הצד האחר של הרשת - Tor</span></a></p>
-<p>הצד האחר של הרשת - Freenet</p>
-<p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-freenet">הצד האחר של הרשת - Freenet</a></p>
-<p>הצד האחר של הרשת - ZeroNet</p>
-<p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-zeronet">הצד האחר של הרשת - ZeroNet</a></p>
-
+          <p>בפרק הזה ביומן שלי אכתוב על מסעותיי ברחבי רשת <a href="https://geti2p.net/en/" rel="noopener noreferrer" target="_blank">I2P</a>. הכתבה הזאת היא חלק מסדרת כתבות בנושא ה-deep web. ההקדמה נמצאת בקישור הבא: <a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%94%D7%A7%D7%93%D7%9E%D7%94" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - הקדמה</a></p><p><br></p><p>את ה-I2P אני מריץ על docker. הנה התמונה שמצאתי ב-<a href="https://hub.docker.com/" rel="noopener noreferrer" target="_blank">Docker Hub</a>:</p><p><a href="https://hub.docker.com/r/ksey/i2pd" rel="noopener noreferrer" target="_blank"><u>https://hub.docker.com/r/ksey/i2pd</u></a></p><p><br></p><p>משכתי את התמונה:</p><p>$ docker pull ksey/i2pd</p><p><br></p><p>יצרתי תיקיה חדשה למידע שעתיד לרדת מהרשת ונכנסתי לתיקיה:</p><p>$ mkdir i2pd &amp;&amp; cd i2pd</p><p><br></p><p>יצרתי שני קבצי קונפיגורציה, אחד כללי ואחד ל-tunnels:</p><p>$ touch i2pd.conf $ touch tunnels.conf</p><p><br></p><p>ערכתי אותם לפי הדוגמאות האלה:</p><p><a href="https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/i2pd.conf" rel="noopener noreferrer" target="_blank">https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/i2pd.conf</a></p><p><a href="https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/tunnels.conf" rel="noopener noreferrer" target="_blank"> https://github.com/PurpleI2P/i2pd/blob/openssl/contrib/tunnels.conf</a></p><p><br></p><p>הרצתי קונטיינר שירוץ ברקע ויימחק ברגע שיעצור. קישרתי את קבצי הקונפיגורציה לתיקיה המיועדת לכך בקונטיינר ופתחתי את הפורטים הרצויים (על-פי ההוראות באתר):</p><p>$ docker run -d --rm --name i2pd -d -p 7070:7070 -p 4444:4444 -p 4447:4447 -p 7656:7656 -v /$PWD:/var/lib/i2pd ksey/i2pd</p><p><br></p><p>נכנסתי ל-localhost פורט 7070 בדפדפן (Firefox ב-incognito):</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_40618316a32544f68e0d3d6440d70655~mv2.png"></p><p><br></p><p>לאחר מכן הורדתי chromium, אותו קינפגתי וכיביתי כמעט כל אפשרות שקיימת בדפדפן. אני מריץ אותו בצורה הבאה:</p><p>$ chromium-browser --proxy-server="http://127.0.0.1:4444" --incognito</p><p><br></p><p>בהמשך חזרתי ל-Firefox מוקשח.</p><p><br></p><p>חיפשתי הסברים ברשת והגעתי לכתובת הבאה אותה הזנתי בדפדפן:</p><p><a href="http://identiguy.i2p/" rel="noopener noreferrer" target="_blank">http://identiguy.i2p/</a></p><p><br></p><p>ואני בדף הבא:</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_3608e8d48022464380f300ffb0eb3c12~mv2.png"></p><p><br></p><p>למען האמת אני לא כל כך יודע מה אני עושה. לא קראתי מספיק ואני פשוט מנסה להגיע לאתרים. לחצתי על כמה קישורים, רובם מובילים לדף הבא:</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_f4848af8f8274a7bae96a46ea8b64238~mv2.png"></p><p><br></p><p>מבחר אתרים מעניינים שמצאתי. אגב, במושגים של I2P אתרים נקראים eepsites.</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_1332bb354b5a459abd5d4f71e8ad1dee~mv2.png"></p><p><br></p><p>שער כניסה ל-Telegram על גבי I2P</p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_ee28ec1a1dbf4bb5bbed0a0535fc58ae~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_8e2c02e58d7a48e0868fc524cb5f639f~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_cf70bdc4567041db981ebd1401b73a28~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_6e61a246ff5148bb9a89fb3489b4f19d~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_0474bdadff1c423f8fce1d7d737a66a1~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_d8c268849fa145e8acb562468afc7c71~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_bb1a9e0b58294cc58277a4ee9c8ef37a~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_6c6aab352e0c449abff34af126d02670~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_0d5d3263672241c2833da343ce1ee61a~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_1aee710994a54e5e81c3415fa03b5a22~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_9c7d46b7fa0140299f89e0fdc4c246ab~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_0a314c6f914343cd8fce8ebd3d0ef170~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_3b577dca33a042e89dda8290726ab074~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_e7f688de10844868b406ef80c95922bc~mv2.png"></p><p><br></p><p><img src="https://static.wixstatic.com/media/17f292_a96ae506044540809c3ee1177d26e52b~mv2.png"></p><p><br></p><p>ללא קשר לאתרים (eepsites) שקיימים ב-I2P - הוא פרוטוקול שמשמש לתעבורה נוספת מלבד http, כמו למשל IRC או FTP וכן הלאה. אחקור אותם בהמשך.</p><p><br></p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%94%D7%A7%D7%93%D7%9E%D7%94" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - הקדמה</a></p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-%D7%92%D7%9C%D7%99%D7%A9%D7%94-%D7%91%D7%98%D7%95%D7%97%D7%94" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - גלישה בטוחה</a></p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-tor" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - Tor</a></p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-freenet" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - Freenet</a></p><p><a href="https://a-million-projects.com/post/%D7%94%D7%A6%D7%93-%D7%94%D7%90%D7%97%D7%A8-%D7%A9%D7%9C-%D7%94%D7%A8%D7%A9%D7%AA-zeronet" rel="noopener noreferrer" target="_blank">הצד האחר של הרשת - ZeroNet</a></p><p><br></p><p><br></p>
         </div>
       </div>
     </div>
