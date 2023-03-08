@@ -23,12 +23,14 @@
   .main {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 272px;
+    width: 85%;
   }
 
   .main-index {
     margin-top: 0px;
+    margin-bottom: 10px;
     padding: 10px;
+    width: 272px;
   }
 
   .preface {
@@ -160,12 +162,14 @@
   .main {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 564px;
+    width: 85%;
   }
 
   .main-index {
     margin-top: 0px;
+    margin-bottom: 10px;
     padding: 10px;
+    width: 564px;
   }
   
   .preface {
@@ -297,12 +301,14 @@
   .main {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 856px;
+    width: 70%;
   }
 
   .main-index {
     margin-top: 0px;
+    margin-bottom: 20px;
     padding: 20px;
+    width: 856px;
   }
 
   .preface {
@@ -425,12 +431,14 @@
   .main {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 1148px;
+    width: 70%;
   }
 
   .main-index {
     margin-top: 0px;
+    margin-bottom: 20px;
     padding: 20px;
+    width: 1148px;
   }
 
   .preface {

@@ -51,7 +51,7 @@ header h4 {
   z-index: -1;   
 }
 
-.main {
+.main, .main-index {
   background: #111111aa;
 }
 
